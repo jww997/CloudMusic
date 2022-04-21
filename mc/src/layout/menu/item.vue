@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-// import { META } from '@/router/index';
+import { RouteRecordNormalized } from 'vue-router';
+import { META } from '@/router/index';
 
 // import { IconHome, IconCalendar } from '@arco-design/web-vue/es/icon';
 

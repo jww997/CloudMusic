@@ -114,6 +114,59 @@ export interface PARAMS_COMMENT_ALUBUM extends ID, OFFSET, BEFORE { }
 
 // #endregion
 
+// #region about dj
+export interface PARAMS_PERSONALIZED_DJPROGRAM { }
+export interface PARAMS_DJ_BANNER { }
+export interface PARAMS_DJ_PERSONALIZE_RECOMMEND extends LIMIT { }
+export interface PARAMS_DJ_SUBSCRIBER extends ID, LIMIT {
+  time?: number = -1 //分页参数,默认-1
+}
+export interface PARAMS_USER_AUDIO {
+  uid: number; // 用户id
+}
+export interface PARAMS_DJ_HOT extends OFFSET { }
+export interface PARAMS_DJ_PROGRAM_TOPLIST extends OFFSET { }
+export interface PARAMS_DJ_TOPLIST_PAY extends LIMIT { }
+export interface PARAMS_DJ_PROGRAM_TOPLIST_HOURS extends LIMIT { }
+export interface PARAMS_DJ_TOPLIST_HOURS extends LIMIT { }
+export interface PARAMS_DJ_TOPLIST_NEWCOMER extends LIMIT { }
+export interface PARAMS_DJ_TOPLIST_POPULAR extends LIMIT { }
+export interface PARAMS_DJ_TOPLIST extends OFFSET {
+  type?: 'new' | 'hot' // 榜单类型, new 为新晋电台榜,hot为热门电台榜
+}
+export interface PARAMS_RADIO_HOT extends OFFSET {
+  cateId: number // 类别 id,可通过 /dj/category/recommend 接口获取
+}
+export interface PARAMS_DJ_RECOMMEND { }
+export interface PARAMS_DJ_CATELIST { }
+export interface PARAMS_DJ_RECOMMEND_TYPE {
+  type?: number  // 电台类型 , 数字 , 可通过/dj/catelist获取 , 对应关系为 id 对应 此接口的 type, name 对应类型
+}
+export interface PARAMS_DJ_SUB {
+  rid: number // 电台的id
+}
+export interface PARAMS_DJ_SUBLIST { }
+export interface PARAMS_DJ_PAYGIFT extends OFFSET { }
+export interface PARAMS_DJ_CATEGORY_EXCLUDEHOT { }
+export interface PARAMS_DJ_CATEGORY_RECOMMEND { }
+export interface PARAMS_DJ_TODAY_PERFERED { }
+export interface PARAMS_DJ_DETAIL {
+  rid: number // 电台的id
+}
+export interface PARAMS_DJ_PROGRAM {
+  rid: number // 电台的id
+  asc?: boolean = false // 排序方式,默认为 false (新 => 老 ) 设置 true 可改为 老 => 新
+}
+export interface PARAMS_DJ_PROGRAM_DETAIL {
+  id: number // 电台节目的id
+}
+export interface PARAMS_COMMENT_DJ extends OFFSET, BEFORE {
+  id: number // 电台节目的id
+}
+
+
+// #endregion
+
 
 
 
@@ -128,5 +181,6 @@ export interface PARAMS_CHECK_MUSIC extends ID, BR {
 }
 
 export interface PARAMS_PERSONALIZED extends LIMIT { }
+export interface PARAMS_PERSONAL_FM { }
 
 

@@ -1,22 +1,29 @@
-<script lang="tsx">
-import { withModifiers, defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { useRouter, RouteRecordNormalized } from 'vue-router';
 
-const App = defineComponent({
-  setup() {
-    const count = ref(6);
+const router = useRouter();
 
-    const inc = () => {
-      count.value++;
-    };
-
-    return () => (
-      <div onClick={withModifiers(inc, ['self'])}>{count.value}</div>
-    );
-  },
-});
-
-export default App;
+const root = router
+  .getRoutes()
+  .find((el) => el.name === 'home') as RouteRecordNormalized;
 </script>
+
+<template>
+  <a-menu>
+    <a-sub-menu key="0" v-for="i in root.children">
+      <template #icon><icon-apps></icon-apps></template>
+      <template #title>{{ i.meta?.locale }}</template>
+      <a-menu-item
+        :key="ii.path"
+        v-for="ii in i.children"
+        @click="$router.push({ name: ii.name })"
+      >
+        <template #icon><icon-apps></icon-apps></template>
+        <span>{{ ii.meta?.locale }}</span>
+      </a-menu-item>
+    </a-sub-menu>
+  </a-menu>
+</template>
 
 <style lang="less" scoped>
 :deep(.arco-menu-inner) {

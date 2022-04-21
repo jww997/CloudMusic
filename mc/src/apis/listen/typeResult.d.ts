@@ -32,7 +32,7 @@ export type TAG = {
 }
 export interface RESULT_PLAYLIST_CATLIST extends CODE {
   all: TAG
-  categories: { 0: string, 1: string, 2: string, 3: string, 4: string }
+  categories: { number: string, 1: string, 2: string, 3: string, 4: string }
   sub: TAG[]
 }
 export interface RESULT_PLAYLIST_HOT extends CODE {
@@ -263,7 +263,7 @@ export type COMMENT = {
   status: number
   time: number
   timeStr: string
-  user: USER
+  user?: USER
 }
 export interface RESULT_COMMENT_PLAYLIST extends CODE, LISTMARK {
   commentBanner: null
@@ -491,7 +491,7 @@ export type ALBUM = {
     }
     comments: null
     latestLikedUsers: null
-    liked: false
+    liked: boolean
     likedCount: number
     resourceId: number
     resourceType: number
@@ -511,7 +511,7 @@ export type ALBUM = {
   status: number
   subType?: string
   tags?: string
-  type?: string
+  type?: string | null
 }
 export interface RESULT_SEARCH extends CODE {
   result: {
@@ -736,7 +736,7 @@ export interface RESULT_SEARCH_HOT_DETAIL extends CODE, MESSAGE {
 // #region about album
 export interface RESULT_ALUBUM extends CODE {
   album: ALBUM
-  resourceState: true
+  resourceState: boolean
   songs: SONG[]
 }
 export interface RESULT_ALUBUM_DETAIL_DYNAMIC extends CODE {
@@ -782,6 +782,500 @@ export interface RESULT_COMMENT_ALUBUM extends CODE {
 
 
 // #endregion
+
+// #region about dj
+export type DJ = {
+  accountStatus: number
+  anchor: boolean
+  authStatus: number
+  authenticationTypes: number
+  authority: number
+  avatarDetail: null
+  avatarImgId: number
+  avatarImgIdStr: string
+  avatarImgId_str: string
+  avatarUrl: string
+  backgroundImgId: number
+  backgroundImgIdStr: string
+  backgroundUrl: string
+  birthday: number
+  brand?: string
+  city: number
+  defaultAvatar: boolean
+  description: string
+  detailDescription: string
+  djStatus: number
+  expertTags: null
+  experts: null
+  followed: boolean
+  gender: number
+  mutual: boolean
+  nickname: string
+  province: number
+  remarkName: null
+  signature: string
+  subscribeTime?: number
+  userId: number
+  userType: number
+  vipType: number
+}
+export type RADIO = {
+  activityInfo?: null
+  alg?: string
+  buyed?: boolean
+  category?: string
+  categoryId?: number
+  commentCount?: number
+  commentDatas?: {
+    commentId: number
+    content: string
+    programId: number
+    programName: string
+    userProfile: USER
+  }[]
+  composeVideo?: boolean
+  createTime?: number
+  desc?: string
+  descPicList?: null
+  disableShare?: boolean
+  discountPrice?: null
+  dj?: DJ | null
+  dynamic?: boolean
+  feeInfo?: null
+  feeScope: number
+  finished?: boolean
+  hightQuality?: boolean
+  icon?: null
+  id: number
+  intervenePicId?: number
+  intervenePicUrl?: string
+  labelDto?: null
+  labels?: null
+  lastProgramCreateTime?: number
+  lastProgramId?: number
+  lastProgramName?: null
+  lastUpdateProgramName?: string
+  likedCount?: number
+  liveInfo?: null
+  manualTagsDTO?: null
+  name: string
+  original?: boolean
+  originalPrice?: number
+  picId?: number
+  picUrl: string
+  playCount?: number
+  privacy?: boolean
+  programCount?: number
+  purchaseCount?: number
+  price?: number
+  radioFeeType?: number
+  rcmdText?: string
+  rcmdtext?: string
+  scoreInfoDTO?: null
+  secondCategory?: string
+  secondCategoryId?: number
+  shareCount?: number
+  shortName?: string
+  subCount: number
+  subed?: boolean
+  taskId?: number
+  toplistInfo?: null
+  traceId?: null
+  underShelf?: boolean
+  unlockInfo?: null
+  videos?: null
+  whiteList?: boolean
+}
+export type AUDIOMUSIC = {
+  bitrate: number
+  dfsId: number
+  extension: string
+  id: number
+  name: null
+  playTime: number
+  size: number
+  sr: number
+  volumeDelta: number
+}
+export type MAINSONG = {
+  album: ALBUM
+  alias: []
+  artists: ARTIST[]
+  audition: null
+  bMusic: AUDIOMUSIC
+  commentThreadId: string
+  copyFrom: string
+  copyright: number
+  copyrightId: number
+  crbt: null
+  dayPlays: number
+  disc: string
+  duration: number
+  fee: number
+  ftype: number
+  hMusic: null
+  hearTime: number
+  id: number
+  lMusic: AUDIOMUSIC
+  mMusic: AUDIOMUSIC
+  mark: number
+  mp3Url: null
+  mvid: number
+  name: string
+  no: number
+  noCopyrightRcmd: null
+  originCoverType?: number
+  originSongSimpleData?: null
+  playedNum: number
+  popularity: number
+  position: number
+  privilege?: PRIVILEGES
+  reason: string
+  ringtone: string | null
+  rtUrl: null
+  rtUrls: []
+  rtype: number
+  rurl: null
+  score: number
+  sign: null
+  single?: number
+  starred: boolean
+  starredNum: number
+  status: number
+  transName: null
+}
+export type PROGRAM = {
+  alg?: null
+  adjustedPlayCount?: number
+  auditDisPlayStatus?: number
+  auditStatus: number
+  bdAuditStatus: number
+  blurCoverUrl: string
+  buyed: boolean
+  canReward: boolean
+  categoryId?: number
+  categoryName?: null
+  channels: []
+  commentCount: number
+  commentThreadId: string
+  coverId: number
+  coverUrl: string
+  createEventId?: number
+  createTime: number
+  description: string
+  disPlayStatus?: null
+  dj: DJ
+  djPlayRecordVo?: null
+  duration: number
+  existLyric?: boolean
+  feeScope?: number
+  h5Links: [] | null
+  id: number
+  isPublish: boolean
+  likedCount: number
+  listenerCount: number
+  liveInfo?: null
+  mainSong: MAINSONG
+  mainTrackId: number
+  name: string
+  privacy?: boolean
+  programDesc: null
+  programFeeType: number
+  pubStatus: number
+  publish?: boolean
+  radio: RADIO
+  recommended: boolean
+  reward: boolean
+  scheduledPublishTime?: number
+  score?: number
+  secondCategoryId?: number
+  secondCategoryName?: null
+  serialNum: number
+  shareCount: number
+  smallLanguageAuditStatus?: number
+  songs: null
+  subscribed: boolean
+  subscribedCount: number
+  titbitImages: null
+  titbits: null
+  trackCount: number
+  userId?: number
+  videoInfo?: null
+}
+export interface RESULT_PERSONALIZED_DJPROGRAM extends CODE {
+  category: number
+  result: {
+    alg: string
+    canDislike: boolean
+    copywriter: string
+    id: number
+    name: string
+    picUrl: string
+    program: PROGRAM
+    trackNumberUpdateTime: null
+    type: number
+  }[]
+}
+export interface RESULT_DJ_BANNER extends CODE {
+  data: {
+    exclusive: boolean
+    pic: string
+    targetId: number
+    targetType: number
+    typeTitle: string
+    url: string
+  }[]
+}
+export interface RESULT_DJ_PERSONALIZE_RECOMMEND extends CODE {
+  data: RADIO[]
+}
+export interface RESULT_DJ_SUBSCRIBER extends CODE {
+  hasMore: boolean
+  subscribers: DJ[]
+  time: number
+}
+export interface RESULT_USER_AUDIO extends CODE {
+  count: number
+  djRadios: []
+  hasMore: boolean
+  subCount: number
+}
+export interface RESULT_DJ_HOT extends CODE {
+  djRadios: RADIO[]
+  hasMore: boolean
+}
+export type DJ_TOPLIST = {
+  category?: string
+  categoryId?: number
+  createTime?: number
+  creatorName?: string
+  dj?: DJ
+  feeScope?: number
+  id?: number
+  lastRank: number
+  name?: string
+  picUrl?: string
+  playCount?: number
+  program?: PROGRAM
+  programCount?: number
+  programFeeType: number
+  picUrl?: string
+  radioFeeType?: number
+  rank: number
+  rcmdtext?: string
+  score: number
+  subCount?: number
+}
+export interface RESULT_DJ_PROGRAM_TOPLIST extends CODE {
+  toplist: DJ_TOPLIST[]
+  updateTime: number
+}
+export interface RESULT_DJ_TOPLIST_PAY extends CODE {
+  data: {
+    list: DJ_TOPLIST[]
+    total: number
+    updateTime: number
+  }
+  msg: string | null
+}
+export interface RESULT_DJ_PROGRAM_TOPLIST_HOURS extends CODE {
+  data: {
+    list: DJ_TOPLIST[]
+    total: number
+    updateTime: number
+  }
+  msg: string | null
+}
+export interface RESULT_DJ_TOPLIST_HOURS extends CODE {
+  data: {
+    list: {
+      avatarDetail: {
+        userType: number
+        identityLevel: number
+        identityIconUrl: string
+      }
+      avatarUrl: string
+      id: number
+      lastRank: number
+      liveId: number
+      liveStatus: number
+      liveType: number
+      mainAuthDesc: string
+      nickName: string
+      rank: number
+      roomNo: number
+      score: number
+      userFollowedCount: number
+      userType: number
+    }[]
+    total: number
+    updateTime: number
+  }
+  msg: string | null
+}
+export interface RESULT_DJ_TOPLIST_NEWCOMER extends CODE {
+  data: {
+    list: {
+      avatarDetail: {
+        identityIconUrl: string
+        identityLevel: number
+        userType: number
+      }
+      avatarUrl: string
+      id: number
+      lastRank: number
+      liveId: number
+      liveStatus: number
+      liveType: number
+      mainAuthDesc: string
+      nickName: string
+      rank: number
+      roomNo: number
+      score: number
+      userFollowedCount: number
+      userType: number
+    }[]
+    total: number
+    updateTime: number
+  }
+  msg: string | null
+}
+export interface RESULT_DJ_TOPLIST_POPULAR extends CODE {
+  data: {
+    list: {
+      avatarDetail: {
+        identityIconUrl: string
+        identityLevel: number
+        userType: number
+      }
+      avatarUrl: string
+      id: number
+      lastRank: number
+      liveId: number
+      liveStatus: number
+      liveType: number
+      mainAuthDesc: string
+      nickName: string
+      rank: number
+      roomNo: number
+      score: number
+      userFollowedCount: number
+      userType: number
+    }[]
+    total: number
+    updateTime: number
+  }
+  msg: string | null
+}
+export interface RESULT_DJ_TOPLIST extends CODE {
+  toplist: DJ_TOPLIST[]
+  updateTime: number
+}
+export interface RESULT_RADIO_HOT extends CODE {
+  count: number
+  djRadios: RADIO[]
+  hasMore: boolean
+}
+export interface RESULT_DJ_RECOMMEND extends CODE {
+  djRadios: RADIO[]
+  name: string
+}
+export type DJ_CATEGORY = {
+  id: number
+  name: string
+  pic56x56Id: number
+  pic56x56IdStr: string
+  pic56x56Url: string
+  pic84x84Id: number
+  pic84x84IdUrl: string
+  pic96x96Id: number
+  pic96x96IdStr: string
+  pic96x96Url: string
+  picIPad: number
+  picIPadStr: string
+  picIPadUrl: string
+  picMacId: string
+  picMacUrl: string
+  picPCBlack: number
+  picPCBlackStr: string
+  picPCBlackUrl: string
+  picPCWhite: number
+  picPCWhiteStr: string
+  picPCWhiteUrl: string
+  picUWPId: string
+  picUWPUrl: string
+  picWeb: number
+  picWebStr: string
+  picWebUrl: string
+}
+export interface RESULT_DJ_CATELIST extends CODE {
+  categories: DJ_CATEGORY[]
+}
+export interface RESULT_DJ_RECOMMEND_TYPE extends CODE {
+  djRadios: RADIO[]
+  hasMore: boolean
+}
+export interface RESULT_DJ_SUB extends CODE { }
+export interface RESULT_DJ_SUBLIST extends CODE {
+  count: number
+  djRadios: RADIO[]
+  hasMore: boolean
+  time: number
+}
+export interface RESULT_DJ_PAYGIFT extends CODE {
+  data: {
+    hasMore: boolean
+    list: RADIO[]
+  }
+  msg: null
+}
+export interface RESULT_DJ_CATEGORY_EXCLUDEHOT extends CODE {
+  data: DJ_CATEGORY[]
+}
+export interface RESULT_DJ_CATEGORY_RECOMMEND extends CODE {
+  data: {
+    categoryId: number
+    categoryName: string
+    radios: RADIO[]
+  }
+  msg: null
+}
+export interface RESULT_DJ_TODAY_PERFERED extends CODE {
+  data: RADIO[]
+  msg: null
+}
+export interface RESULT_DJ_DETAIL extends CODE {
+  data: RADIO
+  msg: null
+}
+export interface RESULT_DJ_PROGRAM extends CODE {
+  count: number
+  more: boolean
+  programs: PROGRAM[]
+}
+export interface RESULT_DJ_PROGRAM_DETAIL extends CODE {
+  program: PROGRAM
+}
+export interface RESULT_COMMPARAMS_COMMENT_DJ extends CODE {
+  cnum: number
+  commentBanner: null
+  comments: COMMENT[]
+  hotComments: COMMENT[]
+  isMusician: boolean
+  more: boolean
+  moreHot: boolean
+  topComments: COMMENT[]
+  total: number
+  userId: number
+}
+
+
+
+
+// #endregion
+
+
+
 
 export interface RESULT_SONG_URL extends CODE {
   data: {
@@ -923,4 +1417,9 @@ export interface RESULT_PERSONALIZED extends CODE {
   hasTaste: boolean;
   result: RECOMMEND[];
 }
+export interface RESULT_PERSONAL_FM extends CODE {
+  data: MAINSONG[];
+  popAdjust: boolean
+}
+
 

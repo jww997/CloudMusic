@@ -79,6 +79,40 @@ const api: T.API = {
   // #endregion
 
   // #region about dj
+  getPersonalizedDjprogram: (params) => https.get(L.GET_PERSONALIZED_DJPROGRAM, params),
+  getDjBanner: (params) => https.get(L.GET_DJ_BANNER, params),
+  getDjPersonalizeRecommend: (params) => https.get(L.GET_DJ_PERSONALIZE_RECOMMEND, params),
+  getDjSubscriber: (params) => https.get(L.GET_DJ_SUBSCRIBER, params),
+  getUserAudio: (params) => https.get(L.GET_USER_AUDIO, params),
+  getDjHot: (params) => https.get(L.GET_DJ_HOT, params),
+  getDjProgramToplist: (params) => https.get(L.GET_DJ_PROGRAM_TOPLIST, params),
+  getDjToplistPay: (params) => https.get(L.GET_DJ_TOPLIST_PAY, params),
+  getDjProgramToplistHours: (params) => https.get(L.GET_DJ_PROGRAM_TOPLIST_HOURS, params),
+  getDjToplistHours: (params) => https.get(L.GET_DJ_TOPLIST_HOURS, params),
+  getDjToplistNewcomer: (params) => https.get(L.GET_DJ_TOPLIST_NEWCOMER, params),
+  getDjToplistPopular: (params) => https.get(L.GET_DJ_TOPLIST_POPULAR, params),
+  getDjToplist: (params) => https.get(L.GET_DJ_TOPLIST, params),
+  getRadioHot: (params) => https.get(L.GET_RADIO_HOT, params),
+  getDjRecommend: (params) => https.get(L.GET_DJ_RECOMMEND, params),
+  getDjCatelist: (params) => https.get(L.GET_DJ_CATELIST, params),
+  getDjRecommendType: (params) => https.get(L.GET_DJ_RECOMMEND_TYPE, params),
+  getDjSub: (params) => https.get(L.GET_DJ_SUB, params),
+  getDjSublist: (params) => https.get(L.GET_DJ_SUBLIST, params),
+  getDjPaygift: (params) => https.get(L.GET_DJ_PAYGIFT, params),
+  getDjCategoryExcludehot: (params) => https.get(L.GET_DJ_CATEGORY_EXCLUDEHOT, params),
+  getDjCategoryRecommend: (params) => https.get(L.GET_DJ_CATEGORY_RECOMMEND, params),
+  getDjTodayPerfered: (params) => https.get(L.GET_DJ_TODAY_PERFERED, params),
+  getDjDetail: (params) => https.get(L.GET_DJ_DETAIL, params),
+  getDjProgram: (params) => https.get(L.GET_DJ_PROGRAM, params),
+  getDjProgramDetail: (params) => https.get(L.GET_DJ_PROGRAM_DETAIL, params),
+  getCommentDj: (params) => https.get(L.GET_COMMENT_DJ, params),
+
+
+
+
+
+
+
   // #endregion
 
   getSongUrl: (params) => https.get(L.GET_SONG_URL, params),
@@ -87,6 +121,7 @@ const api: T.API = {
   getCheckMusic: (params) => https.get(L.GET_CHECK_MUSIC, params),
 
   getPersonalized: (params) => https.get(L.GET_PERSONALIZED, params),
+  getPersonalFm: (params) => https.get(L.GET_PERSONALFM, params),
   
   
 

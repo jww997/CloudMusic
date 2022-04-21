@@ -13,6 +13,8 @@ import SonglistDetail from "@/views/listen/songlistDetail/index.vue";
 import SingerDetail from "@/views/listen/singerDetail/index.vue";
 import Song from "@/views/listen/song/index.vue";
 import AlbumDetail from "@/views/listen/albumDetail/index.vue";
+import DjDetail from "@/views/listen/djDetail/index.vue";
+import PersonalFm from "@/views/listen/personalFm/index.vue";
 
 const routes: RouteRecordRaw = {
   redirect: '/listen/recommend',
@@ -111,6 +113,26 @@ const routes: RouteRecordRaw = {
       component: AlbumDetail,
       meta: {
         locale: '专辑详情', // 二级菜单名（语言包键名）
+        requiresAuth: true, // 是否需要鉴权
+        roles: ['admin'], // 权限角色
+      },
+    },
+    {
+      path: '/dj/detail',
+      name: 'dj/detail',
+      component: DjDetail,
+      meta: {
+        locale: '电台详情', // 二级菜单名（语言包键名）
+        requiresAuth: true, // 是否需要鉴权
+        roles: ['admin'], // 权限角色
+      },
+    },
+    {
+      path: '/personal/fm',
+      name: 'personal/fm',
+      component: PersonalFm,
+      meta: {
+        locale: '私人FM', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
       },

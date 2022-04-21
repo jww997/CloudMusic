@@ -25,8 +25,8 @@ export const actions: ActionTree<State, RootState> & Actions = {
       const res = await listen.getSongUrl({ id: val });
       const { data: [{ url }] } = res;
       // const { success } = await listen.getCheckMusic({ id: val })
-      if (!url) return false
       // if (!success) return false
+      if (!url) return false
       audioRef.src = url
       audioRef.autoplay = true
       dispatch(ActionTypes.SET_AUDIO_DETAIL, val)
@@ -35,7 +35,6 @@ export const actions: ActionTree<State, RootState> & Actions = {
       commit(MutationsTypes.AUDIO_REF, audioRef);
       commit(MutationsTypes.AUDIO_FOLD, true);
       audioRef.addEventListener("canplaythrough", async () => {
-        audioRef.play()
         watchEffect(() => {
           audioRef.volume = audio.volume
         })

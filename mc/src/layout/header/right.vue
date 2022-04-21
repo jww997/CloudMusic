@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { ActionTypes } from '@/store/modules/account/action-types';
 import { router } from '@/router';
 
 const store = useStore();
+
+const darkMode = ref<boolean>(false);
 
 const logout = () => {
   store.dispatch(ActionTypes.SET_ACCOUNT_LOGOUT);
@@ -13,10 +15,20 @@ const logout = () => {
 
 const profile = computed(() => store.state.account.profile);
 const cookie = computed(() => store.state.account.cookie);
+
+const handleDark = () => {
+  if (darkMode.value) {
+    document.body.removeAttribute('arco-theme');
+  } else {
+    document.body.setAttribute('arco-theme', 'dark');
+  }
+  darkMode.value = !darkMode.value;
+};
 </script>
 
 <template>
   <div class="right">
+    <icon-sun size="30" @click="handleDark" />
     <a-popover>
       <a-space class="txt-pointer" @click="$router.push('/account/user')">
         <a-avatar>
@@ -37,7 +49,9 @@ const cookie = computed(() => store.state.account.cookie);
 <style lang="less" scoped>
 .right {
   flex: 1;
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   :deep(.arco-avatar) {
     overflow: hidden;
   }

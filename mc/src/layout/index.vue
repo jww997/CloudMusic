@@ -46,7 +46,9 @@ watch(
         </a-breadcrumb>
         <a-layout-content><router-view :key="path" /></a-layout-content>
         <!-- <a-layout-content><Transition /></a-layout-content> -->
-        <a-layout-footer v-if="fold"><Footer></Footer></a-layout-footer>
+        <transition name="drawer" appear>
+          <a-layout-footer v-show="fold"><Footer></Footer></a-layout-footer>
+        </transition>
       </a-layout>
     </a-layout>
   </a-layout>
@@ -83,10 +85,11 @@ watch(
 :deep(.arco-layout) {
   height: 100%;
   position: relative;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 :deep(.arco-layout-footer) {
+  // width: 100%;
   height: 100px;
   color: var(--color-text-2);
   font-weight: 400;
@@ -96,6 +99,8 @@ watch(
 
   position: sticky;
   bottom: 0;
+  right: 20px;
+  left: 20px;
 }
 :deep(.arco-layout-content) {
   color: var(--color-text-2);
