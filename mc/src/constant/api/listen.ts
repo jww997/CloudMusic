@@ -41,7 +41,7 @@ export enum LISTEN {
   GET_LYRIC = '/lyric', // 获取歌词
   // GET_TOP_SONG = '/top/song', // 新歌速递
   // GET_HOMEPAGE_BLOCK_PAGE = '/homepage/block/page', // 首页发现
-  // GET_HOMEPAGE_DRAGON_BALL = '/homepage/dragon/ball', // 首页发现圆形图标入口列表
+  GET_HOMEPAGE_DRAGON_BALL = '/homepage/dragon/ball', // 首页发现圆形图标入口列表
   // GET_COMMENT_MUSIC = '/comment/music', // 歌曲评论
   // GET_COMMENT_FLOOR = '/comment/floor', // 楼层评论
   GET_COMMENT_ALBUM = '/comment/album', // 专辑评论

@@ -8,6 +8,7 @@ import {
   IconSkipPreviousFill,
   IconSkipNextFill,
   IconSound,
+  IconMute,
 } from '@arco-design/web-vue/es/icon';
 import { ActionTypes } from '@/store/modules/listen/action-types';
 import { MutationsTypes } from '@/store/modules/listen/mutations-types';
@@ -62,7 +63,12 @@ const handleVolume = (v: number) =>
       @click="handleToggle(1)"
     />
     <a-popover :trigger="'click'">
-      <icon-sound class="txt-pointer txt-hover txt-noselect" size="20" />
+      <icon-mute
+        size="20"
+        class="txt-pointer txt-hover txt-noselect"
+        v-if="volume === 0"
+      />
+      <icon-sound class="txt-pointer txt-hover txt-noselect" size="20" v-else />
       <template #content>
         <a-slider
           class="center"

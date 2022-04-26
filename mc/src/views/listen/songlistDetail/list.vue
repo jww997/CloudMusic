@@ -14,14 +14,14 @@ import {
 const store = useStore();
 
 const props = defineProps<{ list: listen_R.SONG[]; columns: TableColumn[] }>();
+console.log('props = ', props)
 
 const song = computed<listen_R.SONG | null>(
   () => store.state.listen.audio.song
 );
-const list = computed<listen_R.SONG[]>(() => store.state.listen.audio.list);
 
 const activeIndex = computed<number>(() =>
-  list.value.findIndex((v: listen_R.SONG) => v.id === song.value?.id)
+  store.state.listen.audio.list.findIndex((v: listen_R.SONG) => v.id === song.value?.id)
 );
 
 const dealDt = (dt: number) => dayjs(dt).format('mm:ss');

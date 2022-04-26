@@ -122,6 +122,7 @@ const api: T.API = {
 
   getPersonalized: (params) => https.get(L.GET_PERSONALIZED, params),
   getPersonalFm: (params) => https.get(L.GET_PERSONALFM, params),
+  getHomepageDragonBall: (params) => https.get(L.GET_HOMEPAGE_DRAGON_BALL, params),
   
   
 

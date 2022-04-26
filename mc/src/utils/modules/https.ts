@@ -107,18 +107,3 @@ export const https: Https = {
     document.body.appendChild(iframe);
   },
 };
-
-// /**
-//  * axios
-//  * @param {boolean} needToken 是否带token
-//  * @returns {AxiosStatic}
-//  */
-// export const https = (needToken: boolean = false) => {
-//   const config: AxiosRequestConfig<any> = {
-//     headers: {
-//       token: needToken ? '123' : '',
-//     },
-//     ...networkConfig,
-//   };
-//   return axios.create(config);
-// };

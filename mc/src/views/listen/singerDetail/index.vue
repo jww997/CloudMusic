@@ -17,7 +17,7 @@ const init = async () => {
   result1.value = await listen.getArtistDetail({ id });
   // result2.value = await listen.getArtistSongs({ id });
 
-  console.log(result1.value?.artist);
+  // console.log(result1.value?.artist);
   //  await listen.getArtist({ id });
   // await listen.getArtistTopSongs({ id });
   // await listen.getArtistMv({ id });

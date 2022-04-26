@@ -1421,5 +1421,16 @@ export interface RESULT_PERSONAL_FM extends CODE {
   data: MAINSONG[];
   popAdjust: boolean
 }
+export interface RESULT_HOMEPAGE_DRAGON_BALL extends CODE {
+  data: {
+    homepageMode: string
+    iconUrl: string
+    id: number
+    name: string
+    skinSupport: boolean
+    url: string
+  }[]
+  message: string
+}
 
 

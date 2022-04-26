@@ -1,6 +1,5 @@
 import { watch, watchEffect } from 'vue';
 import { ActionTree, ActionContext } from 'vuex';
-import { toNumber } from 'lodash';
 import { Notification } from '@arco-design/web-vue'
 import { MutationsTypes } from './mutations-types';
 import { ActionTypes } from './action-types';
@@ -51,7 +50,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
         commit(MutationsTypes.AUDIO_DURATION, 0)
         if (audio.list.length - 1 === audio.index) {
           commit(MutationsTypes.AUDIO_SONG, null)
-          commit(MutationsTypes.AUDIO_FOLD, false)
+          // commit(MutationsTypes.AUDIO_FOLD, false)
           commit(MutationsTypes.AUDIO_INDEX, -1)
         } else {
           dispatch(ActionTypes.SET_AUDIO_TOGGLE, 1)
@@ -96,13 +95,25 @@ export const actions: ActionTree<State, RootState> & Actions = {
   [ActionTypes.SET_AUDIO_LYRIC]({ commit }, val) {
     const init = async () => {
       const { lrc } = await listen.getlyric({ id: val })
-      const toMatch = (str: string = '', reg: RegExp) => str.match(reg)?.[1]
-      const toTime = (str: string = '') => toNumber(str.split(':')[0]) * 60 + toNumber(str.split(':')[1])
-      const lyric = lrc.lyric.split(/\n/g).map((v: string) => ({
-        time: toTime(toMatch(v, /\[(\S*)\]/)),
-        text: toMatch(v, /\][\s]?([\S｜\s]*)/) ?? '',
-      })).filter(({ time }) => !isNaN(time))
-      commit(MutationsTypes.AUDIO_LYRIC, lyric)
+      type FORMATLYRIC = (lyric: string) => { time: number; text: string; }[]
+      const formatLyric: FORMATLYRIC = (lyric) => {
+        const arr = lyric.split('\n').filter(v => v)
+        const result = new Array()
+        for (const str of arr) {
+          const reg = /^\[\d{1,2}:\d{1,2}.\d{1,3}$/
+          const arr = str.split(']')
+          const timeArr = arr.filter(item => reg.test(item)) // 匹配歌词时间
+          const lrc = arr.find(item => !reg.test(item)) // 取出歌词
+          if (!lrc) continue
+          for (const timeStr of timeArr) {
+            const [m, s, ms] = timeStr.substring(1).split(/[:.]/).map(v => parseInt(v))
+            const time = ((m * 60 + s) * 1000 + ms) / 1000
+            result.push({ time, text: lrc })
+          }
+        }
+        return result.sort((a, b) => (a.time - b.time)) // 按时间排序并返回
+      }
+      commit(MutationsTypes.AUDIO_LYRIC, formatLyric(lrc.lyric))
     }
     init()
   }

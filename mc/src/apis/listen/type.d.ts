@@ -111,6 +111,7 @@ export interface API {
 
   getPersonalized: (params?: P.PARAMS_PERSONALIZED) => Promise<ResType<R.RESULT_PERSONALIZED>>;
   getPersonalFm: (params?: P.PARAMS_PERSONAL_FM) => Promise<ResType<R.RESULT_PERSONAL_FM>>;
+  getHomepageDragonBall: (params?: P.PARAMS_HOMEPAGE_DRAGON_BALL) => Promise<ResType<R.RESULT_HOMEPAGE_DRAGON_BALL>>;
 
 
 }

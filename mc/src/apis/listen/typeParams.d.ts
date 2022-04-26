@@ -182,5 +182,6 @@ export interface PARAMS_CHECK_MUSIC extends ID, BR {
 
 export interface PARAMS_PERSONALIZED extends LIMIT { }
 export interface PARAMS_PERSONAL_FM { }
+export interface PARAMS_HOMEPAGE_DRAGON_BALL { }
 
 
