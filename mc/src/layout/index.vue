@@ -70,16 +70,18 @@ watch(
 :deep(.arco-layout-sider) .logo {
   height: 32px;
   margin: 12px 8px;
-  background: rgba(255, 255, 255, 0.2);
 }
 :deep(.arco-layout-sider-light) .logo {
   background: var(--color-fill-2);
+}
+:deep(.arco-layout-header),
+:deep(.arco-layout-footer) {
+  background: var(--color-bg-4);
 }
 :deep(.arco-layout-header) {
   height: 64px;
   line-height: 64px;
   padding: 0 20px;
-  background: var(--color-bg-3);
 }
 
 :deep(.arco-layout) {
@@ -89,13 +91,11 @@ watch(
 }
 
 :deep(.arco-layout-footer) {
-  // width: 100%;
   height: 100px;
   color: var(--color-text-2);
   font-weight: 400;
   font-size: 14px;
   line-height: 48px;
-  background: var(--color-bg-3);
 
   position: sticky;
   bottom: 0;

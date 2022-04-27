@@ -1,7 +1,7 @@
 import { StateTypes, StateTypes_AUDIO as A } from "./state-types"
 import type { SONG } from "@/apis/listen/typeResult"
 
-
+export type LYRIC = { time: number; text: string; }
 export type State = {
   [StateTypes.AUDIOREF]: HTMLAudioElement; // 音乐控件
   [StateTypes.AUDIO]: {
@@ -14,7 +14,9 @@ export type State = {
     [A.FOLD]: boolean; // 菜单
     [A.CURRENTTIME]: number; // 当前时间
     [A.DURATION]: number; // 持续时间
-    [A.LYRIC]: { time: number; text: string; }[]; // 歌词
+    [A.LYRIC]: LYRIC[]; // 歌词
+    [A.KLYRIC]: LYRIC[]; // 歌词2
+    [A.TLYRIC]: LYRIC[]; // 歌词翻译
   },
 };
 
@@ -31,5 +33,7 @@ export const state: State = {
     [A.CURRENTTIME]: 0,
     [A.DURATION]: 0,
     [A.LYRIC]: [],
+    [A.KLYRIC]: [],
+    [A.TLYRIC]: [],
   },
 };

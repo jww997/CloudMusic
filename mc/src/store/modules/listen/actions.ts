@@ -7,6 +7,7 @@ import { RootState } from '@/store';
 import type { SONG } from "@/apis/listen/typeResult";
 import type { State } from './state';
 import listen from '@/apis/listen';
+import { LYRIC } from '@/store/modules/listen/state';
 
 
 export type Actions<S = State, R = RootState> = {
@@ -94,9 +95,10 @@ export const actions: ActionTree<State, RootState> & Actions = {
   // 歌词
   [ActionTypes.SET_AUDIO_LYRIC]({ commit }, val) {
     const init = async () => {
-      const { lrc } = await listen.getlyric({ id: val })
-      type FORMATLYRIC = (lyric: string) => { time: number; text: string; }[]
+      const { lrc, tlyric, klyric } = await listen.getlyric({ id: val })
+      type FORMATLYRIC = (lyric: string) => LYRIC[]
       const formatLyric: FORMATLYRIC = (lyric) => {
+        if (lyric.length === 0) return []
         const arr = lyric.split('\n').filter(v => v)
         const result = new Array()
         for (const str of arr) {
@@ -114,6 +116,8 @@ export const actions: ActionTree<State, RootState> & Actions = {
         return result.sort((a, b) => (a.time - b.time)) // 按时间排序并返回
       }
       commit(MutationsTypes.AUDIO_LYRIC, formatLyric(lrc.lyric))
+      commit(MutationsTypes.AUDIO_KLYRIC, formatLyric(klyric.lyric))
+      commit(MutationsTypes.AUDIO_TLYRIC, formatLyric(tlyric.lyric))
     }
     init()
   }

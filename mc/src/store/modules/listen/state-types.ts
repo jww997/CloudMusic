@@ -14,4 +14,6 @@ export enum StateTypes_AUDIO {
   CURRENTTIME = 'currentTime',
   DURATION = 'duration',
   LYRIC = 'lyric',
+  KLYRIC = 'kLyric',
+  TLYRIC = 'tLyric',
 }

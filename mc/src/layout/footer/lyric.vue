@@ -4,16 +4,19 @@ import { useStore } from 'vuex';
 import { ActionTypes } from '@/store/modules/listen/action-types';
 import { MutationsTypes } from '@/store/modules/listen/mutations-types';
 import { SONG } from '@/apis/listen/typeResult';
+import { LYRIC } from '@/store/modules/listen/state';
 
 const store = useStore();
 
-const lyric = computed<{ time: number; text: string }[]>(
-  () => store.state.listen.audio.lyric
-);
+const lyric = computed<LYRIC[]>(() => store.state.listen.audio.lyric);
+const tLyric = computed<LYRIC[]>(() => store.state.listen.audio.tLyric);
 const song = computed<SONG>(() => store.state.listen.audio.song);
 const lyricIndex = computed<number>(() => store.getters.lyricIndex);
 const marginTop = computed<string>(
-  () => `-${(lyricIndex.value - 1) * 60 + 48}px`
+  () =>
+    `-${
+      (lyricIndex.value - 1.5) * (34 * (tLyric.value.length ? 2 : 1) + 26) + 48
+    }px`
 );
 
 const handleClick = (v: number) =>
@@ -42,6 +45,7 @@ onMounted(() => getLyric());
 
 <template>
   <div
+    v-if="lyric && tLyric"
     class="lyric"
     :class="{
       'mask-top': 3 <= lyricIndex && lyricIndex <= 6,
@@ -63,15 +67,33 @@ onMounted(() => getLyric());
         :key="item.time"
         @click="handleClick(item.time)"
       >
-        <div
-          class="list-item txt-pointer txt-noselect"
-          :class="{
-            active: lyricIndex === index,
-            hidden: !item.text,
-            omit: lyricIndex > index,
-          }"
-          >{{ item.text ? item.text : 0 }}</div
-        >
+        <div class="list-item txt-pointer txt-noselect">
+          <div
+            :class="{
+              active: lyricIndex === index,
+              big: lyricIndex === index,
+              hidden: !item.text,
+              omit: lyricIndex > index,
+            }"
+          >
+            {{ item.text ? item.text : 0 }}
+          </div>
+          <div
+            :class="{
+              active: lyricIndex === index,
+
+              hidden: !tLyric.find(({ time }) => time === item.time),
+              omit: lyricIndex > index,
+            }"
+            v-if="tLyric.length"
+          >
+            {{
+              tLyric.find(({ time }) => time === item.time)
+                ? tLyric.find(({ time }) => time === item.time).text
+                : 0
+            }}
+          </div>
+        </div>
       </a-list-item>
     </a-list>
   </div>
@@ -114,18 +136,19 @@ onMounted(() => getLyric());
     .list-item {
       line-height: 34px;
       font-size: 20px;
-      transition: 0.5s;
-      &.active {
-        color: rgb(var(--primary-6));
-        font-weight: bold;
-        font-size: 30px;
-        margin-left: -5px;
-      }
-      &.hidden {
+      > .hidden {
         visibility: hidden;
       }
-      &.omit {
+      > .omit {
         .text-row(1);
+      }
+      > .active {
+        color: rgb(var(--primary-6));
+        &.big {
+          margin-left: -5px;
+          font-size: 30px;
+          font-weight: bold;
+        }
       }
     }
   }
@@ -138,5 +161,9 @@ onMounted(() => getLyric());
 .lyric,
 .list {
   transition: 1s;
+}
+.list .list-item,
+.list .list-item .active.big {
+  transition: 0.3s;
 }
 </style>
