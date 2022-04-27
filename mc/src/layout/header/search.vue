@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
 import listen from '@/apis/listen/index';
+import { router } from '@/router';
 
 const config = reactive<{
   realkeyword: string;
@@ -16,15 +17,16 @@ const config = reactive<{
   showKeyword: '',
   hots: [],
 });
-const handleInput = async (keywords: string) => {
-  if (!keywords) return false;
-  const res = await listen.getSearchSuggest({ keywords });
-  // const res = await listen.getSearchMultimatch({ keywords });
+const handleInput = async (keywords: string = config.realkeyword) => {
+  config.realkeyword = keywords;
 };
-const handleSearch = async (keywords: string) => {
-  if (!keywords) keywords = config.realkeyword;
-  const res = await listen.getSearch({ keywords });
-  // const res = await listen.getCloudsearch({ keywords });
+const handleSearch = async () => {
+  const keywords: string = config.realkeyword;
+  router.push({ path: '/listen/search', query: { keywords } });
+};
+const handleClick = (v: string) => {
+  config.realkeyword = v;
+  handleSearch();
 };
 const init = async () => {
   const {
@@ -50,12 +52,13 @@ init();
         search-button
         @input="handleInput"
         @search="handleSearch"
+        @press-enter="handleSearch"
       />
       <template #content>
         <a-space>
           <a-button
             v-for="item in config.hots"
-            @click="handleSearch(item.first)"
+            @click="() => handleClick(item.first)"
             >{{ item.first }}</a-button
           >
         </a-space>

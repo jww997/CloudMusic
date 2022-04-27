@@ -15,6 +15,7 @@ import Song from "@/views/listen/song/index.vue";
 import AlbumDetail from "@/views/listen/albumDetail/index.vue";
 import DjDetail from "@/views/listen/djDetail/index.vue";
 import PersonalFm from "@/views/listen/personalFm/index.vue";
+import Search from "@/views/listen/search/index.vue";
 
 const routes: RouteRecordRaw = {
   redirect: '/listen/recommend',
@@ -133,6 +134,16 @@ const routes: RouteRecordRaw = {
       component: PersonalFm,
       meta: {
         locale: '私人FM', // 二级菜单名（语言包键名）
+        requiresAuth: true, // 是否需要鉴权
+        roles: ['admin'], // 权限角色
+      },
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search,
+      meta: {
+        locale: '搜索', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
       },

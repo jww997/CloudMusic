@@ -15,8 +15,9 @@ export type State = {
     [A.CURRENTTIME]: number; // 当前时间
     [A.DURATION]: number; // 持续时间
     [A.LYRIC]: LYRIC[]; // 歌词
-    [A.KLYRIC]: LYRIC[]; // 歌词2
-    [A.TLYRIC]: LYRIC[]; // 歌词翻译
+    [A.LYRICK]: LYRIC[]; // 歌词2
+    [A.LYRICT]: LYRIC[]; // 歌词翻译
+    [A.NETWORK]: number; // 网络
   },
 };
 
@@ -33,7 +34,8 @@ export const state: State = {
     [A.CURRENTTIME]: 0,
     [A.DURATION]: 0,
     [A.LYRIC]: [],
-    [A.KLYRIC]: [],
-    [A.TLYRIC]: [],
+    [A.LYRICK]: [],
+    [A.LYRICT]: [],
+    [A.NETWORK]: 0,
   },
 };

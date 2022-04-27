@@ -1,8 +1,15 @@
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
+import { useStore } from 'vuex';
 import listen from '@/apis/listen';
 import List from '../songlist/list.vue';
 import listen_R from '@/apis/listen/typeResult';
+import { ActionTypes } from '@/store/modules/listen/action-types';
+import { MutationsTypes } from '@/store/modules/listen/mutations-types';
+import { SONG } from '@/apis/listen/typeResult';
+import { LYRIC } from '@/store/modules/listen/state';
+
+const store = useStore();
 
 const result1 = ref<listen_R.RESULT_PERSONALIZED>();
 const result2 = ref<listen_R.RESULT_HOMEPAGE_DRAGON_BALL>();
@@ -13,6 +20,8 @@ const list = computed(() =>
 const init = async () => {
   result1.value = await listen.getPersonalized();
   result2.value = await listen.getHomepageDragonBall();
+
+  // store.dispatch(ActionTypes.SET_AUDIO_LYRIC, 33894312);
 };
 init();
 </script>

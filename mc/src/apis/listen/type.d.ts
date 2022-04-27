@@ -53,10 +53,10 @@ export interface API {
   // #region about search
   getSearch: (params: P.PARAMS_SEARCH) => Promise<R.RESULT_SEARCH>,
   getCloudsearch: (params: P.PARAMS_CLOUDSEARCH) => Promise<R.RESULT_CLOUDSEARCH>,
-  getSearchDefault: (params: P.PARAMS_SEARCH_DEFAULT) => Promise<R.RESULT_SEARCH_DEFAULT>,
+  getSearchDefault: (params?: P.PARAMS_SEARCH_DEFAULT) => Promise<R.RESULT_SEARCH_DEFAULT>,
   getSearchSuggest: (params: P.PARAMS_SEARCH_SUGGEST) => Promise<R.RESULT_SEARCH_SUGGEST>,
   getSearchMultimatch: (params: P.PARAMS_SEARCH_MULTIMATCH) => Promise<R.RESULT_SEARCH_MULTIMATCH>,
-  getSearchHot: (params: P.PARAMS_SEARCH_HOT) => Promise<R.RESULT_SEARCH_HOT>,
+  getSearchHot: (params?: P.PARAMS_SEARCH_HOT) => Promise<R.RESULT_SEARCH_HOT>,
   getSearchHotDetail: (params: P.PARAMS_SEARCH_HOT_DETAIL) => Promise<R.RESULT_SEARCH_HOT_DETAIL>,
   // #endregion
 

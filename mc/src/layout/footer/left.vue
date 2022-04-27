@@ -9,7 +9,11 @@ const song = computed<SONG>(() => store.state.listen.audio.song);
 </script>
 
 <template>
-  <div class="left" v-if="song" @click="$router.push('/listen/song')">
+  <div
+    class="left"
+    v-if="song"
+    @click="$router.push({ path: '/listen/song', query: { id: song.id } })"
+  >
     <a-image
       class="cover txt-pointer"
       :width="70"

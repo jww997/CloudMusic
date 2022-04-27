@@ -15,8 +15,9 @@ export type Mutations<S = State> = {
   [MutationsTypes.AUDIO_CURRENTTIME](state: S, val: State[StateTypes.AUDIO][A.CURRENTTIME]): void;
   [MutationsTypes.AUDIO_DURATION](state: S, val: State[StateTypes.AUDIO][A.DURATION]): void;
   [MutationsTypes.AUDIO_LYRIC](state: S, val: State[StateTypes.AUDIO][A.LYRIC]): void;
-  [MutationsTypes.AUDIO_KLYRIC](state: S, val: State[StateTypes.AUDIO][A.KLYRIC]): void;
-  [MutationsTypes.AUDIO_TLYRIC](state: S, val: State[StateTypes.AUDIO][A.TLYRIC]): void;
+  [MutationsTypes.AUDIO_LYRIC_K](state: S, val: State[StateTypes.AUDIO][A.LYRICK]): void;
+  [MutationsTypes.AUDIO_LYRIC_T](state: S, val: State[StateTypes.AUDIO][A.LYRICT]): void;
+  [MutationsTypes.AUDIO_NETWORK](state: S, val: State[StateTypes.AUDIO][A.NETWORK]): void;
 };
 
 export const mutations: MutationTree<State> & Mutations = {
@@ -31,6 +32,7 @@ export const mutations: MutationTree<State> & Mutations = {
   [MutationsTypes.AUDIO_CURRENTTIME]: (state, val) => state[StateTypes.AUDIO][A.CURRENTTIME] = val,
   [MutationsTypes.AUDIO_DURATION]: (state, val) => state[StateTypes.AUDIO][A.DURATION] = val,
   [MutationsTypes.AUDIO_LYRIC]: (state, val) => state[StateTypes.AUDIO][A.LYRIC] = val,
-  [MutationsTypes.AUDIO_KLYRIC]: (state, val) => state[StateTypes.AUDIO][A.KLYRIC] = val,
-  [MutationsTypes.AUDIO_TLYRIC]: (state, val) => state[StateTypes.AUDIO][A.TLYRIC] = val,
+  [MutationsTypes.AUDIO_LYRIC_K]: (state, val) => state[StateTypes.AUDIO][A.LYRICK] = val,
+  [MutationsTypes.AUDIO_LYRIC_T]: (state, val) => state[StateTypes.AUDIO][A.LYRICT] = val,
+  [MutationsTypes.AUDIO_NETWORK]: (state, val) => state[StateTypes.AUDIO][A.NETWORK] = val,
 };

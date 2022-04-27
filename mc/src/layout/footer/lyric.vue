@@ -9,13 +9,18 @@ import { LYRIC } from '@/store/modules/listen/state';
 const store = useStore();
 
 const lyric = computed<LYRIC[]>(() => store.state.listen.audio.lyric);
-const tLyric = computed<LYRIC[]>(() => store.state.listen.audio.tLyric);
+const lyrict = computed<LYRIC[]>(() => store.state.listen.audio.lyrict);
+const currentTime = computed(() => store.state.listen.audio.currentTime);
+const duration = computed(() => store.state.listen.audio.duration);
 const song = computed<SONG>(() => store.state.listen.audio.song);
+const lyricTLen = computed<number>(() => lyrict.value.length);
+const findTLyric = (item: LYRIC) =>
+  lyrict.value.find(({ time }) => time === item.time);
 const lyricIndex = computed<number>(() => store.getters.lyricIndex);
 const marginTop = computed<string>(
   () =>
     `-${
-      (lyricIndex.value - 1.5) * (34 * (tLyric.value.length ? 2 : 1) + 26) + 48
+      (lyricIndex.value - 1.2) * (34 * (lyricTLen.value ? 2 : 1) + 26) + 48
     }px`
 );
 
@@ -45,7 +50,6 @@ onMounted(() => getLyric());
 
 <template>
   <div
-    v-if="lyric && tLyric"
     class="lyric"
     :class="{
       'mask-top': 3 <= lyricIndex && lyricIndex <= 6,
@@ -68,6 +72,9 @@ onMounted(() => getLyric());
         @click="handleClick(item.time)"
       >
         <div class="list-item txt-pointer txt-noselect">
+          <!-- {{ currentTime / (lyric[index + 1].time ?? duration - item.time) }} -->
+          <!-- <div>{{ currentTime - item.time }}</div> -->
+          <!-- {{ lyric[index + 1] ? lyric[index + 1].time : duration }} -->
           <div
             :class="{
               active: lyricIndex === index,
@@ -79,19 +86,15 @@ onMounted(() => getLyric());
             {{ item.text ? item.text : 0 }}
           </div>
           <div
+            class="translate"
             :class="{
               active: lyricIndex === index,
-
-              hidden: !tLyric.find(({ time }) => time === item.time),
+              hidden: !findTLyric(item),
               omit: lyricIndex > index,
             }"
-            v-if="tLyric.length"
+            v-if="lyricTLen"
           >
-            {{
-              tLyric.find(({ time }) => time === item.time)
-                ? tLyric.find(({ time }) => time === item.time).text
-                : 0
-            }}
+            {{ findTLyric(item) ? findTLyric(item).text : 0 }}
           </div>
         </div>
       </a-list-item>
@@ -136,6 +139,9 @@ onMounted(() => getLyric());
     .list-item {
       line-height: 34px;
       font-size: 20px;
+      .translate {
+        font-size: 16px;
+      }
       > .hidden {
         visibility: hidden;
       }

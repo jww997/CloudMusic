@@ -60,6 +60,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
       audioRef.addEventListener('timeupdate', () => {
         commit(MutationsTypes.AUDIO_CURRENTTIME, audioRef.currentTime)
         commit(MutationsTypes.AUDIO_DURATION, isNaN(audioRef.duration) ? 0 : audioRef.duration)
+        commit(MutationsTypes.AUDIO_NETWORK, audioRef.networkState)
       })
     };
     init();
@@ -115,9 +116,18 @@ export const actions: ActionTree<State, RootState> & Actions = {
         }
         return result.sort((a, b) => (a.time - b.time)) // 按时间排序并返回
       }
+      const formatLyricK: FORMATLYRIC = (lyric) => {
+        if (lyric.length === 0) return []
+        const arr = lyric.split('\n').filter(v => v)
+        for (const str of arr) {
+          const arr = str.split(']')
+          // console.log(arr)
+        }
+        return []
+      }
       commit(MutationsTypes.AUDIO_LYRIC, formatLyric(lrc.lyric))
-      commit(MutationsTypes.AUDIO_KLYRIC, formatLyric(klyric.lyric))
-      commit(MutationsTypes.AUDIO_TLYRIC, formatLyric(tlyric.lyric))
+      commit(MutationsTypes.AUDIO_LYRIC_K, formatLyricK(klyric.lyric))
+      commit(MutationsTypes.AUDIO_LYRIC_T, formatLyric(tlyric.lyric))
     }
     init()
   }
