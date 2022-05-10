@@ -16,6 +16,9 @@ export interface API {
   getVideoGroup: (params: P.PARAMS_VIDEO_GROUP) => Promise<R.RESULT_VIDEO_GROUP>;
   getVideoTimelineAll: (params?: P.PARAMS_VIDEO_TIMELINE_ALL) => Promise<R.RESULT_VIDEO_TIMELINE_ALL>;
   getVideoTimelineRecommend: (params?: P.PARAMS_VIDEO_TIMELINE_RECOMMEND) => Promise<R.RESULT_VIDEO_TIMELINE_RECOMMEND>;
-  getRelatedAllvideo: (params?: P.PARAMS_RELATED_ALLVIDEO) => Promise<R.RESULT_RELATED_ALLVIDEO>;
+  getRelatedAllvideo: (params: P.PARAMS_RELATED_ALLVIDEO) => Promise<R.RESULT_RELATED_ALLVIDEO>;
+  getVideoDetail: (params: P.PARAMS_VIDEO_DETAIL) => Promise<R.RESULT_VIDEO_DETAIL>;
+  getVideoDetailInfo: (params: P.PARAMS_VIDEO_DETAIL_INFO) => Promise<R.RESULT_VIDEO_DETAIL_INFO>;
+  getVideoUrl: (params: P.PARAMS_VIDEO_URL) => Promise<R.RESULT_VIDEO_URL>;
 
 }

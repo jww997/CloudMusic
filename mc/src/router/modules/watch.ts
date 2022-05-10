@@ -3,7 +3,7 @@
  * @author Gavin
  */
 import { RouteRecordRaw } from 'vue-router';
-import Watch from '@/views/watch/index.vue';
+import Watch from '@/components/transition/index.vue';
 import Mv from '@/views/watch/mv/index.vue';
 import VideoDetail from '@/views/watch/videoDetail/index.vue';
 
@@ -33,7 +33,7 @@ const routes: RouteRecordRaw = {
       name: 'WatchVideoDetail',
       component: VideoDetail,
       meta: {
-        locale: '歌单详情', // 二级菜单名（语言包键名）
+        locale: '视频详情', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
       },

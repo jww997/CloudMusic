@@ -17,7 +17,7 @@ export enum WATCH {
   GET_VIDEO_TIMELINE_ALL = '/video/timeline/all', // 获取全部视频列表
   GET_VIDEO_TIMELINE_RECOMMEND = '/video/timeline/recommend', // 获取推荐视频
   GET_RELATED_ALLVIDEO = '/related/allvideo', // 相关视频
-  // GET_VIDEO_DETAIL = '/video/detail', // 视频详情
-  // GET_VIDEO_DETAIL_INFO = '/video/detail/info', // 获取视频点赞转发评论数数据
-  // GET_VIDEO_URL = '/video/url', // 获取视频播放地址
+  GET_VIDEO_DETAIL = '/video/detail', // 视频详情
+  GET_VIDEO_DETAIL_INFO = '/video/detail/info', // 获取视频点赞转发评论数数据
+  GET_VIDEO_URL = '/video/url', // 获取视频播放地址
 }

@@ -22,6 +22,9 @@ const api: T.API = {
   getVideoTimelineAll: (params) => https.get(W.GET_VIDEO_TIMELINE_ALL, params),
   getVideoTimelineRecommend: (params) => https.get(W.GET_VIDEO_TIMELINE_RECOMMEND, params),
   getRelatedAllvideo: (params) => https.get(W.GET_RELATED_ALLVIDEO, params),
+  getVideoDetail: (params) => https.get(W.GET_VIDEO_DETAIL, params),
+  getVideoDetailInfo: (params) => https.get(W.GET_VIDEO_DETAIL_INFO, params),
+  getVideoUrl: (params) => https.get(W.GET_VIDEO_URL, params),
   // #endregion
 };
 

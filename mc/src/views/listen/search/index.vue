@@ -26,11 +26,6 @@ const init: INIT = async (params, callback) => {
   // const result2 = await listen.getSearch({ keywords });
   callback && callback(result1);
 };
-
-watch(
-  () => query.value,
-  () => router.go(0)
-);
 </script>
 
 <template>

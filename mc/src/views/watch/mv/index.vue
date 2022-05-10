@@ -7,6 +7,7 @@ import watch_R from '@/apis/watch/typeResult';
 const result = ref<watch_R.RESULT_PERSONALIZED_MV>();
 
 const mvid = '5436712';
+const id = '89ADDE33C0AAE8EC14B99F6750DB954D';
 
 const init = async () => {
   // result.value = await watch.getPersonalizedMv();
@@ -23,9 +24,10 @@ const init = async () => {
   // const r = await watch.getVideoGroup({ id: 11155 });
   // const r = await watch.getVideoTimelineAll();
   // const r = await watch.getVideoTimelineRecommend();
-  const r = await watch.getRelatedAllvideo({
-    id: '89ADDE33C0AAE8EC14B99F6750DB954D',
-  });
+  // const r = await watch.getRelatedAllvideo({ id });
+  // const r = await watch.getVideoDetail({ id });
+  // const r = await watch.getVideoDetailInfo({ vid: id });
+  const r = await watch.getVideoUrl({ id: id });
   console.log(r);
 };
 init();

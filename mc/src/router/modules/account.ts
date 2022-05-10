@@ -3,7 +3,7 @@
  * @author Gavin
  */
 import { RouteRecordRaw } from 'vue-router';
-import Account from '@/views/account/index.vue';
+import Account from '@/components/transition/index.vue';
 import Login from '@/views/account/login/index.vue';
 import User from '@/views/account/user/index.vue';
 

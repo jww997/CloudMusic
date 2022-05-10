@@ -3,7 +3,7 @@
  * @author Gavin
  */
 import { RouteRecordRaw } from 'vue-router';
-import Listen from '@/views/listen/index.vue';
+import Listen from '@/components/transition/index.vue';
 import Recommend from '@/views/listen/recommend/index.vue';
 import Songlist from '@/views/listen/songlist/index.vue';
 import Station from "@/views/listen/station/index.vue";

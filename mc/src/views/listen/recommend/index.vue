@@ -1,12 +1,12 @@
 <script lang="ts">
 export default {
   name: 'ListenRecommend',
-  setup() {
-    // console.log(123);
-  },
-  mounted() {
-    console.log(123);
-  },
+  // setup() {
+  //   // console.log(123);
+  // },
+  // mounted() {
+  //   console.log(123);
+  // },
 };
 </script>
 <!-- <template>
@@ -14,7 +14,7 @@ export default {
   <router-link to="/listen/songlist/detail?id=4888621462"> 123 </router-link>
 </template> -->
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import listen from '@/apis/listen';
 import List from '../songlist/list.vue';
@@ -39,6 +39,8 @@ const init = async () => {
   // store.dispatch(ActionTypes.SET_AUDIO_LYRIC, 33894312);
 };
 init();
+
+onMounted(() => console.log(123));
 </script>
 
 <template>

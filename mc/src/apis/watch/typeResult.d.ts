@@ -199,44 +199,49 @@ export interface RESULT_VIDEO_GROUP_LIST extends CODE, MESSAGE {
 export interface RESULT_VIDEO_CATEGORY_LIST extends CODE, MESSAGE {
   data: GRUOP[],
 }
+export type VIDEO_DETAIL = {
+  advertisement?: boolean
+  alg?: string
+  authType?: number
+  avatarUrl?: string
+  commentCount: number
+  coverUrl: string
+  creator: DJ
+  description: string
+  durationms: number
+  hasRelatedGameAd: boolean
+  height: number
+  markTypes: number[]
+  playTime: number
+  praised?: boolean
+  praisedCount: number
+  previewDurationms?: number
+  previewUrl?: string
+  relateSong?: SONG[]
+  relatedInfo?: null
+  resolutions: {
+    resolution: number
+    size: number
+  }[]
+  scm?: string
+  shareCount: number
+  subscribeCount?: number
+  subscribed?: boolean
+  threadId: string
+  title: string
+  urlInfo?: null
+  vid: string
+  videoGroup: {
+    alg: null
+    id: number
+    name: string
+  }[]
+  videoUserLiveInfo: null
+  width: number
+}
 export type TIMELINE = {
   alg: string
-  data: {
-    alg: string
-    commentCount: number
-    coverUrl: string
-    creator: DJ
-    description: string
-    durationms: number
-    hasRelatedGameAd: boolean
-    height: number
-    markTypes: number[]
-    playTime: number
-    praised: boolean
-    praisedCount: number
-    previewDurationms: number
-    previewUrl: string
-    relateSong: SONG[]
-    relatedInfo: null
-    resolutions: {
-      resolution: number
-      size: number
-    }[]
-    scm: string
-    shareCount: number
-    subscribed: boolean
-    threadId: string
-    title: string
-    urlInfo: null
-    vid: string
-    videoGroup: {
-      alg: null
-      id: number
-      name: string
-    }[]
-    videoUserLiveInfo: null
-    width: number
-  }
+  data: VIDEO_DETAIL
   displayed: boolean
   extAlg: null
   type: number
@@ -277,5 +282,24 @@ export interface RESULT_RELATED_ALLVIDEO extends CODE, MESSAGE {
     vid: string
   }[]
 }
-
+export interface RESULT_VIDEO_DETAIL extends CODE, MESSAGE {
+  data: VIDEO_DETAIL
+}
+export interface RESULT_VIDEO_DETAIL_INFO extends CODE {
+  commentCount: number
+  liked: boolean
+  likedCount: number
+  shareCount: number
+}
+export interface RESULT_VIDEO_URL extends CODE {
+  urls: {
+    id: string
+    needPay: boolean
+    payInfo: null
+    r: number
+    size: number
+    url: string
+    validityTime: number
+  }[]
+}
 

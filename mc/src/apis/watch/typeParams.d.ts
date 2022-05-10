@@ -31,5 +31,14 @@ export interface PARAMS_VIDEO_TIMELINE_RECOMMEND {
   offset?: number = 0
 }
 export interface PARAMS_RELATED_ALLVIDEO {
-  id: string // 视频 的 id
+  id: string // 视频id
+}
+export interface PARAMS_VIDEO_DETAIL {
+  id: string // 视频id
+}
+export interface PARAMS_VIDEO_DETAIL_INFO {
+  vid: string // 视频id
+}
+export interface PARAMS_VIDEO_URL {
+  id: string // 视频id
 }
