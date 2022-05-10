@@ -3,7 +3,7 @@ import * as P from './typeParams';
 import * as R from './typeResult';
 
 export interface API {
-  getMvAll: (params?: P.PARAMS_MV_ALL) => Promise<R.RESULT_MV_ALL>
+  getMvAll: (params?: Partial<P.PARAMS_MV_ALL>) => Promise<R.RESULT_MV_ALL>
   getMvFirst: (params?: P.PARAMS_MV_FIRST) => Promise<R.RESULT_MV_FIRST>
   getMvExclusiveRcmd: (params?: P.PARAMS_EXCLUSIVE_RCMD) => Promise<R.RESULT_EXCLUSIVE_RCMD>
   getPersonalizedMv: (params?: P.PARAMS_PERSONALIZED_MV) => Promise<R.RESULT_PERSONALIZED_MV>;

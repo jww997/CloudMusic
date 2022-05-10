@@ -1,3 +1,8 @@
+<script lang="ts">
+export default {
+  name: 'ListenSingerDetail',
+};
+</script>
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
@@ -5,7 +10,7 @@ import { toNumber } from 'lodash';
 import listen from '@/apis/listen/index';
 import listen_R from '@/apis/listen/typeResult';
 import List from '../songlistDetail/list.vue';
-import * as C from './constant';
+import * as C from './_constant';
 
 const router = useRouter();
 

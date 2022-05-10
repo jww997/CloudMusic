@@ -6,7 +6,7 @@ import { MutationsTypes } from './mutations-types';
 import { ActionTypes } from './action-types';
 import { RootState } from '@/store';
 import type { State } from './state';
-import myWatch from '@/apis/watch';
+import myWatch from '@/apis/see';
 
 
 export type Actions<S = State, R = RootState> = {

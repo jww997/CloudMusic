@@ -1,8 +1,13 @@
+<script lang="ts">
+export default {
+  name: 'ListenSinger',
+};
+</script>
 <script lang="ts" setup>
 import { ref } from 'vue';
 import listen from '@/apis/listen/index';
 import listen_R from '@/apis/listen/typeResult';
-import * as C from './constant';
+import * as C from './_constant';
 
 const result1 = ref<listen_R.RESULT_ARTIST_LIST>();
 

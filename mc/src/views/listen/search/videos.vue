@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import List from '@/views/listen/songlistDetail/list.vue';
 import * as C from './_constant';
-import watch_R from '@/apis/watch/typeResult';
+import see_R from '@/apis/see/typeResult';
 import { INIT } from './_type';
 
 const props = defineProps<{
@@ -12,7 +12,7 @@ const props = defineProps<{
 
 const { init, type } = props;
 
-const videos = ref<watch_R.PERSONALIZED>();
+const videos = ref<see_R.PERSONALIZED>();
 
 init({ type }, ({ result }) => {
   videos.value = result.videos;

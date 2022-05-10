@@ -2,7 +2,7 @@
  * @description 视频接口常量
  * @author Gavin
  */
-export enum WATCH {
+export enum SEE {
   GET_MV_ALL = '/mv/all', // 全部mv
   GET_MV_FIRST = '/mv/first', // 最新mv
   GET_MV_EXCLUSIVE_RCMD = '/mv/exclusive/rcmd', // 网易出品mv

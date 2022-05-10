@@ -1,3 +1,8 @@
+<script lang="ts">
+export default {
+  name: 'ListenAlbumDetail',
+};
+</script>
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';

@@ -1,3 +1,8 @@
+<script lang="ts">
+export default {
+  name: 'ListenSearch',
+};
+</script>
 <script lang="ts" setup>
 import { ref, computed, watch } from 'vue';
 import { useStore } from 'vuex';
@@ -29,25 +34,27 @@ const init: INIT = async (params, callback) => {
 </script>
 
 <template>
-  <a-space class="padding" size="medium">
-    <a-typography-title>搜</a-typography-title>
-    <a-typography-title class="title">{{ keywords }}</a-typography-title>
-  </a-space>
-  <a-tabs v-model:active-key="activeIndex" lazy-load justify>
-    <template #extra>
-      <div class="padding">{{ `找到约${len}${unit}${title}` }}</div>
-    </template>
-    <a-tab-pane
-      v-for="({ title, type, is }, index) in C.TABS"
-      :key="index"
-      :title="title"
-    >
-      <div class="context">
-        <!-- component标签创建动态组件，is属性指向谁，就显示哪个组件 -->
-        <component :key="index" :is="is" :init="init" :type="type" />
-      </div>
-    </a-tab-pane>
-  </a-tabs>
+  <div>
+    <a-space class="padding" size="medium">
+      <a-typography-title>搜</a-typography-title>
+      <a-typography-title class="title">{{ keywords }}</a-typography-title>
+    </a-space>
+    <a-tabs v-model:active-key="activeIndex" lazy-load justify>
+      <template #extra>
+        <div class="padding">{{ `找到约${len}${unit}${title}` }}</div>
+      </template>
+      <a-tab-pane
+        v-for="({ title, type, is }, index) in C.TABS"
+        :key="index"
+        :title="title"
+      >
+        <div class="context">
+          <!-- component标签创建动态组件，is属性指向谁，就显示哪个组件 -->
+          <component :key="index" :is="is" :init="init" :type="type" />
+        </div>
+      </a-tab-pane>
+    </a-tabs>
+  </div>
 </template>
 
 <style lang="less" scoped>

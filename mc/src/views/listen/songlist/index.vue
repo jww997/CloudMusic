@@ -1,3 +1,8 @@
+<script lang="ts">
+export default {
+  name: 'ListenSonglist',
+};
+</script>
 <script lang="ts" setup>
 import { ref } from 'vue';
 import listen from '@/apis/listen';
@@ -33,12 +38,14 @@ const handleClick = async (cat: string) =>
 </script>
 
 <template>
-  <div v-if="results1">
-    <a-button v-for="item in results1?.sub" @click="handleClick(item.name)">
-      {{ item.name }}
-    </a-button>
+  <div>
+    <div v-if="results1">
+      <a-button v-for="item in results1?.sub" @click="handleClick(item.name)">
+        {{ item.name }}
+      </a-button>
+    </div>
+    <List :list="results2.playlists" v-if="results2" />
   </div>
-  <List :list="results2.playlists" v-if="results2" />
 </template>
 
 <style lang="less" scoped></style>

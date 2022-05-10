@@ -1,9 +1,14 @@
+<script lang="ts">
+export default {
+  name: 'SeeVideoDetail',
+};
+</script>
 <script lang="ts" setup>
 import { computed, onMounted } from 'vue';
 import { toNumber } from 'lodash';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { ActionTypes } from '@/store/modules/watch/action-types';
+import { ActionTypes } from '@/store/modules/see/action-types';
 
 const router = useRouter();
 

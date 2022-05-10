@@ -1,3 +1,8 @@
+<script lang="ts">
+export default {
+  name: 'ListenPersonalFm',
+};
+</script>
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';

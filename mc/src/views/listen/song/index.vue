@@ -1,3 +1,8 @@
+<script lang="ts">
+export default {
+  name: 'ListenSong',
+};
+</script>
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useStore } from 'vuex';

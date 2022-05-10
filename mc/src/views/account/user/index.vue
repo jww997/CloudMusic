@@ -15,7 +15,7 @@ const results2 = ref<account_R.RESULT_USER_PLAYLIST>();
 
 const init = async () => {
   store.dispatch(ActionTypes.SET_ACCOUNT_STATUS);
-  
+
   results1.value = await account.getUserDetail({ uid });
   results2.value = await account.getUserPlaylist({ uid });
   // await account.getUserAccount();
@@ -53,12 +53,14 @@ init();
 </script>
 
 <template>
-  <div class="user">
-    <a-avatar :size="200">
-      <img :src="results1.profile.avatarUrl" v-if="results1" />
-    </a-avatar>
+  <div>
+    <div class="user">
+      <a-avatar :size="200">
+        <img :src="results1.profile.avatarUrl" v-if="results1" />
+      </a-avatar>
+    </div>
+    <List :list="results2?.playlist" v-if="results2" />
   </div>
-  <List :list="results2.playlist" v-if="results2" />
 </template>
 
 <style lang="less" scoped>

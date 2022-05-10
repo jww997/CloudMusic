@@ -1,3 +1,8 @@
+<script lang="ts">
+export default {
+  name: 'ListenDjDetail',
+};
+</script>
 <script lang="ts" setup>
 import listen from '@/apis/listen/index';
 

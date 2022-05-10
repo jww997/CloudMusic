@@ -1,8 +1,12 @@
+<script lang="ts">
+export default {
+  name: 'ListenAlbum',
+};
+</script>
 <script lang="ts" setup>
 import listen from '@/apis/listen/index';
 
-const init = async () => {
-};
+const init = async () => {};
 init();
 </script>
 

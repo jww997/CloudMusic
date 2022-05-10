@@ -14,7 +14,7 @@ import Comment from './comment.vue';
 import listen from '@/apis/listen/index';
 import listen_R from '@/apis/listen/typeResult';
 import { MutationsTypes } from '@/store/modules/listen/mutations-types';
-import * as C from './constant';
+import * as C from './_constant';
 
 const router = useRouter();
 const store = useStore();
@@ -45,19 +45,21 @@ init();
 </script>
 
 <template>
-  <Detail :detail="results1.playlist" v-if="results1" />
-  <a-tabs default-active-key="1">
-    <a-tab-pane key="1" :title="`歌曲${len1}`">
-      <List
-        :list="results1.playlist.tracks"
-        :columns="C.COLUMNS"
-        v-if="results1"
-      />
-    </a-tab-pane>
-    <a-tab-pane key="2" :title="`评论${len2}`">
-      <Comment :list="results2.comments" v-if="results2" />
-    </a-tab-pane>
-  </a-tabs>
+  <div>
+    <Detail :detail="results1.playlist" v-if="results1" />
+    <a-tabs default-active-key="1">
+      <a-tab-pane key="1" :title="`歌曲${len1}`">
+        <List
+          :list="results1.playlist.tracks"
+          :columns="C.COLUMNS"
+          v-if="results1"
+        />
+      </a-tab-pane>
+      <a-tab-pane key="2" :title="`评论${len2}`">
+        <Comment :list="results2.comments" v-if="results2" />
+      </a-tab-pane>
+    </a-tabs>
+  </div>
 </template>
 
 <style lang="less" scoped></style>

@@ -1,9 +1,9 @@
 import { OFFSET } from "../type"
 
 export interface PARAMS_MV_ALL extends OFFSET {
-  area?: '全部' | '内地' | '港台' | '欧美' | '日本' | '韩国' = '全部' // 地区
-  type?: '全部' | '官方版' | '原生' | '现场版' | '网易出品' = '全部' // 类型
-  order?: '上升最快' | '最热' | '最新' = '上升最快' // 排序
+  area: '全部' | '内地' | '港台' | '欧美' | '日本' | '韩国' = '全部' // 地区
+  type: '全部' | '官方版' | '原生' | '现场版' | '网易出品' = '全部' // 类型
+  order: '上升最快' | '最热' | '最新' = '上升最快' // 排序
 }
 export interface PARAMS_MV_FIRST extends LIMIT {
   area?: '全部' | '内地' | '港台' | '欧美' | '日本' | '韩国' = '全部' // 地区
