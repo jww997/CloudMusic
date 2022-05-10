@@ -21,7 +21,7 @@ export type State = {
 };
 
 export const state: State = {
-  [StateTypes.VIDEOREF]: document.getElementById("video") as HTMLVideoElement,
+  [StateTypes.VIDEOREF]: document.getElementById("") as HTMLVideoElement,
   [StateTypes.VIDEO]: {
     [A.STATE]: false,
     [A.SONG]: null,

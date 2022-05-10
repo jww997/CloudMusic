@@ -7,12 +7,12 @@ export default {
 import { reactive, watch } from 'vue';
 import _ from 'lodash';
 import see from '@/apis/see';
-import * as C from './_constant';
-import type { PARAMS, RESULT } from './_type';
+import * as TYPE from './_type';
+import * as CONSTANT from './_constant';
 import Tags from './tags.vue';
 import List from './list.vue';
 
-const params = reactive<PARAMS>({
+const params = reactive<TYPE.PARAMS>({
   area: '全部',
   type: '全部',
   order: '上升最快',
@@ -20,7 +20,7 @@ const params = reactive<PARAMS>({
   offset: 0, // 偏移数量
 });
 
-const result = reactive<RESULT>({
+const result = reactive<TYPE.RESULT>({
   count: 0,
   data: [],
   hasMore: false,
@@ -45,17 +45,12 @@ const init = async () => {
   // const r = await see.getMvExclusiveRcmd();
   // const r = await see.getPersonalizedMv();
   // const r = await see.getTopMv();
-  // const r = await see.getMvDetail({ mvid });
-  // const r = await see.getMvDetailInfo({ mvid });
   // const r = await see.getVideoGroupList();
   // const r = await see.getVideoCategoryList();
   // const r = await see.getVideoGroup({ id: 11155 });
   // const r = await see.getVideoTimelineAll();
   // const r = await see.getVideoTimelineRecommend();
-  // const r = await see.getRelatedAllvideo({ id });
-  // const r = await see.getVideoDetail({ id });
-  // const r = await see.getVideoDetailInfo({ vid: id });
-  // const r = await see.getVideoUrl({ id: id });
+
   // console.log(r);
 };
 init();
@@ -81,9 +76,9 @@ watch(
 
 <template>
   <div class="mv"
-    ><Tags :list="C.AREA" v-model:active="params.area" title="地区" />
-    <Tags :list="C.TYPE" v-model:active="params.type" title="类型" />
-    <Tags :list="C.ORDER" v-model:active="params.order" title="排序" />
+    ><Tags :list="CONSTANT.AREA" v-model:active="params.area" title="地区" />
+    <Tags :list="CONSTANT.TYPE" v-model:active="params.type" title="类型" />
+    <Tags :list="CONSTANT.ORDER" v-model:active="params.order" title="排序" />
     <List
       :list="result.data"
       :total="result.count"
@@ -94,7 +89,6 @@ watch(
 </template>
 
 <style lang="less" scoped>
-.mv {
-  padding: 30px;
-}
+// .mv {
+// }
 </style>

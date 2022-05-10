@@ -1,16 +1,14 @@
 import { watch, watchEffect } from 'vue';
 import { ActionTree, ActionContext } from 'vuex';
-import { toNumber } from 'lodash';
 import { Notification } from '@arco-design/web-vue'
 import { MutationsTypes } from './mutations-types';
 import { ActionTypes } from './action-types';
 import { RootState } from '@/store';
 import type { State } from './state';
-import myWatch from '@/apis/see';
 
 
 export type Actions<S = State, R = RootState> = {
-  [ActionTypes.SET_VIDEO_URL](context: ActionContext<S, R>, val: number): void;
+  [ActionTypes.SET_VIDEO_URL](context: ActionContext<S, R>, val: string): void;
   // [ActionTypes.SET_VIDEO_DETAIL](context: ActionContext<S, R>, val: string): void;
   // [ActionTypes.SET_VIDEO_TOGGLE](context: ActionContext<S, R>, val: 1 | 0 | -1): void;
   [ActionTypes.SET_VIDEO_SCHEDULE](context: ActionContext<S, R>, val: number): void;
@@ -19,44 +17,37 @@ export type Actions<S = State, R = RootState> = {
 
 export const actions: ActionTree<State, RootState> & Actions = {
   [ActionTypes.SET_VIDEO_URL]({ state, commit }, val) {
-    state.videoRef = document.getElementById('video') as HTMLVideoElement;
-    const init = async () => {
-      const res = await myWatch.getMvUrl({ id: val });
-      const { data: { url } } = res;
-      if (!url) return false
-      state.videoRef.src = url
-      state.videoRef.autoplay = true
+    state.videoRef.src = val
+    state.videoRef.autoplay = true
 
-      const { videoRef, video } = state
-      // dispatch(ActionTypes.SET_VIDEO_DETAIL, val)
-      // const index = video.list.findIndex((v: TRACK) => v.id === val)
-      // commit(MutationsTypes.VIDEO_INDEX, index)
-      // commit(MutationsTypes.VIDEO_REF, videoRef);
-      videoRef.addEventListener("canplaythrough", async () => {
-        // videoRef.play()
-        watchEffect(() => {
-          videoRef.volume = video.volume
-        })
-        watch(() => video.order, () => Notification.info({ content: 'This is an info message!', position: 'topLeft' }))
-      });
-      videoRef.addEventListener('play', () => {
-        commit(MutationsTypes.VIDEO_STATE, true)
+    const { videoRef, video } = state
+    // dispatch(ActionTypes.SET_VIDEO_DETAIL, val)
+    // const index = video.list.findIndex((v: TRACK) => v.id === val)
+    // commit(MutationsTypes.VIDEO_INDEX, index)
+    // commit(MutationsTypes.VIDEO_REF, videoRef);
+    videoRef.addEventListener("canplaythrough", async () => {
+      // videoRef.play()
+      watchEffect(() => {
+        videoRef.volume = video.volume
       })
-      videoRef.addEventListener('pause', () => {
-        commit(MutationsTypes.VIDEO_STATE, false)
-      })
-      // videoRef.addEventListener('ended', () => {
-      //   commit(MutationsTypes.VIDEO_CURRENTTIME, 0)
-      //   commit(MutationsTypes.VIDEO_DURATION, 0)
-      //   dispatch(ActionTypes.SET_VIDEO_TOGGLE, 1)
-      //   commit(MutationsTypes.VIDEO_SONG, null)
-      // })
-      videoRef.addEventListener('timeupdate', () => {
-        commit(MutationsTypes.VIDEO_CURRENTTIME, videoRef.currentTime)
-        commit(MutationsTypes.VIDEO_DURATION, videoRef.duration)
-      })
-    };
-    init();
+      watch(() => video.order, () => Notification.info({ content: 'This is an info message!', position: 'topLeft' }))
+    });
+    videoRef.addEventListener('play', () => {
+      commit(MutationsTypes.VIDEO_STATE, true)
+    })
+    videoRef.addEventListener('pause', () => {
+      commit(MutationsTypes.VIDEO_STATE, false)
+    })
+    // videoRef.addEventListener('ended', () => {
+    //   commit(MutationsTypes.VIDEO_CURRENTTIME, 0)
+    //   commit(MutationsTypes.VIDEO_DURATION, 0)
+    //   dispatch(ActionTypes.SET_VIDEO_TOGGLE, 1)
+    //   commit(MutationsTypes.VIDEO_SONG, null)
+    // })
+    videoRef.addEventListener('timeupdate', () => {
+      commit(MutationsTypes.VIDEO_CURRENTTIME, videoRef.currentTime)
+      commit(MutationsTypes.VIDEO_DURATION, videoRef.duration)
+    })
   },
   // 获取歌曲列表的详情
   // [ActionTypes.SET_VIDEO_DETAIL]({ commit }, val) {

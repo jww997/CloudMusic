@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-const arr = ref<string[]>(['ListenRecommend']);
+const arr = ref<string[]>(['ListenRecommend', 'SeeMv']);
 </script>
 
 <template>
@@ -10,7 +10,7 @@ const arr = ref<string[]>(['ListenRecommend']);
   <router-view v-slot="{ Component, route }">
     <transition name="fade" mode="out-in" appear>
       <keep-alive :include="arr">
-        <component :is="Component" :key="route.path" />
+        <component class="wrap" :is="Component" :key="route.path" />
       </keep-alive>
     </transition>
   </router-view>
@@ -19,4 +19,8 @@ const arr = ref<string[]>(['ListenRecommend']);
   </Suspense> -->
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.wrap {
+  padding: 30px;
+}
+</style>

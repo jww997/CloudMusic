@@ -62,7 +62,7 @@ const handleRowClick = (song: listen_R.SONG) =>
                     v-if="record.mv"
                     @click.stop="
                       $router.push({
-                        name: 'WatchVideoDetail',
+                        name: 'SeeMvDetail',
                         query: { id: record.mv },
                       })
                     "

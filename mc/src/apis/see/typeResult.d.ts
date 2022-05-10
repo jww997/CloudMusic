@@ -3,7 +3,9 @@ import { DJ, SONG } from "../listen/typeResult"
 
 export type ARTISTS = {
   alias?: null
+  followed?: boolean
   id: number
+  img1v1Url?: string
   name: string
   transNames?: null
 }
@@ -14,9 +16,18 @@ export type MV = {
   artistName: string
   artists: ARTISTS[]
   briefDesc?: null
+  brs?: {
+    br: number
+    point: number
+    size: number
+  }[]
   canDislike?: boolean
+  commentCount?: number
+  commentThreadId?: string
   copywriter?: string
   cover?: string
+  coverId?: number
+  coverId_str?: string
   desc?: null
   duration: number
   id: number
@@ -75,14 +86,24 @@ export type MV = {
     }[]
     weekplays: number
   }
+  nType?: number
   name: string
   picUrl?: string
   playCount: number
+  price?: null
+  publishTime?: string
   score?: number
-  subed: boolean
+  shareCount?: number
+  subCount?: number
+  subed?: boolean
   transNames?: string[]
   trackNumberUpdateTime?: null
   type?: number
+  videoGroup?: {
+    id: number
+    name: string
+    type: number
+  }[]
 }
 
 export interface RESULT_MV_ALL extends CODE {
@@ -109,42 +130,7 @@ export interface RESULT_TOP_MV extends CODE {
 export interface RESULT_MV_DETAIL extends CODE {
   bufferPic: string
   bufferPicFS: string
-  data: {
-    artistId: number
-    artistName: string
-    artists: {
-      followed: boolean
-      id: number
-      img1v1Url: string
-      name: string
-    }[]
-    briefDesc: string
-    brs: {
-      br: number
-      point: number
-      size: number
-    }[]
-    commentCount: number
-    commentThreadId: string
-    cover: string
-    coverId: number
-    coverId_str: string
-    desc: null
-    duration: number
-    id: number
-    nType: number
-    name: string
-    playCount: number
-    price: null
-    publishTime: string
-    shareCount: number
-    subCount: number
-    videoGroup: {
-      id: number
-      name: string
-      type: number
-    }[]
-  }
+  data: MV
   loadingPic: string
   loadingPicFS: string
   mp: {
@@ -199,11 +185,55 @@ export interface RESULT_VIDEO_GROUP_LIST extends CODE, MESSAGE {
 export interface RESULT_VIDEO_CATEGORY_LIST extends CODE, MESSAGE {
   data: GRUOP[],
 }
-export type VIDEO_DETAIL = {
+export type VIDEO = {
   advertisement?: boolean
   alg?: string
+  aliaName?: null
   authType?: number
   avatarUrl?: string
+  commentCount?: number
+  coverUrl: string
+  creator: DJ[]
+  description?: string
+  durationms?: number
+  hasRelatedGameAd?: boolean
+  height?: number
+  liveRoom?: null
+  markTypes: number[]
+  playTime: number
+  praised?: boolean
+  praisedCount?: number
+  previewDurationms?: number
+  previewUrl?: string
+  publishTime?: number
+  relateSong?: SONG[]
+  relatedInfo?: null
+  resolutions?: {
+    resolution: number
+    size: number
+  }[]
+  scm?: string
+  shareCount?: number
+  subscribeCount?: number
+  subscribed?: boolean
+  threadId?: string
+  title: string
+  transName?: null
+  type?: number
+  urlInfo?: null
+  vid: string
+  videoGroup?: {
+    alg: null
+    id: number
+    name: string
+  }[]
+  videoUserLiveInfo?: null
+  width?: number
+}
+export type VIDEO2 = {
+  advertisement: boolean
+  authType: number
+  avatarUrl: string
   commentCount: number
   coverUrl: string
   creator: DJ
@@ -213,23 +243,16 @@ export type VIDEO_DETAIL = {
   height: number
   markTypes: number[]
   playTime: number
-  praised?: boolean
   praisedCount: number
-  previewDurationms?: number
-  previewUrl?: string
-  relateSong?: SONG[]
-  relatedInfo?: null
+  publishTime: number
   resolutions: {
     resolution: number
     size: number
   }[]
-  scm?: string
   shareCount: number
-  subscribeCount?: number
-  subscribed?: boolean
+  subscribeCount: number
   threadId: string
   title: string
-  urlInfo?: null
   vid: string
   videoGroup: {
     alg: null
@@ -241,7 +264,7 @@ export type VIDEO_DETAIL = {
 }
 export type TIMELINE = {
   alg: string
-  data: VIDEO_DETAIL
+  data: VIDEO
   displayed: boolean
   extAlg: null
   type: number
@@ -264,26 +287,10 @@ export interface RESULT_VIDEO_TIMELINE_RECOMMEND extends CODE {
   msg: string
 }
 export interface RESULT_RELATED_ALLVIDEO extends CODE, MESSAGE {
-  data: {
-    alg: string
-    aliaName: null
-    coverUrl: string
-    creator: {
-      userId: number
-      userName: string
-    }[]
-    durationms: number
-    liveRoom: null
-    markTypes: []
-    playTime: number
-    title: string
-    transName: null
-    type: number
-    vid: string
-  }[]
+  data: VIDEO[]
 }
 export interface RESULT_VIDEO_DETAIL extends CODE, MESSAGE {
-  data: VIDEO_DETAIL
+  data: VIDEO2
 }
 export interface RESULT_VIDEO_DETAIL_INFO extends CODE {
   commentCount: number

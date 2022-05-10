@@ -20,7 +20,8 @@ export const actions: ActionTree<State, RootState> & Actions = {
   [ActionTypes.SET_ACCOUNT_VERSION]: async ({ commit }) => {
     const { data } = await account.getInnerVersion();
     if (data.version !== settings.version) {
-      console.log(`当前版本号${data.version}, 文档有更新～～! 具体查看：https://github.com/Binaryify/NeteaseCloudMusicApi/releases`)
+      console.log(`版本号有差异，文档版本${data.version}，项目版本${settings.version}～～!`)
+      console.log(`具体查看：https://github.com/Binaryify/NeteaseCloudMusicApi/releases`)
       commit(MutationsTypes.ACCOUNT_VERSION, data.version)
     }
   },

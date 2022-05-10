@@ -785,39 +785,40 @@ export interface RESULT_COMMENT_ALUBUM extends CODE {
 
 // #region about dj
 export type DJ = {
-  accountStatus: number
+  accountStatus?: number
   anchor?: boolean
-  authStatus: number
+  authStatus?: number
   authenticationTypes?: number
-  authority: number
+  authority?: number
   avatarDetail?: null
-  avatarImgId: number
-  avatarImgIdStr: string
+  avatarImgId?: number
+  avatarImgIdStr?: string
   avatarImgId_str?: string
-  avatarUrl: string
-  backgroundImgId: number
-  backgroundImgIdStr: string
-  backgroundUrl: string
-  birthday: number
+  avatarUrl?: string
+  backgroundImgId?: number
+  backgroundImgIdStr?: string
+  backgroundUrl?: string
+  birthday?: number
   brand?: string
-  city: number
-  defaultAvatar: boolean
-  description: string
-  detailDescription: string
-  djStatus: number
-  expertTags: null
-  experts: null
-  followed: boolean
-  gender: number
-  mutual: boolean
-  nickname: string
-  province: number
-  remarkName: null
-  signature: string
+  city?: number
+  defaultAvatar?: boolean
+  description?: string
+  detailDescription?: string
+  djStatus?: number
+  expertTags?: null
+  experts?: { 1: string } | null
+  followed?: boolean
+  gender?: number
+  mutual?: boolean
+  nickname?: string
+  province?: number
+  remarkName?: null
+  signature?: string
   subscribeTime?: number
   userId: number
-  userType: number
-  vipType: number
+  userName?: string
+  userType?: number
+  vipType?: number
 }
 export type RADIO = {
   activityInfo?: null

@@ -1,16 +1,16 @@
 <script lang="ts">
 export default {
-  name: 'SeeVideoDetail',
+  name: 'SeeMvDetail',
 };
 </script>
 <script lang="ts" setup>
 import { reactive } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
-import see from '@/apis/see';
-import * as TYPE from './_type';
 import { MutationsTypes } from '@/store/modules/see/mutations-types';
 import { ActionTypes } from '@/store/modules/see/action-types';
+import see from '@/apis/see';
+import * as TYPE from './_type';
 import Info from './info.vue';
 import List from './list.vue';
 
@@ -18,7 +18,26 @@ const route = useRoute();
 const store = useStore();
 
 const result = reactive<TYPE.RESULT>({
+  bufferPic: '',
+  bufferPicFS: '',
   data: {},
+  loadingPic: '',
+  loadingPicFS: '',
+  mp: {
+    cp: 0,
+    dl: 0,
+    fee: 0,
+    id: 0,
+    msg: null,
+    mvFee: 0,
+    normal: false,
+    payed: 0,
+    pl: 0,
+    sid: 0,
+    st: 0,
+    unauthorized: false,
+  },
+  subed: false,
 });
 
 const result2 = reactive<TYPE.RESULT2>({
@@ -34,11 +53,10 @@ const result3 = reactive<TYPE.RESULT3>({
 
 const init = async () => {
   const id = <string>route.query.id;
-  const res = await see.getVideoDetail({ id });
-  console.log('res = ', res);
+  const res = await see.getMvDetail({ mvid: id });
   result.data = res.data;
 
-  const res2 = await see.getVideoDetailInfo({ vid: id });
+  const res2 = await see.getMvDetailInfo({ mvid: id });
   result2.commentCount = res2.commentCount;
   result2.liked = res2.liked;
   result2.likedCount = res2.likedCount;
@@ -47,18 +65,18 @@ const init = async () => {
   const res3 = await see.getRelatedAllvideo({ id });
   result3.data = res3.data;
 
-  const res4 = await see.getVideoUrl({ id });
-  const videoRef = document.getElementById('videoRef') as HTMLVideoElement;
-  store.commit(MutationsTypes.VIDEO_REF, videoRef);
-  store.dispatch(ActionTypes.SET_VIDEO_URL, res4.urls[0].url);
+  const res4 = await see.getMvUrl({ id });
+  const mvRef = document.getElementById('mvRef') as HTMLVideoElement;
+  store.commit(MutationsTypes.VIDEO_REF, mvRef);
+  store.dispatch(ActionTypes.SET_VIDEO_URL, res4.data.url);
 };
 init();
 </script>
 
 <template>
-  <div class="video">
+  <div class="mv">
     <div class="left">
-      <video id="videoRef" controls>您的浏览器不支持video标签。</video>
+      <video id="mvRef" controls>您的浏览器不支持video标签。</video>
       <Info :data="result.data" v-bind="result2" />
     </div>
     <div class="right">
@@ -68,12 +86,12 @@ init();
 </template>
 
 <style lang="less" scoped>
-.video {
+.mv {
   display: flex;
   justify-content: space-between;
   .left {
     flex-grow: 1;
-    #videoRef {
+    #mvRef {
       max-width: 85%;
       min-height: 380px;
       border-radius: 10px;

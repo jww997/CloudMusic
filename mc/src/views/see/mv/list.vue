@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { computed, watch } from 'vue';
-import type see_R from '@/apis/see/typeResult';
+import { computed } from 'vue';
+import type R from '@/apis/see/typeResult';
 defineProps<{
-  list: see_R.MV[];
+  list: R.MV[];
   total: number;
   current: number;
 }>();
@@ -20,7 +20,7 @@ const handleChange = (v: string) => emits('update:current', v);
     <a-row :gutter="[24, 48]">
       <template v-for="item in list">
         <a-col class="col" :span="span">
-          <router-link :to="{ name: 'SeeVideoDetail', query: { id: item.id } }">
+          <router-link :to="{ name: 'SeeMvDetail', query: { id: item.id } }">
             <a-image
               class="txt-pointer"
               width="100%"
@@ -66,6 +66,7 @@ const handleChange = (v: string) => emits('update:current', v);
     }
   }
   .pagination {
+    justify-content: center;
     margin-top: 30px;
   }
 }
