@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
+import _ from 'lodash'
 import listen from '@/apis/listen/index';
 import { router } from '@/router';
 
@@ -22,7 +23,7 @@ const handleInput = async (keywords: string = config.realkeyword) => {
 };
 const handleSearch = async () => {
   const keywords: string = config.realkeyword;
-  router.push({ path: '/listen/search', query: { keywords } });
+  router.push({ name: 'ListenSearch', query: { keywords } });
 };
 const handleClick = (v: string) => {
   config.realkeyword = v;
@@ -32,7 +33,7 @@ const init = async () => {
   const {
     data: { realkeyword, showKeyword },
   } = await listen.getSearchDefault();
-  Object.assign(config, { realkeyword, showKeyword });
+  _.assign(config, { realkeyword, showKeyword });
 
   const {
     result: { hots },

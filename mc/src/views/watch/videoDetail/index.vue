@@ -1,26 +1,27 @@
 <script lang="ts" setup>
-import { computed, watchEffect } from 'vue';
+import { computed, onMounted } from 'vue';
 import { toNumber } from 'lodash';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import { ActionTypes } from '@/store/modules/watch/action-types';
 
 const router = useRouter();
-const id = computed(() => router.currentRoute.value.query.id);
-watchEffect(() => {
-  if (!id.value) router.go(-2);
-});
+
+const query = computed(() => router.currentRoute.value.query);
+
+const id = toNumber(computed(() => query.value.id).value);
 
 const store = useStore();
 
 const init = async () => {
-  store.dispatch(ActionTypes.SET_VIDEO_URL, toNumber(id.value));
+  // store.state.watch.videoRef = document.getElementById('video');
+  store.dispatch(ActionTypes.SET_VIDEO_URL, id);
 };
-init();
+onMounted(() => init());
 </script>
 
 <template>
-  <video id="video"></video>
+  <video id="video">您的浏览器不支持 video 标签。</video>
 </template>
 
 <style lang="less" scoped></style>

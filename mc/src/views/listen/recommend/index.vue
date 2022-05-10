@@ -1,13 +1,28 @@
+<script lang="ts">
+export default {
+  name: 'ListenRecommend',
+  setup() {
+    // console.log(123);
+  },
+  mounted() {
+    console.log(123);
+  },
+};
+</script>
+<!-- <template>
+  'ListenRecommend'
+  <router-link to="/listen/songlist/detail?id=4888621462"> 123 </router-link>
+</template> -->
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import listen from '@/apis/listen';
 import List from '../songlist/list.vue';
 import listen_R from '@/apis/listen/typeResult';
-import { ActionTypes } from '@/store/modules/listen/action-types';
-import { MutationsTypes } from '@/store/modules/listen/mutations-types';
-import { SONG } from '@/apis/listen/typeResult';
-import { LYRIC } from '@/store/modules/listen/state';
+// import { ActionTypes } from '@/store/modules/listen/action-types';
+// import { MutationsTypes } from '@/store/modules/listen/mutations-types';
+// import { SONG } from '@/apis/listen/typeResult';
+// import { LYRIC } from '@/store/modules/listen/state';
 
 const store = useStore();
 

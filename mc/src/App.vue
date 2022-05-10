@@ -35,6 +35,11 @@ document.addEventListener('keydown', ({ key }) => {
 
 <template>
   <router-view />
+  <!-- <router-view v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view> -->
 </template>
 
 <style lang="less">

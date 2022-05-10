@@ -19,7 +19,7 @@ const props = defineProps<Props>();
     direction="vertical"
     class="box"
     @click="
-      $router.push({ path: '/listen/songlist/detail', query: { id: box.id } })
+      $router.push({ name: 'ListenSonglistDetail', query: { id: box.id } })
     "
   >
     <div class="top">

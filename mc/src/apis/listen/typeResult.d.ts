@@ -786,14 +786,14 @@ export interface RESULT_COMMENT_ALUBUM extends CODE {
 // #region about dj
 export type DJ = {
   accountStatus: number
-  anchor: boolean
+  anchor?: boolean
   authStatus: number
-  authenticationTypes: number
+  authenticationTypes?: number
   authority: number
-  avatarDetail: null
+  avatarDetail?: null
   avatarImgId: number
   avatarImgIdStr: string
-  avatarImgId_str: string
+  avatarImgId_str?: string
   avatarUrl: string
   backgroundImgId: number
   backgroundImgIdStr: string
@@ -1318,7 +1318,7 @@ export type SONG = {
     pic: number
     picUrl: string
     pic_str?: string
-    tns?: []
+    tns?: string[]
   };
   alia: [];
   ar: {
@@ -1346,7 +1346,7 @@ export type SONG = {
   mv: number;
   name: string;
   no: number;
-  noCopyrightRcmd: null;
+  noCopyrightRcmd?: null;
   originCoverType?: number;
   originSongSimpleData?: null;
   pop: number;

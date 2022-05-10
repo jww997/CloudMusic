@@ -6,7 +6,6 @@ import { META } from '@/router/index';
 
 type Props = { root: any };
 const props = defineProps<Props>();
-console.log(props.root);
 </script>
 
 <template>

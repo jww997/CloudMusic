@@ -3,7 +3,7 @@
  * @author Gavin
  */
 import { RouteRecordRaw } from 'vue-router';
-import Transition from '@/components/transition/index.vue';
+import Listen from '@/views/listen/index.vue';
 import Recommend from '@/views/listen/recommend/index.vue';
 import Songlist from '@/views/listen/songlist/index.vue';
 import Station from "@/views/listen/station/index.vue";
@@ -18,10 +18,9 @@ import PersonalFm from "@/views/listen/personalFm/index.vue";
 import Search from "@/views/listen/search/index.vue";
 
 const routes: RouteRecordRaw = {
-  redirect: '/listen/recommend',
   path: '/listen',
-  name: 'listen',
-  component: Transition,
+  name: 'Listen',
+  component: Listen,
   meta: {
     locale: '音乐馆', // 一级菜单名（语言包键名）
     requiresAuth: true, // 是否需要鉴权
@@ -30,17 +29,18 @@ const routes: RouteRecordRaw = {
   children: [
     {
       path: '/recommend',
-      name: 'recommend',
+      name: 'ListenRecommend',
       component: Recommend,
       meta: {
         locale: '推荐', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
+        // keepAlive: true
       },
     },
     {
       path: '/toplist',
-      name: 'toplist',
+      name: 'ListenToplist',
       component: Toplist,
       meta: {
         locale: '排行', // 二级菜单名（语言包键名）
@@ -50,7 +50,7 @@ const routes: RouteRecordRaw = {
     },
     {
       path: '/songlist',
-      name: 'songlist',
+      name: 'ListenSonglist',
       component: Songlist,
       meta: {
         locale: '歌单', // 二级菜单名（语言包键名）
@@ -60,17 +60,18 @@ const routes: RouteRecordRaw = {
     },
     {
       path: '/songlist/detail',
-      name: 'songlist/detail',
+      name: 'ListenSonglistDetail',
       component: SonglistDetail,
       meta: {
         locale: '歌单详情', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
+        // keepAlive: true
       },
     },
     {
       path: '/singer',
-      name: 'singer',
+      name: 'ListenSinger',
       component: Singer,
       meta: {
         locale: '歌手', // 二级菜单名（语言包键名）
@@ -80,7 +81,7 @@ const routes: RouteRecordRaw = {
     },
     {
       path: '/singer/detail',
-      name: 'singer/detail',
+      name: 'ListenSingerDetail',
       component: SingerDetail,
       meta: {
         locale: '歌手详情', // 二级菜单名（语言包键名）
@@ -90,7 +91,7 @@ const routes: RouteRecordRaw = {
     },
     {
       path: '/station',
-      name: 'station',
+      name: 'ListenStation',
       component: Station,
       meta: {
         locale: '电台', // 二级菜单名（语言包键名）
@@ -99,8 +100,8 @@ const routes: RouteRecordRaw = {
       },
     },
     {
-      path: '/listen/song',
-      name: 'song',
+      path: '/song',
+      name: 'ListenSong',
       component: Song,
       meta: {
         locale: '歌曲', // 二级菜单名（语言包键名）
@@ -110,7 +111,7 @@ const routes: RouteRecordRaw = {
     },
     {
       path: '/album/detail',
-      name: 'album/detail',
+      name: 'ListenAlbumDetail',
       component: AlbumDetail,
       meta: {
         locale: '专辑详情', // 二级菜单名（语言包键名）
@@ -120,7 +121,7 @@ const routes: RouteRecordRaw = {
     },
     {
       path: '/dj/detail',
-      name: 'dj/detail',
+      name: 'ListenDjDetail',
       component: DjDetail,
       meta: {
         locale: '电台详情', // 二级菜单名（语言包键名）
@@ -130,7 +131,7 @@ const routes: RouteRecordRaw = {
     },
     {
       path: '/personal/fm',
-      name: 'personal/fm',
+      name: 'ListenPersonalFm',
       component: PersonalFm,
       meta: {
         locale: '私人FM', // 二级菜单名（语言包键名）
@@ -140,7 +141,7 @@ const routes: RouteRecordRaw = {
     },
     {
       path: '/search',
-      name: 'search',
+      name: 'ListenSearch',
       component: Search,
       meta: {
         locale: '搜索', // 二级菜单名（语言包键名）

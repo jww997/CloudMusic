@@ -9,18 +9,20 @@ import * as C from './constant';
 
 const router = useRouter();
 
-const id = toNumber(computed(() => router.currentRoute.value.query.id).value);
+const query = computed(() => router.currentRoute.value.query);
+
+const id = toNumber(computed(() => query.value.id).value);
 
 const result1 = ref<listen_R.RESULT_ALUBUM>();
 const init = async () => {
   result1.value = await listen.getAlubum({ id });
 
-  // const a = await listen.getAlubumDetailDynamic({ id });
-  // const a = await listen.getAlubumSub({ id, t: 1 });
-  // const a = await listen.getAlubumSublist({});
-  // const a = await listen.getAlubumNewest({ id });
-  const a = await listen.getCommentAlubum({ id });
-  console.log(a);
+  // const r = await listen.getAlubumDetailDynamic({ id });
+  // const r = await listen.getAlubumSub({ id, t: 1 });
+  // const r = await listen.getAlubumSublist({});
+  // const r = await listen.getAlubumNewest({ id });
+  const r = await listen.getCommentAlubum({ id });
+  console.log(r);
 };
 init();
 </script>

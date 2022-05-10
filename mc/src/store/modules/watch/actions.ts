@@ -18,15 +18,16 @@ export type Actions<S = State, R = RootState> = {
 };
 
 export const actions: ActionTree<State, RootState> & Actions = {
-  [ActionTypes.SET_VIDEO_URL]({ state, commit, dispatch }, val) {
+  [ActionTypes.SET_VIDEO_URL]({ state, commit }, val) {
+    state.videoRef = document.getElementById('video') as HTMLVideoElement;
     const init = async () => {
-      const res = await myWatch.getMvDetail({ id: val });
+      const res = await myWatch.getMvUrl({ id: val });
       const { data: { url } } = res;
       if (!url) return false
       state.videoRef.src = url
       state.videoRef.autoplay = true
-      const { videoRef, video } = state
 
+      const { videoRef, video } = state
       // dispatch(ActionTypes.SET_VIDEO_DETAIL, val)
       // const index = video.list.findIndex((v: TRACK) => v.id === val)
       // commit(MutationsTypes.VIDEO_INDEX, index)

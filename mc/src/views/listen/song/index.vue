@@ -10,10 +10,12 @@ import { ActionTypes } from '@/store/modules/listen/action-types';
 const router = useRouter();
 const store = useStore();
 
+const query = computed(() => router.currentRoute.value.query);
+
 const song = computed(() => store.state.listen.audio.song);
 
-const id = toNumber(computed(() => router.currentRoute.value.query.id).value);
-if (song.value.id !== id) {
+if (song !== null) {
+  const id = toNumber(computed(() => query.value.id).value);
   store.dispatch(ActionTypes.SET_AUDIO_DETAIL, id);
   store.dispatch(ActionTypes.SET_AUDIO_URL, id);
   store.dispatch(ActionTypes.SET_AUDIO_LYRIC, id);
@@ -23,9 +25,7 @@ if (song.value.id !== id) {
 <template>
   <div class="song">
     <Disc />
-    <div class="right">
-      <Lyric v-if="song" />
-    </div>
+    <Lyric class="right" v-if="song" />
   </div>
 </template>
 

@@ -14,14 +14,15 @@ import {
 const store = useStore();
 
 const props = defineProps<{ list: listen_R.SONG[]; columns: TableColumn[] }>();
-console.log('props = ', props)
 
 const song = computed<listen_R.SONG | null>(
   () => store.state.listen.audio.song
 );
 
 const activeIndex = computed<number>(() =>
-  store.state.listen.audio.list.findIndex((v: listen_R.SONG) => v.id === song.value?.id)
+  store.state.listen.audio.list.findIndex(
+    (v: listen_R.SONG) => v.id === song.value?.id
+  )
 );
 
 const dealDt = (dt: number) => dayjs(dt).format('mm:ss');
@@ -61,7 +62,7 @@ const handleRowClick = (song: listen_R.SONG) =>
                     v-if="record.mv"
                     @click.stop="
                       $router.push({
-                        name: '/video/detail',
+                        name: 'WatchVideoDetail',
                         query: { id: record.mv },
                       })
                     "
@@ -75,7 +76,7 @@ const handleRowClick = (song: listen_R.SONG) =>
                     class="txt-pointer txt-hover"
                     @click.stop="
                       $router.push({
-                        path: '/listen/singer/detail',
+                        name: 'ListenSingerDetail',
                         query: { id: item.id },
                       })
                     "
@@ -88,7 +89,7 @@ const handleRowClick = (song: listen_R.SONG) =>
                   class="txt-pointer txt-hover"
                   @click.stop="
                     $router.push({
-                      path: '/listen/album/detail',
+                      name: 'ListenAlbumDetail',
                       query: { id: record.al.id },
                     })
                   "

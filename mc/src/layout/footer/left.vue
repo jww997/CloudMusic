@@ -11,19 +11,18 @@ const song = computed<SONG>(() => store.state.listen.audio.song);
 <template>
   <div
     class="left"
-    v-if="song"
-    @click="$router.push({ path: '/listen/song', query: { id: song.id } })"
+    @click="$router.push({ name: 'ListenSong', query: { id: song?.id } })"
   >
     <a-image
       class="cover txt-pointer"
       :width="70"
       :height="70"
       :preview="false"
-      :src="song.al.picUrl"
-      :alt="song.al.name"
+      :src="song?.al.picUrl"
+      :alt="song?.al.name"
     />
-    <a-tooltip :content="song.name" position="tl">
-      <div class="name txt-pointer">{{ song.name }}</div>
+    <a-tooltip :content="song?.name" position="tl">
+      <div class="name txt-pointer">{{ song?.name }}</div>
     </a-tooltip>
   </div>
 </template>

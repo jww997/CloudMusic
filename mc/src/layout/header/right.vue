@@ -10,7 +10,7 @@ const darkMode = ref<boolean>(false);
 
 const logout = () => {
   store.dispatch(ActionTypes.SET_ACCOUNT_LOGOUT);
-  router.push('/account/login');
+  router.push({ name: 'AccountLogin' });
 };
 
 const profile = computed(() => store.state.account.profile);
@@ -30,7 +30,10 @@ const handleDark = () => {
   <div class="right">
     <icon-sun size="30" @click="handleDark" />
     <a-popover>
-      <a-space class="txt-pointer" @click="$router.push('/account/user')">
+      <a-space
+        class="txt-pointer"
+        @click="$router.push({ name: 'AccountUser' })"
+      >
         <a-avatar>
           <img :src="profile?.avatarUrl" v-if="profile" />
         </a-avatar>
@@ -38,7 +41,7 @@ const handleDark = () => {
       </a-space>
       <template #content>
         <a-button @click="logout" v-if="cookie">退出登录</a-button>
-        <a-button @click="$router.push('/account/user')" v-else
+        <a-button @click="$router.push({ name: 'AccountUser' })" v-else
           >立即登录</a-button
         >
       </template>

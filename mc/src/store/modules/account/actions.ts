@@ -20,7 +20,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
   [ActionTypes.SET_ACCOUNT_VERSION]: async ({ commit }) => {
     const { data } = await account.getInnerVersion();
     if (data.version !== settings.version) {
-      console.log(`版本号${data.version}, 有更新～～ ! 文档地址：https://neteasecloudmusicapi.vercel.app/#/`)
+      console.log(`当前版本号${data.version}, 文档有更新～～! 具体查看：https://github.com/Binaryify/NeteaseCloudMusicApi/releases`)
       commit(MutationsTypes.ACCOUNT_VERSION, data.version)
     }
   },
@@ -47,7 +47,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
     const res = await account.getLoginStatus();
     if (res.data.account === null && res.data.profile === null) {
       dispatch(ActionTypes.SET_ACCOUNT_LOGOUT)
-      router.push('/account/login')
+      router.push({ name: 'AccountLogin' })
     }
   },
 

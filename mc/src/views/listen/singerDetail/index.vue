@@ -9,7 +9,9 @@ import * as C from './constant';
 
 const router = useRouter();
 
-const id = toNumber(computed(() => router.currentRoute.value.query.id).value);
+const query = computed(() => router.currentRoute.value.query);
+
+const id = toNumber(computed(() => query.value.id).value);
 
 const result1 = ref<listen_R.RESULT_ARTIST_DETAIL>();
 // const result2 = ref<listen_R.RESULT_ARTIST_SONGS>();
@@ -17,8 +19,7 @@ const init = async () => {
   result1.value = await listen.getArtistDetail({ id });
   // result2.value = await listen.getArtistSongs({ id });
 
-  // console.log(result1.value?.artist);
-  //  await listen.getArtist({ id });
+  // await listen.getArtist({ id });
   // await listen.getArtistTopSongs({ id });
   // await listen.getArtistMv({ id });
   // await listen.getArtistAlbum({ id });

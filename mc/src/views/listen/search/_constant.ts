@@ -21,10 +21,10 @@ export const TABS: TABS[] = [
   { title: '视频', unit: '个', type: 1014, is: Videos },
   { title: '专辑', unit: '张', type: 10, is: Albums },
   { title: '歌单', unit: '个', type: 1000, is: Playlists },
-  { title: '歌词', unit: '张', type: 1006, is: Lyrics },
-  { title: '歌手', unit: '张', type: 100, is: Artists },
-  { title: '用户', unit: '张', type: 1002, is: Userprofiles },
-  { title: '电台', unit: '张', type: 1009, is: DjRadios },
+  { title: '歌词', unit: '个', type: 1006, is: Lyrics },
+  { title: '歌手', unit: '个', type: 100, is: Artists },
+  { title: '用户', unit: '个', type: 1002, is: Userprofiles },
+  { title: '电台', unit: '个', type: 1009, is: DjRadios },
 ];
 
 export const COLUMNS: TableColumn[] = [

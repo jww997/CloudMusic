@@ -5,6 +5,7 @@
 
 import axios, { AxiosRequestConfig } from 'axios';
 import NProgress from 'nprogress';
+import _ from 'lodash'
 import 'nprogress/nprogress.css';
 import { networkConfig } from '@/config/default/net.config';
 import { ContentTypeEnum } from '@/constant/common/https';
@@ -47,7 +48,7 @@ export interface Https {
 const _addCookie = (params: object) => {
   // return params
   const cookie = storage.get(MutationsTypes.ACCOUNT_COOKIE)
-  return (Object.assign(params, cookie ? { cookie } : null))
+  return (_.assign(params, cookie ? { cookie } : null))
 }
 export const https: Https = {
   get(url, params = {}) {

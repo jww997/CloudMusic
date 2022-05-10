@@ -3,13 +3,12 @@ import { ref, watch, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute, RouteRecordName } from 'vue-router';
 import { IconCaretRight, IconCaretLeft } from '@arco-design/web-vue/es/icon';
-import Transition from '@/components/transition/index.vue';
+import MyTransition from '@/components/transition/index.vue';
 import Menu from '@/layout/menu/index.vue';
 import Header from '@/layout/header/index.vue';
 import Footer from '@/layout/footer/index.vue';
 
 const route = useRoute();
-const path = computed(() => route.path);
 const breadcrumb = ref<{ name?: RouteRecordName; title?: unknown }[]>([]);
 const store = useStore();
 
@@ -44,8 +43,7 @@ watch(
             <router-link :to="{ name }">{{ title }}</router-link>
           </a-breadcrumb-item>
         </a-breadcrumb>
-        <a-layout-content><router-view :key="path" /></a-layout-content>
-        <!-- <a-layout-content><Transition /></a-layout-content> -->
+        <a-layout-content><MyTransition /></a-layout-content>
         <transition name="drawer" appear>
           <a-layout-footer v-show="fold"><Footer></Footer></a-layout-footer>
         </transition>

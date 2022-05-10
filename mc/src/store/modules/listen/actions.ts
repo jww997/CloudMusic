@@ -121,7 +121,6 @@ export const actions: ActionTree<State, RootState> & Actions = {
         const arr = lyric.split('\n').filter(v => v)
         for (const str of arr) {
           const arr = str.split(']')
-          // console.log(arr)
         }
         return []
       }

@@ -15,7 +15,7 @@ const router = useRouter();
   <a-space
     direction="vertical"
     class="floating"
-    @click="router.push({ name: 'videoDetail', query: { id } })"
+    @click="router.push({ name: 'WatchVideoDetail', query: { id } })"
   >
     <div class="cover">
       <a-image

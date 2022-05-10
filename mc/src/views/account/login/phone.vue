@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import { useStore } from 'vuex';
+import _ from 'lodash'
 import md5 from 'md5';
 import account from '@/apis/account/index';
 import { PARAMS_LOGIN_CELLPHONE } from '@/apis/account/typeParams';
@@ -41,7 +42,7 @@ const handleSubmit = async ({ values }: { values: PARAMS_LOGIN_CELLPHONE }) => {
       nickname: '',
     }));
   const res = await account.postLoginCellphone(
-    Object.assign(
+    _.assign(
       values,
       { password: '' },
       type.value === 1 ? { md5_password: md5(values.password) } : {}

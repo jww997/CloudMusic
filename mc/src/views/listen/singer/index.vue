@@ -31,7 +31,7 @@ init();
           class="txt-pointer"
           @click="
             $router.push({
-              path: '/listen/singer/detail',
+              name: 'ListenSingerDetail',
               query: { id: item.id },
             })
           "

@@ -10,8 +10,6 @@ const store = useStore();
 
 const lyric = computed<LYRIC[]>(() => store.state.listen.audio.lyric);
 const lyrict = computed<LYRIC[]>(() => store.state.listen.audio.lyrict);
-const currentTime = computed(() => store.state.listen.audio.currentTime);
-const duration = computed(() => store.state.listen.audio.duration);
 const song = computed<SONG>(() => store.state.listen.audio.song);
 const lyricTLen = computed<number>(() => lyrict.value.length);
 const findTLyric = (item: LYRIC) =>
@@ -85,6 +83,7 @@ onMounted(() => getLyric());
           >
             {{ item.text ? item.text : 0 }}
           </div>
+          <!-- {{lyricTLen}} -->
           <div
             class="translate"
             :class="{
@@ -169,7 +168,7 @@ onMounted(() => getLyric());
   transition: 1s;
 }
 .list .list-item,
-.list .list-item .active.big {
-  transition: 0.3s;
+.list .list-item .big {
+  transition: ease-in-out 0.3s;
 }
 </style>

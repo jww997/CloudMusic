@@ -1,3 +1,8 @@
+<script lang="ts">
+export default {
+  name: 'ListenSonglistDetail',
+};
+</script>
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
@@ -14,7 +19,9 @@ import * as C from './constant';
 const router = useRouter();
 const store = useStore();
 
-const id = toNumber(computed(() => router.currentRoute.value.query.id).value);
+const query = computed(() => router.currentRoute.value.query);
+
+const id = toNumber(computed(() => query.value.id).value);
 
 const loading = ref<boolean>(false);
 const results1 = ref<listen_R.RESULT_PLAYLIST_DETAIL>();
