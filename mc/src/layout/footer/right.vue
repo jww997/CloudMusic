@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import { IconMenu } from '@arco-design/web-vue/es/icon';
 import Lyric from './lyric.vue';
 import List from './list.vue';
 

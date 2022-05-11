@@ -1,15 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import {
-  IconRedo,
-  IconPauseCircleFill,
-  IconPlayCircleFill,
-  IconSkipPreviousFill,
-  IconSkipNextFill,
-  IconSound,
-  IconMute,
-} from '@arco-design/web-vue/es/icon';
 import { ActionTypes } from '@/store/modules/listen/action-types';
 import { MutationsTypes } from '@/store/modules/listen/mutations-types';
 

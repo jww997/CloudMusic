@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
-import { IconPlayCircleFill } from '@arco-design/web-vue/es/icon';
 
 const router = useRouter();
 type Props = {
@@ -32,7 +31,7 @@ const props = defineProps<Props>();
         show-loader
       />
       <div class="mask">
-        <IconPlayCircleFill class="play" size="60" />
+        <icon-play-circle-fill class="play" size="60" />
         <div class="count" v-if="box.playCount">{{ box.playCount }}</div>
       </div>
     </div>

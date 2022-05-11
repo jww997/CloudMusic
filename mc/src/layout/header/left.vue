@@ -1,12 +1,18 @@
-<script lang="ts" setup>
-import { IconRight, IconLeft } from '@arco-design/web-vue/es/icon';
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div class="left">
-    <icon-left class="txt-pointer txt-hover" size="25" @click="$router.back()" />
+    <icon-left
+      class="txt-pointer txt-hover"
+      size="25"
+      @click="$router.back()"
+    />
     <div class="space"></div>
-    <icon-right class="txt-pointer txt-hover" size="25" @click="$router.go(1)" />
+    <icon-right
+      class="txt-pointer txt-hover"
+      size="25"
+      @click="$router.go(1)"
+    />
   </div>
 </template>
 

@@ -11,7 +11,7 @@ const routes: RouteRecordRaw = {
   meta: {
     locale: '影像馆', // 一级菜单名（语言包键名）
     requiresAuth: true, // 是否需要鉴权
-    // icon: 'icon-dashboard', // 菜单配置icon
+    icon: 'icon-video-camera', // 菜单配置icon
   },
   children: [
     {
@@ -23,7 +23,6 @@ const routes: RouteRecordRaw = {
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
         keepAlive: true,
-        icon: 'icon-video-camera'
       },
     },
     {
@@ -46,7 +45,6 @@ const routes: RouteRecordRaw = {
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
         keepAlive: true,
-        icon: 'icon-video-camera'
       },
     },
     {

@@ -34,7 +34,8 @@ defineProps<{
     </a-space>
     <a-button-group>
       <a-button>
-        <icon-thumb-up-fill v-if="liked" /><icon-thumb-up v-else />
+        <icon-thumb-up-fill v-if="liked" />
+        <icon-thumb-up v-else />
         <span class="count">{{ likedCount }}</span>
       </a-button>
       <a-button>

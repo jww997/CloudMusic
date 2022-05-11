@@ -14,7 +14,7 @@ const routes: RouteRecordRaw = {
   meta: {
     locale: '账户', // 一级菜单名（语言包键名）
     requiresAuth: true, // 是否需要鉴权
-    icon: 'icon-dashboard', // 菜单配置icon
+    icon: 'icon-user', // 菜单配置icon
   },
   children: [
     {

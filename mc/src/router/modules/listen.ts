@@ -24,7 +24,7 @@ const routes: RouteRecordRaw = {
   meta: {
     locale: '音乐馆', // 一级菜单名（语言包键名）
     requiresAuth: true, // 是否需要鉴权
-    icon: 'icon-dashboard', // 菜单配置icon
+    icon: 'icon-music', // 菜单配置icon
   },
   children: [
     {

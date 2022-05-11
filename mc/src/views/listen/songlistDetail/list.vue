@@ -5,11 +5,6 @@ import { useStore } from 'vuex';
 import listen_R from '@/apis/listen/typeResult';
 import { ActionTypes } from '@/store/modules/listen/action-types';
 import { TableColumn } from '@arco-design/web-vue/es/table/interface';
-import {
-  IconHeart,
-  IconHeartFill,
-  IconLiveBroadcast,
-} from '@arco-design/web-vue/es/icon';
 
 const store = useStore();
 
@@ -50,14 +45,14 @@ const handleRowClick = (song: listen_R.SONG) =>
             <div v-if="record">
               <div v-if="dataIndex === 'name'">
                 <a-space>
-                  <IconHeart size="20" />
+                  <icon-heart size="20" />
                   <div class="title txt-pointer">
                     <span class="name"> {{ record.name }} </span>
                     <span class="alia" v-for="item in record.alia">
                       （{{ item }}）
                     </span>
                   </div>
-                  <IconLiveBroadcast
+                  <icon-video-camera
                     size="15"
                     v-if="record.mv"
                     @click.stop="

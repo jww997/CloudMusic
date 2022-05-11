@@ -1,18 +1,5 @@
-<!-- <script lang="ts">
-import { defineComponent } from 'vue';
-export default defineComponent({
-  components: {
-    Icon: {
-      props: ['name'],
-      render() {
-        return h('icon-apps');
-      },
-    },
-  },
-});
-</script> -->
 <script lang="ts" setup>
-import { h, compile, defineComponent } from 'vue';
+import { h, resolveComponent, defineComponent } from 'vue';
 import { router } from '@/router';
 import { RouteRecordNormalized } from 'vue-router';
 
@@ -23,18 +10,16 @@ const root = router
 const Icon = defineComponent({
   props: ['name'],
   render() {
-    const name: string = this.name ?? 'icon-apps';
-    console.log(`<${name}/>`);
-    return h(compile(`<${name}/>`));
+    return h(resolveComponent(this.name ?? ''));
   },
 });
 </script>
 
 <template>
-  <a-menu>
+  <a-menu accordion auto-scroll-into-view auto-open-selected>
     <a-sub-menu key="0" v-for="i in root.children">
       <template #icon>
-        <Icon :name="i.meta?.icon"></Icon>
+        <Icon :name="i.meta?.icon" />
       </template>
       <template #title>{{ i.meta?.locale }}</template>
       <template v-for="ii in i.children" :key="ii.path">
@@ -43,7 +28,7 @@ const Icon = defineComponent({
           @click="$router.push({ name: ii.name })"
         >
           <template #icon>
-            <Icon :name="i.meta?.icon"></Icon>
+            <Icon :name="ii.meta?.icon" />
           </template>
           <span>{{ ii.meta?.locale }}</span>
         </a-menu-item>
