@@ -15,6 +15,17 @@ const routes: RouteRecordRaw = {
   },
   children: [
     {
+      path: '/toplist',
+      name: 'SeeToplist',
+      component: () => import('@/views/see/toplist/index.vue'),
+      meta: {
+        locale: '排行', // 二级菜单名（语言包键名）
+        requiresAuth: true, // 是否需要鉴权
+        roles: ['admin'], // 权限角色
+        keepAlive: true,
+      },
+    },
+    {
       path: '/mv',
       name: 'SeeMv',
       component: () => import('@/views/see/mv/index.vue'),

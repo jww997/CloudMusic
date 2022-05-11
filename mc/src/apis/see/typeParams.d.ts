@@ -10,7 +10,9 @@ export interface PARAMS_MV_FIRST extends LIMIT {
 }
 export interface PARAMS_EXCLUSIVE_RCMD extends OFFSET { }
 export interface PARAMS_PERSONALIZED_MV { }
-export interface PARAMS_TOP_MV { }
+export interface PARAMS_TOP_MV extends OFFSET {
+  area: '全部' | '内地' | '港台' | '欧美' | '日本' | '韩国' = '全部' // 地区
+}
 export interface PARAMS_MV_DETAIL {
   mvid: string // mv的id
 }

@@ -1,11 +1,12 @@
 <script lang="ts">
 export default {
-  name: 'SeeMv',
+  name: 'SeeToplist',
 };
 </script>
 <script lang="ts" setup>
 import { reactive, watch } from 'vue';
 import _ from 'lodash';
+import dayjs from 'dayjs';
 import see from '@/apis/see';
 import * as TYPE from './_type';
 import * as CONSTANT from './_constant';
@@ -13,32 +14,26 @@ import Tags from './tags.vue';
 import List from './list.vue';
 
 const params = reactive<TYPE.PARAMS>({
-  area: '全部',
-  type: '全部',
-  order: '上升最快',
+  area: '内地',
   limit: 30, // 取出数量
   offset: 0, // 偏移数量
 });
 
 const result = reactive<TYPE.RESULT>({
-  count: 0,
   data: [],
   hasMore: false,
+  updateTime: 0,
   current: 1, // 当前页数
 });
 
 const init = async () => {
-  const res = await see.getMvAll(params);
-  const { count, data, hasMore } = res;
-  if (count) result.count = count;
+  console.log('params = ', params);
+  const res = await see.getTopMv(params);
+  console.log('res = ', res);
+  const { updateTime, data, hasMore } = res;
   result.data = result.data.concat(data);
   result.hasMore = hasMore;
-
-  // const r = await see.getMvFirst();
-  // const r = await see.getMvExclusiveRcmd();
-  // const r = await see.getPersonalizedMv();
-  // const r = await see.getVideoTimelineAll();
-  // const r = await see.getVideoTimelineRecommend();
+  result.updateTime = updateTime;
 };
 init();
 
@@ -49,8 +44,6 @@ const reset = () => {
 
 watch(params, init, { deep: true });
 watch(() => params.area, reset);
-watch(() => params.type, reset);
-watch(() => params.order, reset);
 watch(
   () => result.current,
   (v: number) => {
@@ -62,20 +55,23 @@ watch(
 </script>
 
 <template>
-  <div class="mv"
-    ><Tags :list="CONSTANT.AREA" v-model:active="params.area" title="地区" />
-    <Tags :list="CONSTANT.TYPE" v-model:active="params.type" title="类型" />
-    <Tags :list="CONSTANT.ORDER" v-model:active="params.order" title="排序" />
-    <List
-      :list="result.data"
-      :total="result.count"
-      v-model:current="result.current"
-      v-if="result"
-    />
+  <div class="toplist">
+    <Tags :list="CONSTANT.AREA" v-model:active="params.area" />
+    <div class="updateTime"
+      >更新时间：{{ dayjs(result.updateTime).format('YYYY-MM-DD') }}</div
+    >
+    <List :list="result.data" v-model:current="result.current" v-if="result" />
   </div>
 </template>
 
 <style lang="less" scoped>
-// .mv {
-// }
+.toplist {
+  position: relative;
+
+  .updateTime {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+  }
+}
 </style>
