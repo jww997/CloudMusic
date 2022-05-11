@@ -1,28 +1,28 @@
 <script lang="ts" setup>
-import type { TAGS } from './_constant';
+import type R from '@/apis/see/typeResult';
 defineProps<{
-  active: string;
+  active: number;
   title: string;
-  list: TAGS[];
+  list: R.GRUOP[];
 }>();
 const emits = defineEmits(['update:active']);
 
-const handleClick = (v: string) => emits('update:active', v);
+const handleClick = (v: number) => emits('update:active', v);
 </script>
 
 <template>
   <div class="tags">
     <span class="left" v-if="title">{{ title }}：</span>
-    <a-space>
+    <a-space wrap>
       <a-tag
         v-for="item in list"
-        :key="item.value"
+        :key="item.id"
         :checkable="true"
-        :checked="item.value === active"
-        :color="item.value === active && 'arcoblue'"
-        @click="handleClick(item.value)"
+        :checked="item.id === active"
+        :color="item.id === active && 'arcoblue'"
+        @click="handleClick(item.id)"
       >
-        {{ item.title }}
+        {{ item.name }}
       </a-tag>
     </a-space>
   </div>

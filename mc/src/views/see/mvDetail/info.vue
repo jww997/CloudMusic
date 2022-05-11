@@ -15,17 +15,19 @@ defineProps<{
     <a-typography-title :heading="3">
       {{ data.name }}
     </a-typography-title>
-    <div class="artists">
-      <a-space v-for="item in data.artists">
+    <a-space class="artists">
+      <a-space direction="vertical" v-for="item in data.artists">
         <a-image
           class="cover"
-          width="30"
-          height="30"
+          width="50"
+          height="50"
           :src="item.img1v1Url"
+          :preview="false"
+          show-loader
         ></a-image>
         <span>{{ item.name }}</span>
       </a-space>
-    </div>
+    </a-space>
     <a-space>
       <span>发布时间：{{ data.publishTime }}</span>
       <span>播放：{{ data.playCount }}</span>

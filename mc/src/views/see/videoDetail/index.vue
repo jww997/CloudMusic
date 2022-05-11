@@ -4,7 +4,7 @@ export default {
 };
 </script>
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { reactive, watch } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import see from '@/apis/see';
@@ -53,6 +53,7 @@ const init = async () => {
   store.dispatch(ActionTypes.SET_VIDEO_URL, res4.urls[0].url);
 };
 init();
+watch(() => route.query, init);
 </script>
 
 <template>
@@ -74,8 +75,8 @@ init();
   .left {
     flex-grow: 1;
     #videoRef {
-      max-width: 85%;
-      min-height: 380px;
+      max-width: 90%;
+      height: 450px;
       border-radius: 10px;
       box-shadow: 0 0 30px #aaa;
     }

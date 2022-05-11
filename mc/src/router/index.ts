@@ -18,6 +18,7 @@ export type META = {
   requiresAuth?: boolean
   roles?: string[]
   icon?: string
+  keepAlive?: boolean
 }
 
 declare module 'vue-router' {
@@ -40,10 +41,10 @@ export const routes: RouteRecordRaw[] = [
 export const router = createRouter({
   history: createWebHashHistory(''),
   routes,
-  scrollBehavior() {
-    return { top: 0 };
-  },
 });
+// scrollBehavior() {
+//   return { top: 0 };
+// },
 
 router.beforeEach((to, from, next) => {
   // console.log('to.meta = ', to.meta)

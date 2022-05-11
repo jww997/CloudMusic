@@ -17,13 +17,15 @@ defineProps<{
       {{ data.title }}
     </a-typography-title>
     <div class="artists">
-      <a-space v-if="data.creator">
+      <a-space direction="vertical" v-if="data.creator">
         <a-image
           class="cover"
-          width="30"
-          height="30"
+          width="50"
+          height="50"
           :src="data.creator.avatarUrl"
-        ></a-image>
+          :preview="false"
+          show-loader
+        />
         <span>{{ data.creator.nickname }}</span>
       </a-space>
     </div>

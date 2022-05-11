@@ -35,7 +35,7 @@ const routes: RouteRecordRaw = {
         locale: '推荐', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
-        // keepAlive: true
+        keepAlive: true
       },
     },
     {
@@ -66,7 +66,6 @@ const routes: RouteRecordRaw = {
         locale: '歌单详情', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
-        // keepAlive: true
       },
     },
     {

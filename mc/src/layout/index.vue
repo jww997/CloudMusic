@@ -1,27 +1,14 @@
 <script lang="ts" setup>
-import { ref, watch, computed } from 'vue';
+import { computed } from 'vue';
 import { useStore } from 'vuex';
-import { useRoute, RouteRecordName } from 'vue-router';
-import { IconCaretRight, IconCaretLeft } from '@arco-design/web-vue/es/icon';
 import Menu from '@/layout/menu/index.vue';
 import Header from '@/layout/header/index.vue';
 import Footer from '@/layout/footer/index.vue';
+import Crumb from './crumb.vue';
 
-const route = useRoute();
-const breadcrumb = ref<{ name?: RouteRecordName; title?: unknown }[]>([]);
 const store = useStore();
 
 const fold = computed(() => store.state.listen.audio.fold);
-
-watch(
-  () => route,
-  () => {
-    breadcrumb.value = route.matched.map(
-      ({ name, meta: { locale: title } }) => ({ name, title })
-    );
-  },
-  { immediate: true }
-);
 </script>
 
 <template>
@@ -37,11 +24,7 @@ watch(
     <a-layout>
       <a-layout-header class="header"><Header></Header></a-layout-header>
       <a-layout class="body">
-        <a-breadcrumb class="breadcrumb">
-          <a-breadcrumb-item v-for="{ name, title } in breadcrumb" :key="name">
-            <router-link :to="{ name }">{{ title }}</router-link>
-          </a-breadcrumb-item>
-        </a-breadcrumb>
+        <Crumb />
         <a-layout-content>
           <router-view />
         </a-layout-content>

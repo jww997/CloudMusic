@@ -92,8 +92,8 @@ init();
   .left {
     flex-grow: 1;
     #mvRef {
-      max-width: 85%;
-      min-height: 380px;
+      max-width: 90%;
+      height: 450px;
       border-radius: 10px;
       box-shadow: 0 0 30px #aaa;
     }

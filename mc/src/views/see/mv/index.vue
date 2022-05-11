@@ -28,9 +28,7 @@ const result = reactive<TYPE.RESULT>({
 });
 
 const init = async () => {
-  console.log('params = ', params);
   const res = await see.getMvAll(params);
-  console.log('res = ', res);
 
   const { count, data, hasMore } = res;
 
