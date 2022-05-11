@@ -56,6 +56,7 @@ const span = computed(() => 24 / col);
       z-index: 1;
       color: #eee;
       opacity: 0.8;
+      pointer-events: none;
     }
     .playCount {
       color: #fff;

@@ -13,13 +13,9 @@ const fold = computed(() => store.state.listen.audio.fold);
 
 <template>
   <a-layout class="layout">
-    <a-layout-sider collapsible breakpoint="xl">
+    <a-layout-sider class="sider" collapsible breakpoint="xl">
       <div class="logo"></div>
       <Menu></Menu>
-      <template #trigger="{ collapsed }">
-        <icon-caret-right v-if="collapsed"></icon-caret-right>
-        <icon-caret-left v-else></icon-caret-left>
-      </template>
     </a-layout-sider>
     <a-layout>
       <a-layout-header class="header"><Header></Header></a-layout-header>
@@ -50,7 +46,7 @@ const fold = computed(() => store.state.listen.audio.fold);
   }
 }
 :deep(.arco-layout-sider) .logo {
-  height: 32px;
+  height: calc(64px - 12px * 2);
   margin: 12px 8px;
 }
 :deep(.arco-layout-sider-light) .logo {

@@ -66,6 +66,7 @@ const routes: RouteRecordRaw = {
         locale: '歌单详情', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
+        hideInMenu: true
       },
     },
     {
@@ -86,6 +87,7 @@ const routes: RouteRecordRaw = {
         locale: '歌手详情', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
+        hideInMenu: true
       },
     },
     {
@@ -106,6 +108,7 @@ const routes: RouteRecordRaw = {
         locale: '歌曲', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
+        hideInMenu: true
       },
     },
     {
@@ -116,6 +119,7 @@ const routes: RouteRecordRaw = {
         locale: '专辑详情', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
+        hideInMenu: true
       },
     },
     {
@@ -126,6 +130,7 @@ const routes: RouteRecordRaw = {
         locale: '电台详情', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
+        hideInMenu: true
       },
     },
     {
@@ -146,6 +151,7 @@ const routes: RouteRecordRaw = {
         locale: '搜索', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
+        hideInMenu: true
       },
     },
 

@@ -16,7 +16,9 @@ const Icon = defineComponent({
 </script>
 
 <template>
-  <a-menu accordion auto-scroll-into-view auto-open-selected>
+  <a-menu class="menu" accordion auto-scroll-into-view auto-open-selected>
+    <!-- show-collapse-button
+    mode="pop" -->
     <a-sub-menu key="0" v-for="i in root.children">
       <template #icon>
         <Icon :name="i.meta?.icon" />
