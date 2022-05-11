@@ -11,7 +11,7 @@ const routes: RouteRecordRaw = {
   meta: {
     locale: '影像馆', // 一级菜单名（语言包键名）
     requiresAuth: true, // 是否需要鉴权
-    icon: 'icon-dashboard', // 菜单配置icon
+    // icon: 'icon-dashboard', // 菜单配置icon
   },
   children: [
     {
@@ -22,7 +22,8 @@ const routes: RouteRecordRaw = {
         locale: 'MV', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
-        keepAlive: true
+        keepAlive: true,
+        icon: 'icon-video-camera'
       },
     },
     {
@@ -33,6 +34,7 @@ const routes: RouteRecordRaw = {
         locale: 'MV详情', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
+        hideInMenu: true
       },
     },
     {
@@ -43,7 +45,8 @@ const routes: RouteRecordRaw = {
         locale: '视频', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
-        keepAlive: true
+        keepAlive: true,
+        icon: 'icon-video-camera'
       },
     },
     {
@@ -54,6 +57,7 @@ const routes: RouteRecordRaw = {
         locale: '视频详情', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
+        hideInMenu: true
       },
     },
   ],

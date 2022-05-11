@@ -19,6 +19,7 @@ export type META = {
   roles?: string[]
   icon?: string
   keepAlive?: boolean
+  hideInMenu?: boolean
 }
 
 declare module 'vue-router' {

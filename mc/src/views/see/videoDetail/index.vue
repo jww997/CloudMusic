@@ -7,6 +7,7 @@ export default {
 import { reactive, watch } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
+import { router } from '@/router';
 import see from '@/apis/see';
 import * as TYPE from './_type';
 import { MutationsTypes } from '@/store/modules/see/mutations-types';
@@ -34,6 +35,7 @@ const result3 = reactive<TYPE.RESULT3>({
 
 const init = async () => {
   const id = <string>route.query.id;
+  if (!id) router.back();
   const res = await see.getVideoDetail({ id });
   console.log('res = ', res);
   result.data = res.data;

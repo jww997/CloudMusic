@@ -7,6 +7,7 @@ export default {
 import { reactive } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
+import { router } from '@/router';
 import { MutationsTypes } from '@/store/modules/see/mutations-types';
 import { ActionTypes } from '@/store/modules/see/action-types';
 import see from '@/apis/see';
@@ -53,6 +54,7 @@ const result3 = reactive<TYPE.RESULT3>({
 
 const init = async () => {
   const id = <string>route.query.id;
+  if (!id) router.back();
   const res = await see.getMvDetail({ mvid: id });
   result.data = res.data;
 
