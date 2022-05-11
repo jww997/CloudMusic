@@ -4,57 +4,63 @@ export default {
 };
 </script>
 <script lang="ts" setup>
-import { ref } from 'vue';
-import listen from '@/apis/listen/index';
-import listen_R from '@/apis/listen/typeResult';
-import * as C from './_constant';
+import { reactive, watch } from 'vue';
+import _ from 'lodash';
+import listen from '@/apis/listen';
+import * as TYPE from './_type';
+import * as CONSTANT from './_constant';
+import Tags from './tags.vue';
+import List from './list.vue';
 
-const result1 = ref<listen_R.RESULT_ARTIST_LIST>();
+const params = reactive<TYPE.PARAMS>({
+  area: -1,
+  type: -1,
+  initial: -1,
+  limit: 30, // 取出数量
+  offset: 0, // 偏移数量
+});
 
-const responsive = { xs: 20, sm: 16, md: 12, lg: 8, xl: 6, xxl: 4 };
+const result = reactive<TYPE.RESULT>({
+  artists: [],
+  more: false,
+});
 
 const init = async () => {
-  result1.value = await listen.getArtistList();
+  const res = await listen.getArtistList(params);
+  result.artists = res.artists;
+  result.more = res.more;
 };
 init();
+
+const reset = () => {
+  params.offset = 0;
+  _.assign(result, { artists: [], more: false });
+};
+
+watch(params, init);
+watch(() => params.area, reset);
+watch(() => params.type, reset);
+watch(() => params.initial, reset);
 </script>
 
 <template>
-  <div v-if="result1">
-    <div>
-      {{ C.AREA }}
-      {{ C.TYPE }}
-      {{ C.INITIAL }}
-    </div>
-    <a-row>
-      <a-col
-        v-for="(item, index) in result1.artists"
-        :key="item.id"
-        v-bind="responsive"
-      >
-        <div
-          class="txt-pointer"
-          @click="
-            $router.push({
-              name: 'ListenSingerDetail',
-              query: { id: item.id },
-            })
-          "
-        >
-          <a-space class="pad" direction="vertical">
-            <div class="cover">
-              <a-image
-                :src="item.picUrl"
-                :alt="item.name"
-                height="100%"
-                show-loader
-              ></a-image>
-            </div>
-            <span class="name">{{ item.name }}</span>
-          </a-space>
-        </div>
-      </a-col>
-    </a-row>
+  <div v-if="result">
+    <Tags
+      :list="CONSTANT.LANGUANGE"
+      v-model:active="params.area"
+      title="语种"
+    />
+    <Tags
+      :list="CONSTANT.CLASSIFICATION"
+      v-model:active="params.type"
+      title="分类"
+    />
+    <Tags
+      :list="CONSTANT.FILTER"
+      v-model:active="params.initial"
+      title="筛选"
+    />
+    <List :list="result.artists" />
   </div>
 </template>
 
@@ -64,21 +70,5 @@ init();
   padding-top: 15px;
   padding-bottom: 50px;
   position: relative;
-  .cover {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .name {
-    margin: 0 auto;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    left: 0;
-  }
 }
 </style>

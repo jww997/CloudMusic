@@ -53,9 +53,9 @@ export interface PARAMS_COMMENT_PLAYLIST extends ID, OFFSET {
 
 // #region about artist
 export interface PARAMS_ARTIST_LIST extends OFFSET {
-  initial?: string // 按首字母索引查找参数, 热门传-1,#传 0
-  type?: -1 | 1 | 2 | 3 // -1全部 1男歌手 2女歌手 3乐队
-  area?: -1 | 7 | 96 | 8 | 16 | 0 // -1全部 7华语 96欧美 8日本 16韩国 0其他
+  initial: string | number // 按首字母索引查找参数, 热门传-1,#传 0
+  type: -1 | 1 | 2 | 3 // -1全部 1男歌手 2女歌手 3乐队
+  area: -1 | 7 | 96 | 8 | 16 | 0 // -1全部 7华语 96欧美 8日本 16韩国 0其他
 }
 export interface PARAMS_ARTIST_SUB extends ID {
   t: 1 | 0 // 1 为收藏,其他为取消收藏

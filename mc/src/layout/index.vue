@@ -5,8 +5,12 @@ import Menu from '@/layout/menu/index.vue';
 import Header from '@/layout/header/index.vue';
 import Footer from '@/layout/footer/index.vue';
 import Crumb from './crumb.vue';
+import { Icon } from '@arco-design/web-vue';
 
 const store = useStore();
+
+const src: string = 'https://at.alicdn.com/t/font_180975_ue66sq60vyd.js';
+const IconFont = Icon.addFromIconFontCn({ src });
 
 const fold = computed(() => store.state.listen.audio.fold);
 </script>
@@ -14,7 +18,9 @@ const fold = computed(() => store.state.listen.audio.fold);
 <template>
   <a-layout class="layout">
     <a-layout-sider class="sider" collapsible breakpoint="xl">
-      <div class="logo"></div>
+      <div class="logo">
+        <icon-font type="icon-earth" :size="32" />
+      </div>
       <Menu></Menu>
     </a-layout-sider>
     <a-layout>
@@ -36,7 +42,14 @@ const fold = computed(() => store.state.listen.audio.fold);
 .layout {
   height: 100%;
   background: var(--color-fill-2);
-  border: 1px solid var(--color-border);
+  .logo {
+    height: calc(64px - 12px * 2);
+    margin: 12px 8px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .body {
     padding: 0 20px;
     box-sizing: border-box;
@@ -45,10 +58,10 @@ const fold = computed(() => store.state.listen.audio.fold);
     }
   }
 }
-:deep(.arco-layout-sider) .logo {
-  height: calc(64px - 12px * 2);
-  margin: 12px 8px;
-}
+// :deep(.arco-layout-sider) .logo {
+//   height: calc(64px - 12px * 2);
+//   margin: 12px 8px;
+// }
 :deep(.arco-layout-sider-light) .logo {
   background: var(--color-fill-2);
 }
@@ -66,6 +79,7 @@ const fold = computed(() => store.state.listen.audio.fold);
   height: 100%;
   position: relative;
   overflow-y: auto;
+  background: var(--color-fill-2);
 }
 
 :deep(.arco-layout-footer) {
@@ -79,6 +93,7 @@ const fold = computed(() => store.state.listen.audio.fold);
   bottom: 0;
   right: 20px;
   left: 20px;
+  z-index: 2;
 }
 :deep(.arco-layout-content) {
   color: var(--color-text-2);
@@ -91,7 +106,6 @@ const fold = computed(() => store.state.listen.audio.fold);
 :deep(.arco-layout-content) {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   font-size: 16px;
   font-stretch: condensed;
   text-align: center;

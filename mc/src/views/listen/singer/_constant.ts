@@ -1,9 +1,9 @@
-export type CONSTANT = {
+export type TAGS = {
   name: string
   value: number | string;
 }
 
-export const AREA: CONSTANT[] = [
+export const LANGUANGE: TAGS[] = [
   { name: '全部', value: -1, },
   { name: '华语', value: 7, },
   { name: '欧美', value: 96, },
@@ -12,7 +12,7 @@ export const AREA: CONSTANT[] = [
   { name: '其他', value: 0, },
 ];
 
-export const TYPE: CONSTANT[] = [
+export const CLASSIFICATION: TAGS[] = [
   { name: '全部', value: -1, },
   { name: '男歌手', value: 1, },
   { name: '女歌手', value: 2, },
@@ -20,7 +20,7 @@ export const TYPE: CONSTANT[] = [
 
 ];
 
-export const INITIAL: CONSTANT[] = [
+export const FILTER: TAGS[] = [
   { name: '热门', value: -1, },
   { name: 'A', value: 'a', },
   { name: 'B', value: 'b', },

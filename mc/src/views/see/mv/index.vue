@@ -62,8 +62,8 @@ watch(
 </script>
 
 <template>
-  <div class="mv"
-    ><Tags :list="CONSTANT.AREA" v-model:active="params.area" title="地区" />
+  <div class="mv">
+    <Tags :list="CONSTANT.AREA" v-model:active="params.area" title="地区" />
     <Tags :list="CONSTANT.TYPE" v-model:active="params.type" title="类型" />
     <Tags :list="CONSTANT.ORDER" v-model:active="params.order" title="排序" />
     <List

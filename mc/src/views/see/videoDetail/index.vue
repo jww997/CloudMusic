@@ -37,7 +37,6 @@ const init = async () => {
   const id = <string>route.query.id;
   if (!id) router.back();
   const res = await see.getVideoDetail({ id });
-  console.log('res = ', res);
   result.data = res.data;
 
   const res2 = await see.getVideoDetailInfo({ vid: id });

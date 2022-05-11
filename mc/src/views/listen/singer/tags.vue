@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import type R from '@/apis/see/typeResult';
+import type { TAGS } from './_constant';
 defineProps<{
-  active: number;
+  active: string | number;
   title: string;
-  list: R.GRUOP[];
+  list: TAGS[];
 }>();
 const emits = defineEmits(['update:active']);
 
-const handleClick = (v: number) => emits('update:active', v);
+const handleClick = (v: string | number) => emits('update:active', v);
 </script>
 
 <template>
@@ -16,11 +16,11 @@ const handleClick = (v: number) => emits('update:active', v);
     <a-space wrap>
       <a-tag
         v-for="item in list"
-        :key="item.id"
+        :key="item.value"
         :checkable="true"
-        :checked="item.id === active"
-        :color="item.id === active && 'arcoblue'"
-        @click="handleClick(item.id)"
+        :checked="item.value === active"
+        :color="item.value === active && 'arcoblue'"
+        @click="handleClick(item.value)"
       >
         {{ item.name }}
       </a-tag>

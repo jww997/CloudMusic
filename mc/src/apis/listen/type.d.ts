@@ -30,7 +30,7 @@ export interface API {
   // #endregion
 
   // #region about artist
-  getArtistList: (params?: P.PARAMS_ARTIST_LIST) => Promise<ResType<R.RESULT_ARTIST_LIST>>;
+  getArtistList: (params?: Partial<P.PARAMS_ARTIST_LIST>) => Promise<ResType<R.RESULT_ARTIST_LIST>>;
   getArtistSub: (params: P.PARAMS_ARTIST_SUB) => Promise<ResType<R.RESULT_ARTIST_SUB>>;
   getArtistTopSongs: (params: P.PARAMS_ARTIST_TOP_SONGS) => Promise<ResType<R.RESULT_ARTIST_TOP_SONGS>>;
   getArtistSongs: (params: P.PARAMS_ARTIST_SONGS) => Promise<ResType<R.RESULT_ARTIST_SONGS>>;

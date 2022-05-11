@@ -5,8 +5,8 @@ export default {
 </script>
 <script lang="ts" setup>
 import { reactive, watch } from 'vue';
-import _ from 'lodash';
 import dayjs from 'dayjs';
+import _ from 'lodash';
 import see from '@/apis/see';
 import * as TYPE from './_type';
 import * as CONSTANT from './_constant';
@@ -27,9 +27,7 @@ const result = reactive<TYPE.RESULT>({
 });
 
 const init = async () => {
-  console.log('params = ', params);
   const res = await see.getTopMv(params);
-  console.log('res = ', res);
   const { updateTime, data, hasMore } = res;
   result.data = result.data.concat(data);
   result.hasMore = hasMore;

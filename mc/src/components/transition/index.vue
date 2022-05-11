@@ -16,20 +16,23 @@ init();
 <template>
   <!-- <Suspense>
     <template #default> -->
-  <router-view v-slot="{ Component, route }">
-    <transition name="fade" mode="out-in" appear>
-      <keep-alive :include="include">
-        <component class="wrap" :is="Component" :key="route.path" />
-      </keep-alive>
-    </transition>
-  </router-view>
+  <div class="transition">
+    <router-view v-slot="{ Component, route }">
+      <transition name="slide-fade" mode="out-in" appear>
+        <keep-alive :include="include">
+          <component :is="Component" :key="route.path" />
+        </keep-alive>
+      </transition>
+    </router-view>
+  </div>
   <!-- </template>
     <template #fallback> Loading... </template>
   </Suspense> -->
 </template>
 
 <style lang="less" scoped>
-.wrap {
+.transition {
   padding: 30px;
+  overflow: hidden;
 }
 </style>

@@ -34,9 +34,10 @@ const handleClick = (v: string) => emits('update:active', v);
   margin-bottom: 15px;
   font-size: 12px;
   display: flex;
-  align-items: center;
   .left {
     margin-right: 15px;
+    margin-top: 5px;
+    flex-shrink: 0;
   }
 }
 </style>

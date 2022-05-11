@@ -21,7 +21,6 @@ const init = async () => {
 };
 init();
 
-onMounted(() => console.log(123));
 </script>
 
 <template>
