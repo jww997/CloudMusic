@@ -12,20 +12,9 @@ import * as CONSTANT from './_constant';
 import Tags from './tags.vue';
 import List from './list.vue';
 
-const params = reactive<TYPE.PARAMS>({
-  area: '全部',
-  type: '全部',
-  order: '上升最快',
-  limit: 30, // 取出数量
-  offset: 0, // 偏移数量
-});
+const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
 
-const result = reactive<TYPE.RESULT>({
-  count: 0,
-  data: [],
-  hasMore: false,
-  current: 1, // 当前页数
-});
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
 
 const init = async () => {
   const res = await see.getMvAll(params);

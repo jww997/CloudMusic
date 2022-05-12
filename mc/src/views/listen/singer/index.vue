@@ -12,18 +12,9 @@ import * as CONSTANT from './_constant';
 import Tags from './tags.vue';
 import List from './list.vue';
 
-const params = reactive<TYPE.PARAMS>({
-  area: -1,
-  type: -1,
-  initial: -1,
-  limit: 30, // 取出数量
-  offset: 0, // 偏移数量
-});
+const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
 
-const result = reactive<TYPE.RESULT>({
-  artists: [],
-  more: false,
-});
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
 
 const init = async () => {
   const res = await listen.getArtistList(params);

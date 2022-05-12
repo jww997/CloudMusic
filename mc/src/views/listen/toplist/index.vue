@@ -7,35 +7,11 @@ export default {
 import { reactive } from 'vue';
 import listen from '@/apis/listen';
 import * as TYPE from './_type';
+import * as CONSTANT from './_constant';
 import List from './list.vue';
 
-const result = reactive<TYPE.RESULT>({
-  artistToplist: {
-    coverUrl: '',
-    name: '',
-    position: 0,
-    upateFrequency: '',
-    updateFrequency: '',
-  },
-  list: [],
-});
-const result2 = reactive<TYPE.RESULT2>({
-  artistToplist: {
-    artists: [],
-    coverUrl: '',
-    name: '',
-    position: 0,
-    upateFrequency: '',
-    updateFrequency: '',
-  },
-  list: [],
-  rewardToplist: {
-    coverUrl: '',
-    name: '',
-    position: 0,
-    songs: [],
-  },
-});
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
+const result2 = reactive<TYPE.RESULT2>(CONSTANT.RESULT2);
 
 const init = async () => {
   const res = await listen.getToplist();

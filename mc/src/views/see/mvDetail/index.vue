@@ -12,43 +12,16 @@ import { MutationsTypes } from '@/store/modules/see/mutations-types';
 import { ActionTypes } from '@/store/modules/see/action-types';
 import see from '@/apis/see';
 import * as TYPE from './_type';
+import * as CONSTANT from './_constant';
 import Info from './info.vue';
 import List from './list.vue';
 
 const route = useRoute();
 const store = useStore();
 
-const result = reactive<TYPE.RESULT>({
-  bufferPic: '',
-  bufferPicFS: '',
-  data: {},
-  loadingPic: '',
-  loadingPicFS: '',
-  mp: {
-    cp: 0,
-    dl: 0,
-    fee: 0,
-    id: 0,
-    msg: null,
-    mvFee: 0,
-    normal: false,
-    payed: 0,
-    pl: 0,
-    sid: 0,
-    st: 0,
-    unauthorized: false,
-  },
-  subed: false,
-});
-const result2 = reactive<TYPE.RESULT2>({
-  commentCount: 0,
-  liked: false,
-  likedCount: 0,
-  shareCount: 0,
-});
-const result3 = reactive<TYPE.RESULT3>({
-  data: [],
-});
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
+const result2 = reactive<TYPE.RESULT2>(CONSTANT.RESULT2);
+const result3 = reactive<TYPE.RESULT3>(CONSTANT.RESULT3);
 
 const init = async () => {
   const id = <string>route.query.id;

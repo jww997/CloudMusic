@@ -8,21 +8,15 @@ import { ref, reactive, watch } from 'vue';
 import _ from 'lodash';
 import see from '@/apis/see';
 import * as TYPE from './_type';
+import * as CONSTANT from './_constant';
 import Tags from './tags.vue';
 import List from './list.vue';
 
-const result = reactive<TYPE.RESULT>({ data: [] });
+const params3 = reactive<TYPE.PARAMS3>(CONSTANT.PARAMS3);
 
-const result2 = reactive<TYPE.RESULT2>({ data: [] });
-
-const params3 = reactive<TYPE.PARAMS3>({ id: 0, offset: 0 });
-
-const result3 = reactive<TYPE.RESULT3>({
-  datas: [],
-  hasmore: false,
-  msg: '',
-  rcmdLimit: 0,
-});
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
+const result2 = reactive<TYPE.RESULT2>(CONSTANT.RESULT2);
+const result3 = reactive<TYPE.RESULT3>(CONSTANT.RESULT3);
 
 const isTagsExpanded = ref<boolean>(false);
 

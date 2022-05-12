@@ -1,4 +1,18 @@
+import * as T from './_type';
 import type { TAGS } from "@/types"
+
+export const PARAMS: T.PARAMS = {
+  area: '内地',
+  limit: 30, // 取出数量
+  offset: 0, // 偏移数量
+}
+
+export const RESULT: T.RESULT = {
+  data: [],
+  hasMore: false,
+  updateTime: 0,
+  current: 1, // 当前页数
+}
 
 export const AREA: TAGS[] = [
   // { title: '全部', value: '全部' },

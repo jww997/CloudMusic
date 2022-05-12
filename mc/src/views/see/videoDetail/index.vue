@@ -10,6 +10,7 @@ import { useRoute } from 'vue-router';
 import { router } from '@/router';
 import see from '@/apis/see';
 import * as TYPE from './_type';
+import * as CONSTANT from './_constant';
 import { MutationsTypes } from '@/store/modules/see/mutations-types';
 import { ActionTypes } from '@/store/modules/see/action-types';
 import Info from './info.vue';
@@ -18,18 +19,9 @@ import List from './list.vue';
 const route = useRoute();
 const store = useStore();
 
-const result = reactive<TYPE.RESULT>({
-  data: {},
-});
-const result2 = reactive<TYPE.RESULT2>({
-  commentCount: 0,
-  liked: false,
-  likedCount: 0,
-  shareCount: 0,
-});
-const result3 = reactive<TYPE.RESULT3>({
-  data: [],
-});
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
+const result2 = reactive<TYPE.RESULT2>(CONSTANT.RESULT2);
+const result3 = reactive<TYPE.RESULT3>(CONSTANT.RESULT3);
 
 const init = async () => {
   const id = <string>route.query.id;

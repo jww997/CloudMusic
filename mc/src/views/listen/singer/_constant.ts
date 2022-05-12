@@ -1,4 +1,18 @@
+import * as T from './_type'
 import type { TAGS } from "@/types"
+
+export const PARAMS: T.PARAMS = {
+  area: -1,
+  type: -1,
+  initial: -1,
+  limit: 30, // 取出数量
+  offset: 0, // 偏移数量
+}
+
+export const RESULT: T.RESULT = {
+  artists: [],
+  more: false,
+}
 
 export const LANGUANGE: TAGS[] = [
   { title: '全部', value: -1, },
@@ -8,7 +22,6 @@ export const LANGUANGE: TAGS[] = [
   { title: '韩国', value: 16, },
   { title: '其他', value: 0, },
 ];
-
 export const CLASSIFICATION: TAGS[] = [
   { title: '全部', value: -1, },
   { title: '男歌手', value: 1, },
@@ -16,7 +29,6 @@ export const CLASSIFICATION: TAGS[] = [
   { title: '乐队', value: 3, },
 
 ];
-
 export const FILTER: TAGS[] = [
   { title: '热门', value: -1, },
   { title: 'A', value: 'a', },

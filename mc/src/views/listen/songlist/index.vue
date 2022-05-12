@@ -7,24 +7,15 @@ export default {
 import { reactive, watch } from 'vue';
 import listen from '@/apis/listen';
 import * as TYPE from './_type';
+import * as CONSTANT from './_constant';
 import Tags from './tags.vue';
 import List from './list.vue';
 
-const params3 = reactive<TYPE.PARAMS3>({
-  order: 'hot',
-  cat: '全部',
-  limit: 50,
-  offset: 0,
-});
+const params3 = reactive<TYPE.PARAMS3>(CONSTANT.PARAMS3);
 
-const result = reactive<TYPE.RESULT>({ tags: [] });
-const result2 = reactive<TYPE.RESULT2>({ all: {}, categories: {}, sub: [] });
-const result3 = reactive<TYPE.RESULT3>({
-  cat: '',
-  playlists: [],
-  more: false,
-  total: 0,
-});
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
+const result2 = reactive<TYPE.RESULT2>(CONSTANT.RESULT2);
+const result3 = reactive<TYPE.RESULT3>(CONSTANT.RESULT3);
 
 const init = async () => {
   const res = await listen.getPlaylistHot();
