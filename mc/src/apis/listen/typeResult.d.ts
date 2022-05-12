@@ -1275,7 +1275,83 @@ export interface RESULT_COMMPARAMS_COMMENT_DJ extends CODE {
 
 // #endregion
 
+// #region about toplist
+export type TOPLIST = {
+  ToplistType: string
+  adType: number
+  anonimous: boolean
+  artists: null
+  backgroundCoverId: number
+  backgroundCoverUrl: null
+  cloudTrackCount: number
+  commentThreadId: string
+  coverImgId: number
+  coverImgId_str: string
+  coverImgUrl: string
+  createTime: number
+  creator: null
+  description: string
+  englishTitle: null
+  highQuality: boolean
+  id: number
+  name: string
+  newImported: boolean
+  opRecommend: boolean
+  ordered: true
+  playCount: number
+  privacy: number
+  recommendInfo: null
+  specialType: number
+  status: number
+  subscribed: null
+  subscribedCount: number
+  subscribers: []
+  tags: []
+  titleImage: number
+  titleImageUrl: null
+  totalDuration: number
+  trackCount: number
+  trackNumberUpdateTime: number
+  trackUpdateTime: number
+  tracks: {
+    first: string
+    second: string
+  }[] | null
+  updateFrequency: string
+  updateTime: number
+  userId: number
+}
+export interface RESULT_TOPLIST extends CODE {
+  artistToplist: {
+    coverUrl: string
+    name: string
+    position: number
+    upateFrequency: string
+    updateFrequency: string
+  }
+  list: TOPLIST[]
+}
+export interface RESULT_TOPLIST_DETAIL extends CODE {
+  artistToplist: {
+    artists: ARTIST[]
+    coverUrl: string
+    name: string
+    position: number
+    upateFrequency: string
+    updateFrequency: string
+  }
+  list: TOPLIST[]
+  rewardToplist: {
+    coverUrl: string
+    name: string
+    position: number
+    songs: SONG[]
+  }
+}
 
+
+
+// #endregion
 
 
 export interface RESULT_SONG_URL extends CODE {

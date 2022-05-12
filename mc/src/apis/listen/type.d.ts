@@ -6,7 +6,7 @@ export interface API {
   // #region about playlist
   getPlaylistCatlist: (params?: P.PARAMS_PLAYLIST_CATLIST) => Promise<R.RESULT_PLAYLIST_CATLIST>,
   getPlaylistHot: (params?: P.PARAMS_PLAYLIST_HOT) => Promise<R.RESULT_PLAYLIST_HOT>,
-  getTopPlaylist: (params: P.PARAMS_TOP_PLAYLIST) => Promise<R.RESULT_TOP_PLAYLIST>;
+  getTopPlaylist: (params: Partial<P.PARAMS_TOP_PLAYLIST>) => Promise<R.RESULT_TOP_PLAYLIST>;
   getPlaylistHighqualityTags: (params?: P.PARAMS_PLAYLIST_HIGHQUALITY_TAGS) => Promise<R.RESULT_PLAYLIST_HIGHQUALITY_TAGS>;
   getTopPlaylistHighquality: (params: P.PARAMS_TOP_PLAYLIST_HIGHQUALITY) => Promise<R.RESULT_TOP_PLAYLIST_HIGHQUALITY>;
   getRelatedPlaylist: (params: P.PARAMS_RELATED_PLAYLIST) => Promise<R.RESULT_RELATED_PLAYLIST>;
@@ -103,6 +103,12 @@ export interface API {
 
   // #endregion
 
+  // #region about toplist
+  getToplist: (params?: P.PARAMS_TOPLIST) => Promise<R.RESULT_TOPLIST>;
+  getToplistDetail: (params?: P.PARAMS_TOPLIST_DETAIL) => Promise<R.RESULT_TOPLIST_DETAIL>;
+
+
+  // #endregion
 
   getSongUrl: (params: P.PARAMS_SONG_URL) => Promise<R.RESULT_SONG_URL>;
   getSongDetail: (params: P.PARAMS_SONG_DETAIL) => Promise<R.RESULT_SONG_DETAIL>,

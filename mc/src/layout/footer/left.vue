@@ -35,7 +35,8 @@ const song = computed<SONG>(() => store.state.listen.audio.song);
   .cover {
     flex-shrink: 0;
     border-radius: 5px;
-    margin-right: 8px;
+    margin-right: 20px;
+    box-shadow: 0 0 5px #aaa;
   }
   .name {
     flex-grow: 1;

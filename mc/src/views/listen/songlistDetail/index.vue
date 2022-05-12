@@ -8,7 +8,7 @@ import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { toNumber } from 'lodash';
-import Detail from './detail.vue';
+import Info from './info.vue';
 import List from './list.vue';
 import Comment from './comment.vue';
 import listen from '@/apis/listen/index';
@@ -46,7 +46,7 @@ init();
 
 <template>
   <div>
-    <Detail :detail="results1.playlist" v-if="results1" />
+    <Info :detail="results1.playlist" v-if="results1" />
     <a-tabs default-active-key="1">
       <a-tab-pane key="1" :title="`歌曲${len1}`">
         <List

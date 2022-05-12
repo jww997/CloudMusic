@@ -4,17 +4,38 @@ export default {
 };
 </script>
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { reactive, watch } from 'vue';
 import listen from '@/apis/listen';
-import listen_R from '@/apis/listen/typeResult';
+import * as TYPE from './_type';
+import Tags from './tags.vue';
 import List from './list.vue';
 
-const results1 = ref<listen_R.RESULT_PLAYLIST_CATLIST>();
-const results2 = ref<listen_R.RESULT_TOP_PLAYLIST>();
+const params3 = reactive<TYPE.PARAMS3>({
+  order: 'hot',
+  cat: '全部',
+  limit: 50,
+  offset: 0,
+});
+
+const result = reactive<TYPE.RESULT>({ tags: [] });
+const result2 = reactive<TYPE.RESULT2>({ all: {}, categories: {}, sub: [] });
+const result3 = reactive<TYPE.RESULT3>({
+  cat: '',
+  playlists: [],
+  more: false,
+  total: 0,
+});
 
 const init = async () => {
-  results1.value = await listen.getPlaylistCatlist();
-  // await listen.getPlaylistHot();
+  const res = await listen.getPlaylistHot();
+  result.tags = res.tags;
+
+  const res2 = await listen.getPlaylistCatlist();
+  result2.all = res2.all;
+  result2.categories = res2.categories;
+  result2.sub = res2.sub;
+  handleClick();
+
   // await listen.getPlaylistHighqualityTags();
   // await listen.getTopPlaylistHighquality();
   // await listen.getRelatedPlaylist({ id: 740666719 });
@@ -32,19 +53,19 @@ const init = async () => {
 };
 init();
 
-const responsive = { xs: 20, sm: 16, md: 12, lg: 8, xl: 6, xxl: 4 };
-const handleClick = async (cat: string) =>
-  (results2.value = await listen.getTopPlaylist({ cat }));
+const handleClick = async () => {
+  const res3 = await listen.getTopPlaylist(params3);
+  result3.playlists = res3.playlists;
+};
+
+watch(params3, handleClick, { deep: true });
 </script>
 
 <template>
-  <div>
-    <div v-if="results1">
-      <a-button v-for="item in results1?.sub" @click="handleClick(item.name)">
-        {{ item.name }}
-      </a-button>
-    </div>
-    <List :list="results2.playlists" v-if="results2" />
+  <div class="songlist">
+    <Tags :list="result.tags" v-model:active="params3.cat" />
+    <Tags :list="result2.sub" v-model:active="params3.cat" />
+    <List :list="result3.playlists" />
   </div>
 </template>
 

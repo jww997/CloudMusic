@@ -4,8 +4,8 @@ import { LIMIT, OFFSET, BEFORE } from "../type"
 export interface PARAMS_PLAYLIST_CATLIST { }
 export interface PARAMS_PLAYLIST_HOT { }
 export interface PARAMS_TOP_PLAYLIST extends OFFSET {
-  order?: 'new' | 'hot' = 'hot'; // 最新和最热
-  cat?: string = '全部'; // 可从歌单分类接口获取(/playlist/catlist)
+  order: 'new' | 'hot' = 'hot'; // 最新和最热
+  cat: string = '全部'; // 可从歌单分类接口获取(/playlist/catlist)
 }
 export interface PARAMS_PLAYLIST_HIGHQUALITY_TAGS { }
 export interface PARAMS_TOP_PLAYLIST_HIGHQUALITY extends BEFORE {
@@ -167,7 +167,10 @@ export interface PARAMS_COMMENT_DJ extends OFFSET, BEFORE {
 
 // #endregion
 
-
+// #region about toplist
+export interface PARAMS_TOPLIST { }
+export interface PARAMS_TOPLIST_DETAIL { }
+// #endregion
 
 
 

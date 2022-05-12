@@ -1,9 +1,6 @@
 import P from '@/apis/see/typeParams';
 import R from '@/apis/see/typeResult';
 
-export interface PARAMS extends P.PARAMS_MV_ALL {
-}
+export interface PARAMS extends P.PARAMS_MV_ALL { }
 
-export interface RESULT extends R.RESULT_MV_ALL {
-  current: number;
-}
+export interface RESULT extends R.RESULT_MV_ALL { current: number }

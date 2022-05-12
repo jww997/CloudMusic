@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { TAGS } from '@/types';
+import R from '@/apis/listen/typeResult';
 defineProps<{
   active: string;
   title?: string;
-  list: TAGS[];
+  list: R.TAG[];
 }>();
 const emits = defineEmits(['update:active']);
 
@@ -13,16 +13,16 @@ const handleClick = (v: string | number) => emits('update:active', v);
 <template>
   <div class="tags">
     <span class="left" v-if="title">{{ title }}：</span>
-    <a-space>
+    <a-space wrap>
       <a-tag
         v-for="item in list"
-        :key="item.value"
+        :key="item.name"
         :checkable="true"
-        :checked="item.value === active"
-        :color="item.value === active && 'arcoblue'"
-        @click="handleClick(item.value)"
+        :checked="item.name === active"
+        :color="item.name === active && 'arcoblue'"
+        @click="handleClick(item.name)"
       >
-        {{ item.title }}
+        {{ item.name }}
       </a-tag>
     </a-space>
   </div>

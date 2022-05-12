@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { Icon } from '@arco-design/web-vue';
+// import ImgUrl_1 from '@/assets/images/logo/1.png';
 
 const src: string = 'https://at.alicdn.com/t/font_180975_ue66sq60vyd.js';
 const IconFont = Icon.addFromIconFontCn({ src });
@@ -7,13 +8,15 @@ const IconFont = Icon.addFromIconFontCn({ src });
 
 <template>
   <div class="logo">
-    <icon-font type="icon-earth" :size="32" />
+    <!-- <icon-font type="icon-earth" :size="32" /> -->
+    <!-- <a-image :src="ImgUrl_1" :width="60"></a-image> -->
   </div>
 </template>
 
 <style lang="less" scoped>
 .logo {
   height: calc(64px - 12px * 2);
+  background-color: var(--color-neutral-2);
   margin: 12px 8px;
   overflow: hidden;
   display: flex;

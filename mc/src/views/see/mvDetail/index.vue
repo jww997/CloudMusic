@@ -40,14 +40,12 @@ const result = reactive<TYPE.RESULT>({
   },
   subed: false,
 });
-
 const result2 = reactive<TYPE.RESULT2>({
   commentCount: 0,
   liked: false,
   likedCount: 0,
   shareCount: 0,
 });
-
 const result3 = reactive<TYPE.RESULT3>({
   data: [],
 });
