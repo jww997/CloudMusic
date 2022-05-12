@@ -14,7 +14,7 @@ const _children: CHILDREN = (children, path = "") => children.map(item => _.assi
 )
 
 declare module 'vue-router' {
-  interface RouteMeta extends META {
+  interface RouteMeta {
     locale: string
     requiresAuth?: boolean
     roles?: string[]
@@ -35,6 +35,10 @@ export const routes: RouteRecordRaw[] = [
     },
     children: _children(children),
   },
+  {
+    path: '/:pathMatch(.*)',
+    redirect: '/listen/recommend',
+  }
 ];
 
 export const router = createRouter({

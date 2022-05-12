@@ -1,41 +1,33 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-type Props = {
-  box: {
-    coverImgUrl: string;
-    id: number;
-    name: string;
-    playCount?: number;
-  };
-};
-const props = defineProps<Props>();
+defineProps<{
+  coverImgUrl: string;
+  id: number;
+  name: string;
+  playCount?: number;
+}>();
 </script>
 
 <template>
   <a-space
     direction="vertical"
     class="box"
-    @click="
-      $router.push({ name: 'ListenSonglistDetail', query: { id: box.id } })
-    "
+    @click="$router.push({ name: 'ListenSonglistDetail', query: { id } })"
   >
     <div class="top">
       <a-image
         width="200px"
         height="200px"
-        :src="box.coverImgUrl"
-        :alt="box.name"
+        :src="coverImgUrl"
+        :alt="name"
         :preview="false"
         show-loader
       />
       <div class="mask">
         <icon-play-circle-fill class="play" size="60" />
-        <div class="count" v-if="box.playCount">{{ box.playCount }}</div>
+        <div class="count" v-if="playCount">{{ playCount }}</div>
       </div>
     </div>
-    <div class="bot">{{ box.name }}</div>
+    <div class="bot">{{ name }}</div>
   </a-space>
 </template>
 

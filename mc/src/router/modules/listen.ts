@@ -6,13 +6,13 @@ import { RouteRecordRaw } from 'vue-router';
 import Listen from '@/components/transition/index.vue';
 import Recommend from '@/views/listen/recommend/index.vue';
 import Songlist from '@/views/listen/songlist/index.vue';
-import Station from "@/views/listen/station/index.vue";
 import Toplist from "@/views/listen/toplist/index.vue";
 import Singer from "@/views/listen/singer/index.vue";
 import SonglistDetail from "@/views/listen/songlistDetail/index.vue";
 import SingerDetail from "@/views/listen/singerDetail/index.vue";
 import Song from "@/views/listen/song/index.vue";
 import AlbumDetail from "@/views/listen/albumDetail/index.vue";
+import Dj from "@/views/listen/dj/index.vue";
 import DjDetail from "@/views/listen/djDetail/index.vue";
 import PersonalFm from "@/views/listen/personalFm/index.vue";
 import Search from "@/views/listen/search/index.vue";
@@ -93,17 +93,7 @@ const routes: RouteRecordRaw = {
         hideInMenu: true
       },
     },
-    {
-      path: '/station',
-      name: 'ListenStation',
-      component: Station,
-      meta: {
-        locale: '电台', // 二级菜单名（语言包键名）
-        requiresAuth: true, // 是否需要鉴权
-        roles: ['admin'], // 权限角色
-        keepAlive: true
-      },
-    },
+
     {
       path: '/song',
       name: 'ListenSong',
@@ -124,6 +114,17 @@ const routes: RouteRecordRaw = {
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
         hideInMenu: true
+      },
+    },
+    {
+      path: '/dj',
+      name: 'ListenDj',
+      component: Dj,
+      meta: {
+        locale: '电台', // 二级菜单名（语言包键名）
+        requiresAuth: true, // 是否需要鉴权
+        roles: ['admin'], // 权限角色
+        keepAlive: true
       },
     },
     {

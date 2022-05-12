@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Box from '../box.vue';
+import Box from '../songlist/box.vue';
 
 defineProps<{
   list: {
@@ -12,9 +12,9 @@ defineProps<{
 </script>
 
 <template>
-  <a-row  class="grid-demo" v-if="list">
+  <a-row class="grid-demo" v-if="list">
     <a-col :span="4" v-for="item in list" :key="item.id">
-      <Box :box="item" />
+      <Box v-bind="item" />
     </a-col>
   </a-row>
 </template>

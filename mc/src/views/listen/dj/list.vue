@@ -1,13 +1,9 @@
 <script setup lang="ts">
+import * as R from '@/apis/listen/typeResult';
 import Box from './box.vue';
 
 defineProps<{
-  list: {
-    coverImgUrl: string;
-    id: number;
-    name: string;
-    playCount?: number;
-  }[];
+  list: R.RADIO[];
 }>();
 </script>
 

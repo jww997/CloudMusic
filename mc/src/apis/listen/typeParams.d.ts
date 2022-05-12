@@ -143,7 +143,7 @@ export interface PARAMS_DJ_RECOMMEND_TYPE {
   type?: number  // 电台类型 , 数字 , 可通过/dj/catelist获取 , 对应关系为 id 对应 此接口的 type, name 对应类型
 }
 export interface PARAMS_DJ_SUB {
-  rid: number // 电台的id
+  rid: string // 电台的id
 }
 export interface PARAMS_DJ_SUBLIST { }
 export interface PARAMS_DJ_PAYGIFT extends OFFSET { }
@@ -151,10 +151,10 @@ export interface PARAMS_DJ_CATEGORY_EXCLUDEHOT { }
 export interface PARAMS_DJ_CATEGORY_RECOMMEND { }
 export interface PARAMS_DJ_TODAY_PERFERED { }
 export interface PARAMS_DJ_DETAIL {
-  rid: number // 电台的id
+  rid: string // 电台的id
 }
 export interface PARAMS_DJ_PROGRAM {
-  rid: number // 电台的id
+  rid: string // 电台的id
   asc?: boolean = false // 排序方式,默认为 false (新 => 老 ) 设置 true 可改为 老 => 新
 }
 export interface PARAMS_DJ_PROGRAM_DETAIL {
