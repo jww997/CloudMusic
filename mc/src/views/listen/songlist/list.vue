@@ -13,7 +13,7 @@ defineProps<{
 
 <template>
   <a-row  class="grid-demo" v-if="list">
-    <a-col span="4" v-for="item in list" :key="item.id">
+    <a-col :span="4" v-for="item in list" :key="item.id">
       <Box :box="item" />
     </a-col>
   </a-row>

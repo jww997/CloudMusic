@@ -19,7 +19,7 @@ const handleClick = (v: string | number) => emits('update:active', v);
         :key="item.name"
         :checkable="true"
         :checked="item.name === active"
-        :color="item.name === active && 'arcoblue'"
+        :color="item.name === active ? 'arcoblue' : ''"
         @click="handleClick(item.name)"
       >
         {{ item.name }}

@@ -3,8 +3,6 @@ import { computed } from 'vue';
 import type R from '@/apis/see/typeResult';
 defineProps<{
   list: R.TIMELINE[];
-  total: number;
-  current: number;
 }>();
 
 const emits = defineEmits(['update:current']);

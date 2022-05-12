@@ -13,10 +13,9 @@ defineProps<{
 
 <template>
   <a-space class="info" direction="vertical" fill>
-    <a-typography-title :heading="3">
-      {{ data.title }}
-    </a-typography-title>
-    <div class="artists">
+    <video id="videoRef" controls>您的浏览器不支持video标签。</video>
+    <a-typography-title :heading="3">{{ data.title }}</a-typography-title>
+    <!-- <div class="artists">
       <a-space direction="vertical" v-if="data.creator">
         <a-image
           class="cover"
@@ -28,37 +27,49 @@ defineProps<{
         />
         <span>{{ data.creator.nickname }}</span>
       </a-space>
-    </div>
-    <a-space>
-      <span>发布时间：{{ dayjs(data.publishTime).format('YYYY-MM-DD') }}</span>
-      <span>播放：{{ data.playTime }}</span>
+    </div> -->
+    <a-space size="large" :align="'baseline'">
+      <a-button-group>
+        <a-button>
+          <a-space>
+            <icon-thumb-up-fill v-if="liked" />
+            <icon-thumb-up v-else />
+            <span>{{ likedCount }}</span>
+          </a-space>
+        </a-button>
+        <a-button>
+          <a-space>
+            <icon-star />
+            <span>{{ commentCount }}</span>
+          </a-space>
+        </a-button>
+        <a-button>
+          <a-space>
+            <icon-share-internal />
+            <span>{{ shareCount }}</span>
+          </a-space>
+        </a-button>
+      </a-button-group>
+      <a-space>
+        <span
+          >发布时间：{{ dayjs(data.publishTime).format('YYYY-MM-DD') }}</span
+        >
+        <span>播放：{{ data.playTime }}</span>
+      </a-space>
     </a-space>
-    <a-button-group>
-      <a-button>
-        <icon-thumb-up-fill v-if="liked" /><icon-thumb-up v-else />
-        <span class="count">{{ likedCount }}</span>
-      </a-button>
-      <a-button>
-        <icon-star />
-        <span class="count">{{ commentCount }}</span>
-      </a-button>
-      <a-button>
-        <icon-share-internal />
-        <span class="count">{{ shareCount }}</span>
-      </a-button>
-    </a-button-group>
   </a-space>
 </template>
 
 <style lang="less" scoped>
 .info {
-  .artists {
-    .cover {
-      border-radius: 50%;
-    }
+  max-width: 90%;
+  #videoRef {
+    height: 450px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px #aaa;
   }
-  .count {
-    margin-left: 5px;
+  .artists .cover {
+    border-radius: 50%;
   }
 }
 </style>

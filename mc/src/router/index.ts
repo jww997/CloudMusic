@@ -13,17 +13,15 @@ type CHILDREN = (children: RouteRecordRaw[], path?: string) => RouteRecordRaw[]
 const _children: CHILDREN = (children, path = "") => children.map(item => _.assign(item, { children: item.children ? _children(item.children, item.path) : null }, { path: `${path}${item.path}` })
 )
 
-export type META = {
-  locale: string
-  requiresAuth?: boolean
-  roles?: string[]
-  icon?: string
-  keepAlive?: boolean
-  hideInMenu?: boolean
-}
-
 declare module 'vue-router' {
-  interface RouteMeta extends META { }
+  interface RouteMeta extends META {
+    locale: string
+    requiresAuth?: boolean
+    roles?: string[]
+    icon?: string
+    keepAlive?: boolean
+    hideInMenu?: boolean
+  }
 }
 
 export const routes: RouteRecordRaw[] = [
@@ -43,9 +41,6 @@ export const router = createRouter({
   history: createWebHashHistory(''),
   routes,
 });
-// scrollBehavior() {
-//   return { top: 0 };
-// },
 
 router.beforeEach((to, from, next) => {
   // console.log('to.meta = ', to.meta)

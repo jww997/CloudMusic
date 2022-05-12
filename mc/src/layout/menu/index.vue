@@ -1,39 +1,43 @@
 <script lang="ts" setup>
 import { h, resolveComponent, defineComponent } from 'vue';
-import { router } from '@/router';
-import { RouteRecordNormalized } from 'vue-router';
+import { routes } from '@/router';
+import { RouteRecordRaw } from 'vue-router';
 
-const root = router
-  .getRoutes()
-  .find((el) => el.name === 'home') as RouteRecordNormalized;
+const root: RouteRecordRaw = routes[0];
 
-const Icon = defineComponent({
+const MenuIcon = defineComponent({
   props: ['name'],
   render() {
-    return h(resolveComponent(this.name ?? ''));
+    return h(resolveComponent(this.name));
   },
 });
 </script>
 
 <template>
   <a-menu class="menu" accordion auto-scroll-into-view auto-open-selected>
-    <a-sub-menu :key="i.path" v-for="i in root.children">
-      <template #icon>
-        <Icon :name="i.meta?.icon" />
-      </template>
-      <template #title>{{ i.meta?.locale }}</template>
-      <template v-for="ii in i.children" :key="ii.path">
-        <a-menu-item
-          v-if="!ii.meta?.hideInMenu"
-          @click="$router.push({ name: ii.name })"
-        >
-          <template #icon>
-            <Icon :name="ii.meta?.icon" />
+    <template v-for="item in root.children" :key="item.name">
+      <template v-if="item.meta">
+        <a-sub-menu>
+          <template #icon v-if="item.meta.icon">
+            <MenuIcon :name="item.meta.icon" />
           </template>
-          <span>{{ ii.meta?.locale }}</span>
-        </a-menu-item>
+          <template #title>{{ item.meta.locale }}</template>
+          <template v-for="item2 in item.children" :key="item2.name">
+            <template v-if="item2.meta">
+              <a-menu-item
+                v-if="!item2.meta.hideInMenu"
+                @click="$router.push({ name: item2.name })"
+              >
+                <template #icon v-if="item2.meta.icon">
+                  <MenuIcon :name="item2.meta.icon" />
+                </template>
+                <span>{{ item2.meta.locale }}</span>
+              </a-menu-item>
+            </template>
+          </template>
+        </a-sub-menu>
       </template>
-    </a-sub-menu>
+    </template>
   </a-menu>
 </template>
 

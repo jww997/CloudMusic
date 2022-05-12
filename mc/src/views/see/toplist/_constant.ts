@@ -1,5 +1,4 @@
 import * as T from './_type';
-import type { TAGS } from "@/types"
 
 export const PARAMS: T.PARAMS = {
   area: '内地',
@@ -14,7 +13,7 @@ export const RESULT: T.RESULT = {
   current: 1, // 当前页数
 }
 
-export const AREA: TAGS[] = [
+export const AREA: T.TAGS[] = [
   // { title: '全部', value: '全部' },
   { title: '内地', value: '内地' },
   { title: '港台', value: '港台' },

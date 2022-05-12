@@ -49,7 +49,6 @@ init();
 <template>
   <div class="mv">
     <div class="left">
-      <video id="mvRef" controls>您的浏览器不支持video标签。</video>
       <Info :data="result.data" v-bind="result2" />
     </div>
     <div class="right">
@@ -64,12 +63,6 @@ init();
   justify-content: space-between;
   .left {
     flex-grow: 1;
-    #mvRef {
-      max-width: 90%;
-      height: 450px;
-      border-radius: 10px;
-      box-shadow: 0 0 30px #aaa;
-    }
   }
   .right {
     flex-shrink: 0;
