@@ -30,9 +30,8 @@ const changePercentage = (v: number) =>
 
 <style lang="less" scoped>
 .footer {
-  height: 100%;
-  padding: 0 15px;
-  position: relative;
+  height: 100px;
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;

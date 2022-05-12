@@ -12,8 +12,11 @@ import { ContentTypeEnum } from '@/constant/common/https';
 import { storage } from './storage';
 import { MutationsTypes } from "@/store/modules/account/mutations-types"
 
+const baseURL: string = <string>import.meta.env.VITE_API_BASE_URL
+
 // 设置请求头和请求路径
-axios.defaults.baseURL = networkConfig.baseURL;
+// axios.defaults.baseURL = networkConfig.baseURL;
+axios.defaults.baseURL = baseURL;
 axios.defaults.timeout = networkConfig.timeout;
 axios.defaults.headers.post['Content-Type'] = ContentTypeEnum.JSON;
 axios.interceptors.request.use(

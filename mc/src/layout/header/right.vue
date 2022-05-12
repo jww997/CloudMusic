@@ -28,7 +28,9 @@ const handleDark = () => {
 
 <template>
   <div class="right">
-    <icon-sun size="30" @click="handleDark" />
+    <a-space class="other">
+      <icon-sun size="30" @click="handleDark" />
+    </a-space>
     <a-popover>
       <a-space
         class="txt-pointer"
@@ -55,6 +57,9 @@ const handleDark = () => {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  .other {
+    margin-right: 15px;
+  }
   :deep(.arco-avatar) {
     overflow: hidden;
   }

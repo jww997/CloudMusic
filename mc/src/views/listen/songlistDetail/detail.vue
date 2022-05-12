@@ -26,7 +26,6 @@ const props = defineProps<Props>();
 <style lang="less" scoped>
 .detail {
   display: flex;
-  padding: 30px;
   .cover {
     border-radius: 10px;
   }

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { TAGS } from './_constant';
+import type { TAGS } from '@/types';
 defineProps<{
   active: string | number;
-  title: string;
+  title?: string;
   list: TAGS[];
 }>();
 const emits = defineEmits(['update:active']);
@@ -22,7 +22,7 @@ const handleClick = (v: string | number) => emits('update:active', v);
         :color="item.value === active && 'arcoblue'"
         @click="handleClick(item.value)"
       >
-        {{ item.name }}
+        {{ item.title }}
       </a-tag>
     </a-space>
   </div>

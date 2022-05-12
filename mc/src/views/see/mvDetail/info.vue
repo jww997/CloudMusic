@@ -24,6 +24,7 @@ defineProps<{
           :src="item.img1v1Url"
           :preview="false"
           show-loader
+          v-if="item.img1v1Url"
         ></a-image>
         <span>{{ item.name }}</span>
       </a-space>

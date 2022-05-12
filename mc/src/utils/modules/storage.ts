@@ -6,11 +6,7 @@
 // 默认缓存期限为7天
 const DEFAULT_CACHE_TIME = 60 * 60 * 24 * 7;
 
-/**
- * 创建本地缓存对象
- * @param param0
- * @returns
- */
+// 创建本地缓存对象
 export const createStorage = ({
   prefixKey = '',
   storage = localStorage, // sessionStorage | localStorage

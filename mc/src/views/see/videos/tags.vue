@@ -2,7 +2,7 @@
 import type R from '@/apis/see/typeResult';
 defineProps<{
   active: number;
-  title: string;
+  title?: string;
   list: R.GRUOP[];
 }>();
 const emits = defineEmits(['update:active']);

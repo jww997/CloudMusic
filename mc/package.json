@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite --mode development",
+    "devv": "vite --mode test",
     "build": "vite --mode build",
     "serve": "vite serve --port=9469",
     "lint": "vite lint"

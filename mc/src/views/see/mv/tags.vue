@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import type { TAGS } from './_constant';
+import type { TAGS } from '@/types';
 defineProps<{
   active: string;
-  title: string;
+  title?: string;
   list: TAGS[];
 }>();
 const emits = defineEmits(['update:active']);
 
-const handleClick = (v: string) => emits('update:active', v);
+const handleClick = (v: string | number) => emits('update:active', v);
 </script>
 
 <template>

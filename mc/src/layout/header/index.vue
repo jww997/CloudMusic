@@ -15,5 +15,6 @@ import Right from './right.vue';
 <style lang="less" scoped>
 .header {
   display: flex;
+  padding: 12px 20px;
 }
 </style>

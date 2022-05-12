@@ -36,6 +36,7 @@ const routes: RouteRecordRaw = {
         locale: '用户', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
+        keepAlive: true
       },
     },
   ],

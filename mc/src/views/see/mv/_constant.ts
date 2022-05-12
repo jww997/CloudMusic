@@ -1,7 +1,4 @@
-export type TAGS = {
-  title: string,
-  value: string
-}
+import type { TAGS } from "@/types"
 
 export const AREA: TAGS[] = [
   { title: '全部', value: '全部' },

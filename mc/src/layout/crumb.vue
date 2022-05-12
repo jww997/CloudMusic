@@ -23,11 +23,15 @@ init();
 </script>
 
 <template>
-  <a-breadcrumb class="breadcrumb">
+  <a-breadcrumb class="crumb">
     <a-breadcrumb-item v-for="{ name, title } in crumb" :key="name">
       <router-link :to="{ name }">{{ title }}</router-link>
     </a-breadcrumb-item>
   </a-breadcrumb>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.crumb {
+  padding: 16px 0;
+}
+</style>

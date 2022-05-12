@@ -5,6 +5,7 @@ import { MutationsTypes } from './mutations-types';
 import { ActionTypes } from './action-types';
 import { RootState } from '@/store';
 import type { State } from './state';
+import { ActionTypes as ActionTypes_L } from '@/store/modules/listen/action-types';
 
 
 export type Actions<S = State, R = RootState> = {
@@ -16,7 +17,9 @@ export type Actions<S = State, R = RootState> = {
 };
 
 export const actions: ActionTree<State, RootState> & Actions = {
-  [ActionTypes.SET_VIDEO_URL]({ state, commit }, val) {
+  [ActionTypes.SET_VIDEO_URL]({ state, commit, dispatch }, val) {
+    dispatch(ActionTypes_L.SET_AUDIO_STATE, !state);
+    
     state.videoRef.src = val
     state.videoRef.autoplay = true
 
