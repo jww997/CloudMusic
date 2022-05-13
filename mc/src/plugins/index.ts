@@ -2,8 +2,11 @@
  * @description 插件
  * @author Gavin
  */
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import { arcod } from "./arcod"
+import _ from 'lodash';
+import { filesGlobEager } from '@/utils/modules/format';
+const files = import.meta.globEager('./modules/*/index.ts');
+const modules = filesGlobEager(files, /(\.\/modules\/|\/index.ts)/g);
 
-import vue from "@vitejs/plugin-vue"
-export const plugins = [vue(), vueJsx(), ...arcod]
+export const plugins = () => {
+  _.values(modules).map((item) => item())
+}

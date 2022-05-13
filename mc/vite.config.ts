@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite';
+import vue from "@vitejs/plugin-vue"
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import Components from "unplugin-vue-components/vite"
+import { ArcoResolver } from "unplugin-vue-components/resolvers"
 import path from 'path';
-import { plugins } from '../mc/src/plugins';
 
 export default defineConfig({
   resolve: {
@@ -9,7 +12,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
-  plugins,
+  plugins: [
+    vue(),
+    vueJsx(),
+    Components({
+      resolvers: [ArcoResolver()],
+    })
+  ],
   server: {
     port: 9999,
     host: true,

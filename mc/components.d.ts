@@ -71,6 +71,7 @@ declare module 'vue' {
     ATrigger: typeof import('@arco-design/web-vue')['Trigger']
     ATypographyParagraph: typeof import('@arco-design/web-vue')['TypographyParagraph']
     ATypographyTitle: typeof import('@arco-design/web-vue')['TypographyTitle']
+    LoadingImage: typeof import('./src/components/loadingImage/index.vue')['default']
     Menu: typeof import('./src/components/menu/index.vue')['default']
     'Menu.vue': typeof import('./src/components/menu.vue/index.vue')['default']
     MyTitle: typeof import('./src/components/myTitle.vue')['default']
