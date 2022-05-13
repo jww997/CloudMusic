@@ -1,4 +1,4 @@
-import { LIMIT, OFFSET, BEFORE } from "../type"
+import { LIMIT, OFFSET, BEFORE } from "../_type"
 
 // #region about playlist
 export interface PARAMS_PLAYLIST_CATLIST { }

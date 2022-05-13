@@ -1,4 +1,4 @@
-import type { CODE, MESSAGE } from '../type';
+import type { CODE, MESSAGE } from '../_type';
 import { COMMENT, PLAYLIST, SONG } from '../listen/typeResult';
 
 // #region about login

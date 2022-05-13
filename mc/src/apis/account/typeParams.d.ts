@@ -1,4 +1,4 @@
-import { LIMIT, OFFSET, BEFORE, TIMESTAMP } from "../type"
+import { LIMIT, OFFSET, BEFORE, TIMESTAMP } from "../_type"
 
 // #region about login
 export interface PARAMS_LOGIN_CELLPHONE {

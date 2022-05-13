@@ -3,7 +3,15 @@ import * as T from './_type';
 export const RESULT: T.RESULT = {
   bufferPic: '',
   bufferPicFS: '',
-  data: {},
+  data: {
+    artistId: 0,
+    artistName: '',
+    artists: [],
+    duration: 0,
+    id: 0,
+    name: '',
+    playCount: 0
+  },
   loadingPic: '',
   loadingPicFS: '',
   mp: {

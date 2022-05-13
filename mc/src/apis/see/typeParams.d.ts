@@ -1,4 +1,4 @@
-import { OFFSET } from "../type"
+import { OFFSET } from "../_type"
 
 export interface PARAMS_MV_ALL extends OFFSET {
   area: '全部' | '内地' | '港台' | '欧美' | '日本' | '韩国' = '全部' // 地区

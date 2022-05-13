@@ -1,4 +1,4 @@
-import { CODE, MESSAGE } from '../type';
+import { CODE, MESSAGE } from '../_type';
 import { DJ, SONG } from "../listen/typeResult"
 
 export type ARTISTS = {

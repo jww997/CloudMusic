@@ -1,4 +1,4 @@
-import type { CODE, MESSAGE } from '../type'
+import type { CODE, MESSAGE } from '../_type'
 import type { USER } from "../account/typeResult"
 
 // #region about playlist
@@ -32,7 +32,7 @@ export type TAG = {
 }
 export interface RESULT_PLAYLIST_CATLIST extends CODE {
   all: TAG
-  categories: { number: string, 1: string, 2: string, 3: string, 4: string }
+  categories: { 1: string, 2: string, 3: string, 4: string }
   sub: TAG[]
 }
 export interface RESULT_PLAYLIST_HOT extends CODE {

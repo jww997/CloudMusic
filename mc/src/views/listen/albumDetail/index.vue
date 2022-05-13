@@ -10,7 +10,7 @@ import { toNumber } from 'lodash';
 import listen from '@/apis/listen/index';
 import listen_R from '@/apis/listen/typeResult';
 import List from '../songlistDetail/list.vue';
-import * as C from './constant';
+import * as CONSTANT from './_constant';
 
 const router = useRouter();
 
@@ -34,7 +34,7 @@ init();
 
 <template>
   <div v-if="result1">
-    <List :list="result1.songs" :columns="C.COLUMNS" v-if="result1.songs" />
+    <List :list="result1.songs" :columns="CONSTANT.COLUMNS" v-if="result1.songs" />
   </div>
 </template>
 

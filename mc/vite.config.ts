@@ -28,7 +28,7 @@ export default defineConfig({
     // css预处理器
     preprocessorOptions: {
       less: {
-        // 引入预定义的变量了
+        // 引入预定义的变量
         additionalData: '@import "./src/styles/common.less";'
       }
     }

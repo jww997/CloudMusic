@@ -4,7 +4,7 @@
  */
 import { https } from '@/utils/modules/https';
 import { ACCOUNT as A } from '@/constant/api/account';
-import * as T from './type';
+import * as T from './_type';
 
 const api: T.API = {
   // #region about login
