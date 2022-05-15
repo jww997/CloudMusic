@@ -12,7 +12,7 @@ export interface PARAMS_TOP_PLAYLIST_HIGHQUALITY extends BEFORE {
   cat?: string = '全部' // 标签
   updateTime?: number// 获取下一页数据
 }
-export type ID = { id: number };
+export type ID = { id: string };
 export interface PARAMS_RELATED_PLAYLIST extends ID { }
 export interface PARAMS_PLAYLIST_DETAIL extends ID {
   s?: number = 8; // 歌单最近的S个收藏者

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import type R from '@/apis/see/typeResult';
+import MyImage from '@/components/myImage/index.vue';
 defineProps<{
   list: R.TIMELINE[];
 }>();
@@ -21,12 +22,11 @@ const handleChange = (v: string) => emits('update:current', v);
           <router-link
             :to="{ name: 'SeeVideoDetail', query: { id: item.data.vid } }"
           >
-            <a-image
-              class="txt-pointer"
+            <MyImage
+              class="cursor-pointer"
               width="100%"
+              :height="250"
               :src="item.data.coverUrl"
-              :preview="false"
-              show-loader
               footer-position="outer"
               :title="item.data.title"
               :description="item.data.description"

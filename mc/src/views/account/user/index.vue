@@ -6,6 +6,7 @@ import { useStore } from 'vuex';
 import { ActionTypes } from '@/store/modules/account/action-types';
 
 import List from '@/views/listen/songlist/list.vue';
+import MyImage from '@/components/myImage/index.vue';
 
 const store = useStore();
 
@@ -55,9 +56,12 @@ init();
 <template>
   <div>
     <div class="user">
-      <a-avatar :size="200">
-        <img :src="results1.profile.avatarUrl" v-if="results1" />
-      </a-avatar>
+      <MyImage
+        :src="results1.profile.avatarUrl"
+        :width="200"
+        :height="200"
+        v-if="results1"
+      />
     </div>
     <List :list="results2?.playlist" v-if="results2" />
   </div>

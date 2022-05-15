@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import type R from '@/apis/listen/typeResult';
+import MyImage from '@/components/myImage/index.vue';
 defineProps<{
   list: R.ARTIST[];
 }>();
@@ -13,19 +14,17 @@ const span = computed(() => 24 / col);
   <div class="list">
     <a-row :gutter="[24, 48]">
       <template v-for="item in list">
-        <a-col class="col" :span="span">
+        <a-col :span="span">
           <router-link
             :to="{ name: 'ListenSingerDetail', query: { id: item.id } }"
           >
-            <a-image
-              class="cover txt-pointer"
-              width="150px"
-              height="150px"
+            <MyImage
+              class="cursor-pointer shadow-xl hover:-translate-y-4 duration-100"
+              :width="200"
+              :height="200"
               :src="item.picUrl"
-              :preview="false"
-              show-loader
-              footer-position="outer"
               :title="item.name"
+              footer-position="outer"
             />
           </router-link>
         </a-col>
@@ -36,11 +35,12 @@ const span = computed(() => 24 / col);
 
 <style lang="less" scoped>
 .list {
-  .col {
-    :deep(.arco-image-img) {
-      border-radius: 50%;
-      overflow: hidden;
-    }
+  :deep(.arco-image),
+  :deep(.loader-img) {
+    border-radius: 50%;
+  }
+  :deep(.arco-image-footer) {
+    text-align: center;
   }
 }
 </style>

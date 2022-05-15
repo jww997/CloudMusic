@@ -25,7 +25,7 @@ export type MV = {
   commentCount?: number
   commentThreadId?: string
   copywriter?: string
-  cover?: string
+  cover: string
   coverId?: number
   coverId_str?: string
   desc?: null

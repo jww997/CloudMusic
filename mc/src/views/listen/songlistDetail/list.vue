@@ -46,7 +46,7 @@ const handleRowClick = (song: listen_R.SONG) =>
               <div v-if="dataIndex === 'name'">
                 <a-space>
                   <icon-heart size="20" />
-                  <div class="title txt-pointer">
+                  <div class="title cursor-pointer">
                     <span class="name"> {{ record.name }} </span>
                     <span class="alia" v-for="item in record.alia">
                       （{{ item }}）
@@ -68,7 +68,7 @@ const handleRowClick = (song: listen_R.SONG) =>
                 <template v-for="(item, index) in record.ar">
                   <span>{{ index !== 0 ? ' / ' : '' }}</span>
                   <span
-                    class="txt-pointer txt-hover"
+                    class="cursor-pointer txt-hover"
                     @click.stop="
                       $router.push({
                         name: 'ListenSingerDetail',
@@ -81,7 +81,7 @@ const handleRowClick = (song: listen_R.SONG) =>
               </div>
               <div v-if="dataIndex === 'al'" class="al">
                 <span
-                  class="txt-pointer txt-hover"
+                  class="cursor-pointer txt-hover"
                   @click.stop="
                     $router.push({
                       name: 'ListenAlbumDetail',

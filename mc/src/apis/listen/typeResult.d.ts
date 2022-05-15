@@ -440,7 +440,7 @@ export type ARTIST = {
   officialTags?: []
   picId: number
   picId_str?: string
-  picUrl: string | null
+  picUrl: string
   publishTime?: number | null
   score?: number
   searchCircle?: {

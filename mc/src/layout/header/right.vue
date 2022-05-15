@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { ref, computed, watch, onMounted } from 'vue';
 import { useStore } from 'vuex';
+import dayjs from 'dayjs';
 import { ActionTypes } from '@/store/modules/account/action-types';
 import { router } from '@/router';
 
 const store = useStore();
 
+const hour = computed<number>(() => dayjs().get('hour'));
 const darkMode = ref<boolean>(false);
 
 const logout = () => {
@@ -16,24 +18,33 @@ const logout = () => {
 const profile = computed(() => store.state.account.profile);
 const cookie = computed(() => store.state.account.cookie);
 
-const handleDark = () => {
-  if (darkMode.value) {
-    document.body.removeAttribute('arco-theme');
-  } else {
-    document.body.setAttribute('arco-theme', 'dark');
-  }
-  darkMode.value = !darkMode.value;
+const init = () => {
+  darkMode.value = hour.value < 6 || 18 < hour.value;
 };
+setTimeout(() => init());
+
+watch(
+  () => hour.value,
+  (v) => (darkMode.value = v < 6 || 18 < v)
+);
+
+watch(
+  () => darkMode.value,
+  () =>
+    darkMode.value
+      ? document.body.setAttribute('arco-theme', 'dark')
+      : document.body.removeAttribute('arco-theme')
+);
 </script>
 
 <template>
   <div class="right">
     <a-space class="other">
-      <icon-sun size="30" @click="handleDark" />
+      <icon-sun size="30" @click="darkMode = !darkMode" />
     </a-space>
     <a-popover>
       <a-space
-        class="txt-pointer"
+        class="cursor-pointer"
         @click="$router.push({ name: 'AccountUser' })"
       >
         <a-avatar>

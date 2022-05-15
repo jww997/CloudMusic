@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs';
 import type R from '@/apis/see/typeResult';
+import MyImage from '@/components/myImage/index.vue';
 defineProps<{
   data: R.VIDEO2;
 
@@ -17,13 +18,11 @@ defineProps<{
     <a-typography-title :heading="3">{{ data.title }}</a-typography-title>
     <!-- <div class="artists">
       <a-space direction="vertical" v-if="data.creator">
-        <a-image
+        <MyImage
           class="cover"
           width="50"
           height="50"
           :src="data.creator.avatarUrl"
-          :preview="false"
-          show-loader
         />
         <span>{{ data.creator.nickname }}</span>
       </a-space>

@@ -48,7 +48,7 @@ watch(() => route.query, init);
 </script>
 
 <template>
-  <div class="video">
+  <div class="video-detail">
     <div class="left">
       <Info :data="result.data" v-bind="result2" />
     </div>
@@ -59,7 +59,7 @@ watch(() => route.query, init);
 </template>
 
 <style lang="less" scoped>
-.video {
+.video-detail {
   display: flex;
   justify-content: space-between;
   .left {

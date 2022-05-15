@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type R from '@/apis/see/typeResult';
+import MyImage from '@/components/myImage/index.vue';
 defineProps<{
   data: R.MV;
 
@@ -16,15 +17,14 @@ defineProps<{
     <a-typography-title :heading="3">{{ data.name }}</a-typography-title>
     <!-- <a-space class="artists">
       <a-space direction="vertical" v-for="item in data.artists">
-        <a-image
+        <MyImage
           class="cover"
           width="50"
           height="50"
           :src="item.img1v1Url"
           :preview="false"
-          show-loader
           v-if="item.img1v1Url"
-        ></a-image>
+        ></MyImage>
         <span>{{ item.name }}</span>
       </a-space>
     </a-space> -->

@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import ImgUrl_1 from '@/assets/images/disc/1.png';
-import ImgUrl_2 from '@/assets/images/disc/2.png';
-import ImgUrl_3 from '@/assets/images/disc/3.png';
-import ImgUrl_4 from '@/assets/images/disc/4.png';
+import MyImage from '@/components/myImage/index.vue';
+import image_1 from '@/assets/images/disc/1.png';
+import image_2 from '@/assets/images/disc/2.png';
+import image_3 from '@/assets/images/disc/3.png';
+import image_4 from '@/assets/images/disc/4.png';
 
 const store = useStore();
 
@@ -14,19 +15,18 @@ const song = computed(() => store.state.listen.audio.song);
 
 <template>
   <div class="disc" :class="{ active: state }" v-if="song">
-    <a-image class="cover" :width="300" :preview="false" :src="ImgUrl_1" />
-    <a-image
+    <MyImage class="cover" :width="300" :src="image_1" />
+    <MyImage
       class="cover"
       :width="220"
       :height="220"
-      :preview="false"
       :src="song.al.picUrl"
       :alt="song.al.name"
       show-loader
     />
-    <a-image class="cover" :width="300" :preview="false" :src="ImgUrl_2" />
-    <a-image class="cover" :width="300" :preview="false" :src="ImgUrl_3" />
-    <a-image class="handle" :width="100" :preview="false" :src="ImgUrl_4" />
+    <MyImage class="cover" :width="300" :src="image_2" />
+    <MyImage class="cover" :width="300" :src="image_3" />
+    <MyImage class="handle" :width="100" :src="image_4" />
   </div>
 </template>
 
@@ -43,9 +43,10 @@ const song = computed(() => store.state.listen.audio.song);
 .disc {
   width: @width;
   height: @width;
+  margin-top: 80px;
   position: relative;
   transform: scale(1.2);
-  .cover {
+  :deep(.cover) {
     margin: auto;
     position: absolute;
     box-shadow: 0 0 30px 0 #eee;
@@ -70,24 +71,24 @@ const song = computed(() => store.state.listen.audio.song);
       z-index: 4;
     }
   }
-  .handle {
-    left: 50px;
-    z-index: 4;
+  :deep(.handle) {
+    display: block;
+    margin: 0 auto;
     top: -80px;
+    left: 30px;
+    right: 0;
+    z-index: 4;
     transform-origin: 18px 18px;
     transform: rotate(-45deg);
     transition: 1s;
   }
   &.active {
-    .cover {
+    :deep(.cover) {
       animation-play-state: running;
     }
-    .handle {
+    :deep(.handle) {
       transform: rotate(0deg);
     }
-  }
-  :deep(.arco-image-img) {
-    width: 100%;
   }
 }
 </style>

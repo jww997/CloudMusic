@@ -47,7 +47,7 @@ const handleClick2 = async () => {
 <template>
   <div class="videos">
     <Tags :list="result.data" v-model:active="params3.id" />
-    <a-button class="btn txt-pointer" @click="handleClick2">
+    <a-button class="btn cursor-pointer" @click="handleClick2">
       <icon-up :class="`up ${isTagsExpanded && 'active'}`" />
     </a-button>
     <Tags

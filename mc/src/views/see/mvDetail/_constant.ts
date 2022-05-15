@@ -10,7 +10,8 @@ export const RESULT: T.RESULT = {
     duration: 0,
     id: 0,
     name: '',
-    playCount: 0
+    playCount: 0,
+    cover: ''
   },
   loadingPic: '',
   loadingPicFS: '',

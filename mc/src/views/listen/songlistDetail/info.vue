@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import listen_R from '@/apis/listen/typeResult';
+import MyImage from '@/components/myImage/index.vue';
 
 type Props = {
   detail: {
@@ -13,7 +13,12 @@ const props = defineProps<Props>();
 
 <template>
   <a-space class="detail" size="large">
-    <a-image class="cover" :src="detail.coverImgUrl" width="200"></a-image>
+    <MyImage
+      class="rounded-lg"
+      :src="detail.coverImgUrl"
+      :width="250"
+      :height="250"
+    />
     <div class="txt">
       <a-typography-title>{{ detail.name }}</a-typography-title>
       <a-typography-title :heading="6">
@@ -23,19 +28,4 @@ const props = defineProps<Props>();
   </a-space>
 </template>
 
-<style lang="less" scoped>
-.detail {
-  display: flex;
-  .cover {
-    border-radius: 10px;
-  }
-  .txt {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    text-align: left;
-  }
-}
-</style>
+<style lang="less" scoped></style>

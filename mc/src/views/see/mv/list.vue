@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import type R from '@/apis/see/typeResult';
+import MyImage from '@/components/myImage/index.vue';
 defineProps<{
   list: R.MV[];
   total: number;
@@ -21,12 +22,12 @@ const handleChange = (v: string) => emits('update:current', v);
       <template v-for="item in list">
         <a-col class="col" :span="span">
           <router-link :to="{ name: 'SeeMvDetail', query: { id: item.id } }">
-            <a-image
-              class="txt-pointer"
+            <MyImage
+              class="cursor-pointer"
               width="100%"
+              :height="250"
               :src="item.cover"
               :preview="false"
-              show-loader
               footer-position="outer"
               :title="item.name"
               :description="item.artistName"

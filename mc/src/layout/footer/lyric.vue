@@ -69,7 +69,7 @@ onMounted(() => getLyric());
         :key="item.time"
         @click="handleClick(item.time)"
       >
-        <div class="list-item txt-pointer txt-noselect">
+        <div class="list-item cursor-pointer txt-noselect">
           <!-- {{ currentTime / (lyric[index + 1].time ?? duration - item.time) }} -->
           <!-- <div>{{ currentTime - item.time }}</div> -->
           <!-- {{ lyric[index + 1] ? lyric[index + 1].time : duration }} -->

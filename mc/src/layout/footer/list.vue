@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import { useStore } from 'vuex';
 import { ActionTypes } from '@/store/modules/listen/action-types';
 import { SONG } from '@/apis/listen/typeResult';
+import MyImage from '@/components/myImage/index.vue';
 
 const store = useStore();
 
@@ -23,11 +24,10 @@ const handleClick = (v: number) => store.dispatch(ActionTypes.SET_AUDIO_URL, v);
       @click="handleClick(item.id)"
     >
       <a-space :class="index === i && 'active'">
-        <a-image
+        <MyImage
           class="cover"
           :width="70"
           :height="70"
-          :preview="false"
           :src="item.al.picUrl"
           :alt="item.al.name"
         />

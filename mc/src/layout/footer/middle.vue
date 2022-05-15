@@ -23,7 +23,7 @@ const handleVolume = (v: number) =>
   <a-space class="middle" :align="'center'">
     <a-popover>
       <icon-redo
-        class="txt-pointer txt-hover txt-noselect"
+        class="cursor-pointer txt-hover txt-noselect"
         size="20"
         @click="handleOrder(order === 3 ? 1 : ++order)"
       />
@@ -32,34 +32,34 @@ const handleVolume = (v: number) =>
       </template>
     </a-popover>
     <icon-skip-previous-fill
-      class="txt-pointer txt-hover txt-noselect"
+      class="cursor-pointer txt-hover txt-noselect"
       size="30"
       @click="handleToggle(-1)"
     />
     <icon-pause-circle-fill
-      class="txt-pointer txt-hover txt-noselect"
+      class="cursor-pointer txt-hover txt-noselect"
       size="40"
       @click="handleState(false)"
       v-if="state"
     />
     <icon-play-circle-fill
-      class="txt-pointer txt-hover txt-noselect"
+      class="cursor-pointer txt-hover txt-noselect"
       size="40"
       @click="handleState(true)"
       v-else
     />
     <icon-skip-next-fill
-      class="txt-pointer txt-hover txt-noselect"
+      class="cursor-pointer txt-hover txt-noselect"
       size="30"
       @click="handleToggle(1)"
     />
     <a-popover :trigger="'click'">
       <icon-mute
         size="20"
-        class="txt-pointer txt-hover txt-noselect"
+        class="cursor-pointer txt-hover txt-noselect"
         v-if="volume === 0"
       />
-      <icon-sound class="txt-pointer txt-hover txt-noselect" size="20" v-else />
+      <icon-sound class="cursor-pointer txt-hover txt-noselect" size="20" v-else />
       <template #content>
         <a-slider
           class="center"

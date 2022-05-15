@@ -4,59 +4,47 @@ export default {
 };
 </script>
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
+import { reactive, ref, computed } from 'vue';
 import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
-import { toNumber } from 'lodash';
+import { useRoute } from 'vue-router';
+import listen from '@/apis/listen';
+import * as TYPE from './_type';
+import * as CONSTANT from './_constant';
+import { MutationsTypes } from '@/store/modules/listen/mutations-types';
 import Info from './info.vue';
 import List from './list.vue';
 import Comment from './comment.vue';
-import listen from '@/apis/listen/index';
-import listen_R from '@/apis/listen/typeResult';
-import { MutationsTypes } from '@/store/modules/listen/mutations-types';
-import * as C from './_constant';
 
-const router = useRouter();
+const route = useRoute();
 const store = useStore();
 
-const query = computed(() => router.currentRoute.value.query);
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
+const result2 = reactive<TYPE.RESULT2>(CONSTANT.RESULT2);
 
-const id = toNumber(computed(() => query.value.id).value);
-
-const loading = ref<boolean>(false);
-const results1 = ref<listen_R.RESULT_PLAYLIST_DETAIL>();
-const results2 = ref<listen_R.RESULT_COMMENT_PLAYLIST>();
-
-const len1 = ref<number>(0);
-const len2 = ref<number>(0);
+const len1 = computed<number>(() => result.playlist.trackCount);
+const len2 = computed<number>(() => result2.total);
 
 const init = async () => {
-  loading.value = true;
-  results1.value = await listen.getPlaylistDetail({ id });
-  const { tracks } = results1.value.playlist;
-  len1.value = tracks.length;
-  store.commit(MutationsTypes.AUDIO_LIST, tracks);
-  results2.value = await listen.getCommentPlaylist({ id });
-  const { comments } = results2.value;
-  len2.value = comments.length;
-  loading.value = false;
+  const id = <string>route.query.id;
+  const res = await listen.getPlaylistDetail({ id });
+  result.playlist = res.playlist;
+  store.commit(MutationsTypes.AUDIO_LIST, res.playlist.tracks);
+
+  const res2 = await listen.getCommentPlaylist({ id });
+  result2.comments = res2.comments;
 };
 init();
 </script>
 
 <template>
   <div>
-    <Info :detail="results1.playlist" v-if="results1" />
+    <Info :detail="result.playlist" />
     <a-tabs default-active-key="1">
       <a-tab-pane key="1" :title="`歌曲${len1}`">
-        <List
-          :list="results1.playlist.tracks"
-          :columns="C.COLUMNS"
-          v-if="results1"
-        />
+        <List :list="result.playlist.tracks" :columns="CONSTANT.COLUMNS" />
       </a-tab-pane>
       <a-tab-pane key="2" :title="`评论${len2}`">
-        <Comment :list="results2.comments" v-if="results2" />
+        <Comment :list="result2.comments" />
       </a-tab-pane>
     </a-tabs>
   </div>

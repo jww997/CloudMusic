@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import type R from '@/apis/see/typeResult';
+import MyImage from '@/components/myImage/index.vue';
 defineProps<{
   list: R.VIDEO[];
 }>();
@@ -17,13 +18,12 @@ const span = computed(() => 24 / col);
           <router-link
             :to="{ name: 'SeeVideoDetail', query: { id: item.vid } }"
           >
-            <a-image
-              class="txt-pointer"
+            <MyImage
+              class="cursor-pointer"
               width="100%"
-              height="130px"
+              :height="150"
               :src="item.coverUrl"
               :preview="false"
-              show-loader
               footer-position="outer"
               :title="item.title"
             />

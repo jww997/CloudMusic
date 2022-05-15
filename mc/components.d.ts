@@ -74,6 +74,7 @@ declare module 'vue' {
     LoadingImage: typeof import('./src/components/loadingImage/index.vue')['default']
     Menu: typeof import('./src/components/menu/index.vue')['default']
     'Menu.vue': typeof import('./src/components/menu.vue/index.vue')['default']
+    MyImage: typeof import('./src/components/myImage/index.vue')['default']
     MyTitle: typeof import('./src/components/myTitle.vue')['default']
     Personalized: typeof import('./src/components/personalized.vue')['default']
     Transition: typeof import('./src/components/transition/index.vue')['default']

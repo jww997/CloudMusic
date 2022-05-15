@@ -4,7 +4,7 @@
  */
 import { https } from '@/utils/modules/https';
 import { SEE as S } from '@/constant/api/see';
-import * as T from './_type';
+import * as T from './type';
 
 const api: T.API = {
   // #region about video

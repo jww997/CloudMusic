@@ -25,8 +25,9 @@ init();
 </script>
 
 <template>
-  <!-- <div>{{ result.artistToplist }}</div> -->
-  <List :list="result.list" />
+  <div>
+    <List :list="result.list" />
+  </div>
 </template>
 
 <style lang="less" scoped></style>

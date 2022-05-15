@@ -4,7 +4,7 @@
  */
 import { https } from '@/utils/modules/https';
 import { LISTEN as L } from '@/constant/api/listen';
-import * as T from './_type';
+import * as T from './type';
 
 const api: T.API = {
   // #region about playlist

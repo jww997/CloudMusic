@@ -3,7 +3,7 @@ import { ref, computed } from 'vue';
 import Phone from './phone.vue';
 import Email from './email.vue';
 import Qr from './qr.vue';
-import ImgUrl_1 from '@/assets/images/bg/3.jpg';
+import image_1 from '@/assets/images/bg/3.jpg';
 
 // 密码加密 jsencrypt / md5
 const loginType = ref<number>(1);
@@ -20,7 +20,7 @@ const reset = () => (loginType.value = 4);
 </script>
 
 <template>
-  <!-- <div class="login" :style="{ backgroundImage: `url(${ImgUrl_1})` }"> -->
+  <!-- <div class="login" :style="{ backgroundImage: `url(${image_1})` }"> -->
   <div class="login">
     <a-typography-title class="title" :heading="3">{{
       title
@@ -33,19 +33,19 @@ const reset = () => (loginType.value = 4);
       <a-space>
         <icon-phone
           size="40"
-          class="txt-pointer txt-hover"
+          class="cursor-pointer txt-hover"
           @click="loginType = 1"
           v-if="loginType !== 1"
         />
         <icon-email
           size="40"
-          class="txt-pointer txt-hover"
+          class="cursor-pointer txt-hover"
           @click="loginType = 2"
           v-if="loginType !== 2"
         />
         <icon-qrcode
           size="40"
-          class="txt-pointer txt-hover"
+          class="cursor-pointer txt-hover"
           @click="loginType = 3"
           v-if="loginType !== 3"
         />

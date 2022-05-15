@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 import { SONG } from '@/apis/listen/typeResult';
+import MyImage from '@/components/myImage/index.vue';
 
 const store = useStore();
 
@@ -13,8 +14,8 @@ const song = computed<SONG>(() => store.state.listen.audio.song);
     class="left"
     @click="$router.push({ name: 'ListenSong', query: { id: song?.id } })"
   >
-    <a-image
-      class="cover txt-pointer"
+    <MyImage
+      class="cover cursor-pointer"
       :width="70"
       :height="70"
       :preview="false"
@@ -22,7 +23,7 @@ const song = computed<SONG>(() => store.state.listen.audio.song);
       :alt="song?.al.name"
     />
     <a-tooltip :content="song?.name" position="tl">
-      <div class="name txt-pointer">{{ song?.name }}</div>
+      <div class="name cursor-pointer">{{ song?.name }}</div>
     </a-tooltip>
   </div>
 </template>

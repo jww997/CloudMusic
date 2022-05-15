@@ -14,13 +14,13 @@ const duration = computed<number>(() => store.getters.duration);
   <a-space class="right" size="medium">
     <div> {{ currentTime }} / {{ duration }} </div>
     <a-popover :trigger="'click'">
-      <span class="txt-pointer txt-hover txt-noselect">词</span>
+      <span class="cursor-pointer txt-hover txt-noselect">词</span>
       <template #content>
         <Lyric />
       </template>
     </a-popover>
     <a-popover :trigger="'click'">
-      <icon-menu class="txt-pointer txt-hover txt-noselect" />
+      <icon-menu class="cursor-pointer txt-hover txt-noselect" />
       <template #content>
         <List />
       </template>

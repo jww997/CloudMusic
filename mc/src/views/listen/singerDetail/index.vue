@@ -11,6 +11,7 @@ import listen from '@/apis/listen/index';
 import listen_R from '@/apis/listen/typeResult';
 import List from '../songlistDetail/list.vue';
 import * as C from './_constant';
+import MyImage from '@/components/myImage/index.vue';
 
 const router = useRouter();
 
@@ -46,7 +47,7 @@ init();
 <template>
   <div v-if="result1">
     <div class="top">
-      <a-image
+      <MyImage
         class="cover"
         :width="300"
         :height="300"

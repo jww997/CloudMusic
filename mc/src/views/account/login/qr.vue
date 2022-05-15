@@ -4,8 +4,9 @@ import { useStore } from 'vuex';
 import { MutationsTypes } from '@/store/modules/account/mutations-types';
 import account from '@/apis/account/index';
 import { router } from '@/router';
-import ImgUrl_1 from '@/assets/images/qr/1.png';
-import ImgUrl_2 from '@/assets/images/qr/2.png';
+import image_1 from '@/assets/images/qr/1.png';
+import image_2 from '@/assets/images/qr/2.png';
+import MyImage from '@/components/myImage/index.vue';
 
 const login = ref<{
   timestamp: number;
@@ -65,12 +66,9 @@ onUnmounted(clearTimer);
 
 <template>
   <div class="qr">
-    <a-image :src="ImgUrl_1" :height="300" class="tip"></a-image>
-    <a-image :src="login.qr" :height="200" class="code"></a-image>
+    <MyImage :src="image_1" width="auto" :height="300" class="tip" />
+    <MyImage :src="login.qr" :width="200" :height="200" class="code" />
   </div>
-  <!-- <div class="qr">
-    <div>{{ login.message }}</div>
-  </div> -->
 </template>
 
 <style lang="less" scoped>

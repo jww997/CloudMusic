@@ -3,13 +3,13 @@
 <template>
   <div class="left">
     <icon-left
-      class="txt-pointer txt-hover"
+      class="cursor-pointer txt-hover"
       size="25"
       @click="$router.back()"
     />
     <div class="space"></div>
     <icon-right
-      class="txt-pointer txt-hover"
+      class="cursor-pointer txt-hover"
       size="25"
       @click="$router.go(1)"
     />

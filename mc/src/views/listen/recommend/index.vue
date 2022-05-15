@@ -20,18 +20,19 @@ const init = async () => {
   result2.value = await listen.getHomepageDragonBall();
 };
 init();
-
 </script>
 
 <template>
-  <div v-if="result2">
-    <a-space v-for="item in result2.data">
-      <div class="frame">
-        <img :width="50" :src="item.iconUrl" />
-      </div>
-    </a-space>
+  <div>
+    <div v-if="result2">
+      <a-space v-for="item in result2.data">
+        <div class="frame">
+          <img :width="50" :src="item.iconUrl" />
+        </div>
+      </a-space>
+    </div>
+    <List :list="list" v-if="list" />
   </div>
-  <List :list="list" v-if="list" />
 </template>
 
 <style lang="less" scoped>

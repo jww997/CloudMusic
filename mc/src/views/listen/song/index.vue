@@ -41,7 +41,7 @@ if (song !== null) {
   align-items: center;
   .right {
     width: 50%;
-    margin-left: 60px;
+    margin-left: 150px;
   }
 }
 </style>

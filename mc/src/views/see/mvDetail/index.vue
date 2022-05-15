@@ -47,7 +47,7 @@ init();
 </script>
 
 <template>
-  <div class="mv">
+  <div class="mv-detail">
     <div class="left">
       <Info :data="result.data" v-bind="result2" />
     </div>
@@ -58,7 +58,7 @@ init();
 </template>
 
 <style lang="less" scoped>
-.mv {
+.mv-detail {
   display: flex;
   justify-content: space-between;
   .left {

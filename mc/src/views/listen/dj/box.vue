@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import MyImage from '@/components/myImage/index.vue';
 defineProps<{
   picUrl: string;
   id: number;
@@ -14,15 +15,14 @@ defineProps<{
     @click="$router.push({ name: 'ListenDjDetail', query: { id } })"
   >
     <div class="top">
-      <a-image
-        width="200px"
-        height="200px"
+      <MyImage
+        class="rounded-lg"
+        :width="200"
+        :height="200"
         :src="picUrl"
         :alt="name"
-        :preview="false"
-        show-loader
       />
-      <div class="mask">
+      <div class="rounded-lg mask">
         <icon-play-circle-fill class="play" size="60" />
         <div class="count" v-if="playCount">{{ playCount }}</div>
       </div>
@@ -42,12 +42,11 @@ defineProps<{
     transition: 0.3s;
   }
   .top {
-    border-radius: 10px;
     overflow: hidden;
     position: relative;
     .mask {
-      width: 100%;
-      height: 100%;
+      width: 200px;
+      height: 200px;
       background-color: @mask-close;
       color: #fff;
       position: absolute;
