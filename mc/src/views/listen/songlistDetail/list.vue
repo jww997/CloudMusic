@@ -45,6 +45,7 @@ const handleRowClick = (song: listen_R.SONG) =>
             <div v-if="record">
               <div v-if="dataIndex === 'name'">
                 <a-space>
+                  {{ record.fee }}
                   <icon-heart size="20" />
                   <div class="title cursor-pointer">
                     <span class="name"> {{ record.name }} </span>

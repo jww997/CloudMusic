@@ -1,25 +1,38 @@
 <script lang="ts" setup>
-import { ref, h, resolveComponent, defineComponent } from 'vue';
+import { ref, h, resolveComponent, defineComponent, computed } from 'vue';
 import { RouteRecordRaw, onBeforeRouteUpdate } from 'vue-router';
 import { routes, router, defaultSelectedKey } from '@/router';
 
-const root: RouteRecordRaw = routes[0];
+const children = computed<RouteRecordRaw[]>(() => routes[0].children ?? []);
+const defaultOpenKeys = ref<string[]>([]);
+const openKeys = ref<string[]>([]);
+const selectedKey = ref<string[]>([]);
+
+const handleOpen = (path: string) => {
+  const temp = children.value.some((v) =>
+    v.children?.some((v2) => !v2.meta?.hideInMenu && v2.path === path)
+  );
+  openKeys.value = temp ? defaultOpenKeys.value : [];
+};
+
+const init = () => {
+  const path = router.currentRoute.value.path;
+  children.value.map((item) => defaultOpenKeys.value.push(item.path));
+  selectedKey.value = [path];
+  handleOpen(path);
+};
+init();
+
+onBeforeRouteUpdate((to) => {
+  selectedKey.value = [to.path];
+  handleOpen(to.path);
+});
 
 const MenuIcon = defineComponent({
   props: ['name'],
   render() {
     return h(resolveComponent(this.name));
   },
-});
-
-const selectedKey = ref<string[]>([]);
-const init = () => {
-  selectedKey.value = [router.currentRoute.value.path];
-};
-init();
-
-onBeforeRouteUpdate((to) => {
-  selectedKey.value = [to.path];
 });
 </script>
 
@@ -29,10 +42,13 @@ onBeforeRouteUpdate((to) => {
     auto-scroll-into-view
     auto-open-selected
     auto-open
+    :accordion="openKeys.length"
+    v-model:open-keys="openKeys"
+    :default-open-keys="defaultOpenKeys"
     v-model:selected-keys="selectedKey"
     :default-selected-keys="[defaultSelectedKey]"
   >
-    <template v-for="item in root.children" :key="item.name">
+    <template v-for="item in children" :key="item.name">
       <template v-if="item.meta">
         <a-sub-menu :key="item.path">
           <template #icon v-if="item.meta.icon">
