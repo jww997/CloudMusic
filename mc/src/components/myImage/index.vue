@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-defineProps<{
+const props = defineProps<{
   class?: string;
   src: string;
   width: number | string;
@@ -10,23 +10,13 @@ defineProps<{
   title?: string;
   description?: string;
   footerPosition?: 'outer' | 'inner';
+  
   loadType?: 1; //  1高斯模糊 默认CSS跑马灯动画
 }>();
 </script>
 
 <template>
-  <a-image
-    :class="class"
-    :width="width"
-    :height="height"
-    :src="src"
-    :alt="alt"
-    :preview="preview"
-    :show-loader="showLoader"
-    :title="title"
-    :description="description"
-    :footer-position="footerPosition"
-  >
+  <a-image v-bind="props">
     <template #loader v-if="!showLoader">
       <div class="w-full h-full" :class="class">
         <img v-if="loadType === 1" class="w-full h-full blur" :src="src" />

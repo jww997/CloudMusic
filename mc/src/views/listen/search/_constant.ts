@@ -1,22 +1,43 @@
-import { DefineComponent } from 'vue'
 import { TableColumn } from '@arco-design/web-vue/es/table/interface';
-import Songs from './songs.vue';
-import Videos from './videos.vue';
-import Albums from './albums.vue';
-import Playlists from './playlists.vue';
-import Lyrics from './lyrics.vue';
-import Artists from './artists.vue';
-import Userprofiles from './userprofiles.vue';
-import DjRadios from './djRadios.vue';
+import * as T from './_type';
+import Songs from './songs.vue'
+import Videos from './videos.vue'
+import Albums from './albums.vue'
+import Playlists from './playlists.vue'
+import Lyrics from './lyrics.vue'
+import Artists from './artists.vue'
+import Userprofiles from './userprofiles.vue'
+import DjRadios from './djRadios.vue'
 
-type TABS = {
-  title: string
-  unit: string
-  type: number
-  is: DefineComponent<{}, {}, any>
+export const PARAMS: T.PARAMS = {
+  type: 0,
+  keywords: '',
+  limit: 30,
+  offset: 0,
+}
+export const PARAMS2: T.PARAMS2 = {
+  type: 0,
+  keywords: '',
+  limit: 30,
+  offset: 0,
 }
 
-export const TABS: TABS[] = [
+export const RESULT: T.RESULT = {
+  result: {
+    searchQcReminder: null,
+    songCount: 0,
+    songs: [],
+  }
+}
+export const RESULT2: T.RESULT2 = {
+  result: {
+    hasMore: false,
+    songCount: 0,
+    songs: [],
+  }
+}
+
+export const TAB: T.TAB[] = [
   { title: '歌曲', unit: '首', type: 1, is: Songs },
   { title: '视频', unit: '个', type: 1014, is: Videos },
   { title: '专辑', unit: '张', type: 10, is: Albums },

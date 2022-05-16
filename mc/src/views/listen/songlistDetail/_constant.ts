@@ -1,5 +1,8 @@
 import * as T from './_type';
 
+export const PARAMS: T.PARAMS = { id: '' }
+export const PARAMS2: T.PARAMS2 = { id: '', limit: 20, offset: 0, before: '' }
+
 export const RESULT: T.RESULT = {
   privileges: {
     chargeInfoList: [],

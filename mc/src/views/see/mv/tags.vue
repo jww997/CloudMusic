@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import type { TAGS } from '@/types';
+import type { TAG } from '@/types';
 defineProps<{
   active: string;
   title?: string;
-  list: TAGS[];
+  list: TAG[];
 }>();
 const emits = defineEmits(['update:active']);
 

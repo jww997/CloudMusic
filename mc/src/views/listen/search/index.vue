@@ -4,53 +4,90 @@ export default {
 };
 </script>
 <script lang="ts" setup>
-import { ref, computed, watch } from 'vue';
-import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
-import _, { toString } from 'lodash';
-import * as C from './_constant';
-import listen from '@/apis/listen/index';
-import { INIT } from './_type';
+import { ref, reactive, computed, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import _ from 'lodash';
+import listen from '@/apis/listen';
+import * as TYPE from './_type';
+import * as CONSTANT from './_constant';
 
+const route = useRoute();
 const router = useRouter();
-const store = useStore();
+const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
+const params2 = reactive<TYPE.PARAMS2>(CONSTANT.PARAMS2);
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
+const result2 = reactive<TYPE.RESULT2>(CONSTANT.RESULT2);
 
-const query = computed(() => router.currentRoute.value.query);
-const keywords = toString(computed(() => query.value.keywords).value);
-const title = computed(() => C.TABS[activeIndex.value].title);
-const unit = computed(() => C.TABS[activeIndex.value].unit);
 const activeIndex = ref<number>(0);
+const tab = computed<TYPE.TAB>(() => CONSTANT.TAB[activeIndex.value]);
 const len = ref<number>(0);
 
-const init: INIT = async (params, callback) => {
+const handleSearch = async () => {
+  console.log('tab = ', tab);
+  console.log('tab.value.type = ', tab.value.type);
   // 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合, 2000:声音(搜索声音返回字段格式会不一样)
-  const result1 = await listen.getCloudsearch(_.assign({ keywords }, params));
-  const { result } = result1;
-  const key = _.keys(result).find((v) => /Count/.test(v));
-  len.value = key ? result[key] : 0;
-  // const result2 = await listen.getSearch({ keywords });
-  callback && callback(result1);
+  params.type = tab.value.type;
+  const res = await listen.getCloudsearch(params);
+  result.result = res.result;
+  const key = _.keys(result.result).find((v) => /Count/.test(v)) ?? '';
+  len.value = result.result[key] ?? 0;
+  console.log('result = ', result);
+
+  // const res2 = await listen.getSearch(params2);
+  // result2.result = res2.result;
 };
+
+const init = async () => {
+  const keywords = <string>route.query.keywords;
+  const index = <string>route.query.index;
+  params.keywords = keywords;
+  activeIndex.value = _.toNumber(index);
+  handleSearch();
+};
+init();
+
+watch(
+  () => activeIndex.value,
+  (v) => {
+    if (isNaN(v)) return false;
+    const keywords = <string>route.query.keywords;
+    router.push({ name: 'ListenSearch', query: { keywords, index: v } });
+  }
+);
+router.beforeEach((to) => {
+  const keywords = <string>to.query.keywords;
+  const index = <string>to.query.index;
+  params.keywords = keywords;
+  activeIndex.value = _.toNumber(index);
+  handleSearch();
+});
 </script>
 
 <template>
   <div>
     <a-space class="padding" size="medium">
       <a-typography-title>搜</a-typography-title>
-      <a-typography-title class="title">{{ keywords }}</a-typography-title>
+      <a-typography-title class="title">
+        {{ params.keywords }}
+      </a-typography-title>
     </a-space>
     <a-tabs v-model:active-key="activeIndex" lazy-load justify>
       <template #extra>
-        <div class="padding">{{ `找到约${len}${unit}${title}` }}</div>
+        <div class="padding">{{ `找到约${len}${tab.unit}${tab.title}` }}</div>
       </template>
       <a-tab-pane
-        v-for="({ title, type, is }, index) in C.TABS"
+        v-for="(item, index) in CONSTANT.TAB"
         :key="index"
-        :title="title"
+        :title="item.title"
       >
         <div class="context">
-          <!-- component标签创建动态组件，is属性指向谁，就显示哪个组件 -->
-          <component :key="index" :is="is" :init="init" :type="type" />
+          <a-empty v-if="len === 0" />
+          <component
+            :key="item.type"
+            :is="item.is"
+            v-bind="result.result"
+            v-else
+          />
         </div>
       </a-tab-pane>
     </a-tabs>

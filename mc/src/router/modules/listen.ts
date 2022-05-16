@@ -157,7 +157,8 @@ const routes: RouteRecordRaw = {
         locale: '搜索', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
-        hideInMenu: true
+        hideInMenu: true,
+        keepAlive: true
       },
     },
 

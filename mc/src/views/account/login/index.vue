@@ -16,7 +16,7 @@ const title = computed(() =>
     ? '扫码登录'
     : '重置密码'
 );
-const reset = () => (loginType.value = 4);
+const handleReset = () => (loginType.value = 4);
 </script>
 
 <template>
@@ -25,7 +25,7 @@ const reset = () => (loginType.value = 4);
     <a-typography-title class="title" :heading="3">{{
       title
     }}</a-typography-title>
-    <Phone v-if="loginType === 1 || loginType === 4" @reset="reset" />
+    <Phone v-if="loginType === 1 || loginType === 4" @reset="handleReset" />
     <Email v-else-if="loginType === 2" />
     <Qr v-else-if="loginType === 3" />
     <a-space class="other" direction="vertical">

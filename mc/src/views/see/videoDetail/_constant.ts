@@ -1,5 +1,10 @@
 import * as T from './_type';
 
+export const PARAMS: T.PARAMS = { id: '' }
+export const PARAMS2: T.PARAMS2 = { vid: '' }
+export const PARAMS3: T.PARAMS3 = { id: '' }
+export const PARAMS4: T.PARAMS4 = { id: '' }
+
 export const RESULT: T.RESULT = {
   data: {
     advertisement: false,
@@ -26,7 +31,7 @@ export const RESULT: T.RESULT = {
     vid: '',
     videoGroup: [],
     videoUserLiveInfo: null,
-    width: 0
+    width: 0,
   }
 }
 export const RESULT2: T.RESULT2 = {
@@ -35,4 +40,9 @@ export const RESULT2: T.RESULT2 = {
   likedCount: 0,
   shareCount: 0,
 }
-export const RESULT3: T.RESULT3 = { data: [] }
+export const RESULT3: T.RESULT3 = {
+  data: [],
+}
+export const RESULT4: T.RESULT4 = {
+  urls: []
+}

@@ -88,9 +88,11 @@ export interface PARAMS_ARTIST_VIDEO extends ID {
 // #region about search
 export type KEYWORD = { keywords: string }
 export interface PARAMS_SEARCH extends OFFSET, KEYWORD {
-  type?: number // 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合, 2000:声音
+  type: number // 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合, 2000:声音
 }
-export interface PARAMS_CLOUDSEARCH extends OFFSET, PARAMS_SEARCH { }
+export interface PARAMS_CLOUDSEARCH extends OFFSET, KEYWORD {
+  type: number // 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合, 2000:声音
+}
 export interface PARAMS_SEARCH_DEFAULT { }
 export interface PARAMS_SEARCH_SUGGEST extends KEYWORD {
   type?: string // 传 'mobile' 则返回移动端数据

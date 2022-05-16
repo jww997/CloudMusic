@@ -13,7 +13,6 @@ import Tags from './tags.vue';
 import List from './list.vue';
 
 const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
-
 const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
 
 const init = async () => {
@@ -23,15 +22,15 @@ const init = async () => {
 };
 init();
 
-const reset = () => {
+const handleReset = () => {
   params.offset = 0;
   _.assign(result, { artists: [], more: false });
 };
 
 watch(params, init);
-watch(() => params.area, reset);
-watch(() => params.type, reset);
-watch(() => params.initial, reset);
+watch(() => params.area, handleReset);
+watch(() => params.type, handleReset);
+watch(() => params.initial, handleReset);
 </script>
 
 <template>

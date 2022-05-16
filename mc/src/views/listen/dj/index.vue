@@ -10,12 +10,12 @@ import * as TYPE from './_type';
 import * as CONSTANT from './_constant';
 import List from './list.vue';
 
-const param = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
+const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
 
 const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
 
 const init = async () => {
-  const res = await listen.getDjPersonalizeRecommend(param);
+  const res = await listen.getDjPersonalizeRecommend(params);
   console.log(res);
   result.data = res.data;
 

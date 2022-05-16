@@ -14,7 +14,6 @@ import Tags from './tags.vue';
 import List from './list.vue';
 
 const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
-
 const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
 
 const init = async () => {
@@ -26,17 +25,17 @@ const init = async () => {
 };
 init();
 
-const reset = () => {
+const handleReset = () => {
   params.offset = 0;
   _.assign(result, { data: [], hasMore: false });
 };
 
 watch(params, init, { deep: true });
-watch(() => params.area, reset);
+watch(() => params.area, handleReset);
 watch(
   () => result.current,
   (v: number) => {
-    reset();
+    handleReset();
     const offset = (v - 1) * params.limit;
     params.offset = offset;
   }
@@ -56,7 +55,6 @@ watch(
 <style lang="less" scoped>
 .toplist {
   position: relative;
-
   .updateTime {
     position: absolute;
     right: 30px;

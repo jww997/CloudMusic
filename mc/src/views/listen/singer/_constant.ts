@@ -13,7 +13,7 @@ export const RESULT: T.RESULT = {
   more: false,
 }
 
-export const LANGUANGE: T.TAGS[] = [
+export const LANGUANGE: T.TAG[] = [
   { title: '全部', value: -1, },
   { title: '华语', value: 7, },
   { title: '欧美', value: 96, },
@@ -21,14 +21,14 @@ export const LANGUANGE: T.TAGS[] = [
   { title: '韩国', value: 16, },
   { title: '其他', value: 0, },
 ];
-export const CLASSIFICATION: T.TAGS[] = [
+export const CLASSIFICATION: T.TAG[] = [
   { title: '全部', value: -1, },
   { title: '男歌手', value: 1, },
   { title: '女歌手', value: 2, },
   { title: '乐队', value: 3, },
 
 ];
-export const FILTER: T.TAGS[] = [
+export const FILTER: T.TAG[] = [
   { title: '热门', value: -1, },
   { title: 'A', value: 'a', },
   { title: 'B', value: 'b', },

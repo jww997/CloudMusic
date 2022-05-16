@@ -20,7 +20,7 @@ export interface PARAMS_MV_DETAIL {
 export interface PARAMS_MV_DETAIL_INFO {
   mvid: string
 }
-export interface PARAMS_MV_URL { }
+export interface PARAMS_MV_URL { id: string }
 export interface PARAMS_VIDEO_GROUP_LIST { }
 export interface PARAMS_VIDEO_CATEGORY_LIST { }
 export interface PARAMS_VIDEO_GROUP {

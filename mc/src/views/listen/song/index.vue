@@ -6,24 +6,24 @@ export default {
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
-import { toNumber } from 'lodash';
-import Lyric from '@/layout/footer/lyric.vue';
-import Disc from './disc.vue';
+import { useRoute } from 'vue-router';
 import { ActionTypes } from '@/store/modules/listen/action-types';
+import _ from 'lodash';
+import listen from '@/apis/listen';
+import * as TYPE from './_type';
+import * as CONSTANT from './_constant';
+import Disc from './disc.vue';
+import Lyric from '@/layout/footer/lyric.vue';
 
-const router = useRouter();
+const route = useRoute();
 const store = useStore();
 
-const query = computed(() => router.currentRoute.value.query);
-
 const song = computed(() => store.state.listen.audio.song);
-
 if (song !== null) {
-  const id = toNumber(computed(() => query.value.id).value);
-  store.dispatch(ActionTypes.SET_AUDIO_DETAIL, id);
-  store.dispatch(ActionTypes.SET_AUDIO_URL, id);
-  store.dispatch(ActionTypes.SET_AUDIO_LYRIC, id);
+  const id = <string>route.query.id;
+  //   store.dispatch(ActionTypes.SET_AUDIO_DETAIL, id);
+  //   store.dispatch(ActionTypes.SET_AUDIO_URL, id);
+  //   store.dispatch(ActionTypes.SET_AUDIO_LYRIC, id);
 }
 </script>
 

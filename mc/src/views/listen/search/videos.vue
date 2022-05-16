@@ -1,28 +1,18 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-import List from '@/views/listen/songlistDetail/list.vue';
-import * as C from './_constant';
-import see_R from '@/apis/see/typeResult';
-import { INIT } from './_type';
+import List from '@/views/see/videos/list.vue';
+import * as CONSTANT from './_constant';
+import R from '@/apis/see/typeResult';
 
-const props = defineProps<{
-  init: INIT;
-  type: number;
+defineProps<{
+  searchQcReminder: null;
+  videoCount: number;
+  videos: R.VIDEO[];
 }>();
-
-const { init, type } = props;
-
-const videos = ref<see_R.PERSONALIZED>();
-
-init({ type }, ({ result }) => {
-  videos.value = result.videos;
-});
 </script>
 
 <template>
   <div v-if="videos">
-    {{ videos }}
-    <!-- <List :list="songs" :columns="C.COLUMNS" /> -->
+    <List :list="videos" />
   </div>
 </template>
 

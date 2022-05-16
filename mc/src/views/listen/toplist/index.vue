@@ -5,20 +5,23 @@ export default {
 </script>
 <script lang="ts" setup>
 import { reactive } from 'vue';
+import _ from 'lodash';
 import listen from '@/apis/listen';
 import * as TYPE from './_type';
 import * as CONSTANT from './_constant';
 import List from './list.vue';
 
+const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
+const params2 = reactive<TYPE.PARAMS2>(CONSTANT.PARAMS2);
 const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
 const result2 = reactive<TYPE.RESULT2>(CONSTANT.RESULT2);
 
 const init = async () => {
-  const res = await listen.getToplist();
+  const res = await listen.getToplist(params);
   result.artistToplist = res.artistToplist;
   result.list = res.list;
 
-  const res2 = await listen.getToplistDetail();
+  const res2 = await listen.getToplistDetail(params2);
   result2.list = res2.list;
 };
 init();

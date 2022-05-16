@@ -1,5 +1,6 @@
 import type { CODE, MESSAGE } from '../_type'
 import type { USER } from "../account/typeResult"
+import type { TIMELINE } from '../see/typeResult'
 
 // #region about playlist
 export type TAG = {
@@ -538,8 +539,17 @@ export interface RESULT_SEARCH extends CODE {
 export interface RESULT_CLOUDSEARCH extends CODE {
   result: {
     searchQcReminder: null
-    songCount: number
-    songs: SONG[]
+    songCount?: number
+    songs?: SONG[]
+    videoCount?: number
+    videos?: TIMELINE[]
+
+    playlistCount?: number
+    playlists?: PLAYLIST[]
+    artistCount?: number
+    artists?: ARTIST[]
+    djRadiosCount?: number
+    djRadios?: RADIO[]
   }
 }
 export interface RESULT_SEARCH_DEFAULT extends CODE, MESSAGE {

@@ -13,7 +13,7 @@ export const RESULT: T.RESULT = {
   current: 1, // 当前页数
 }
 
-export const AREA: T.TAGS[] = [
+export const AREA: T.TAG[] = [
   // { title: '全部', value: '全部' },
   { title: '内地', value: '内地' },
   { title: '港台', value: '港台' },

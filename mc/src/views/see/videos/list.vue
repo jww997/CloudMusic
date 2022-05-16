@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import type R from '@/apis/see/typeResult';
 import MyImage from '@/components/myImage/index.vue';
 defineProps<{
-  list: R.TIMELINE[];
+  list: R.VIDEO[];
 }>();
 
 const emits = defineEmits(['update:current']);
@@ -20,19 +20,19 @@ const handleChange = (v: string) => emits('update:current', v);
       <template v-for="item in list">
         <a-col class="col" :span="span">
           <router-link
-            :to="{ name: 'SeeVideoDetail', query: { id: item.data.vid } }"
+            :to="{ name: 'SeeVideoDetail', query: { id: item.vid } }"
           >
             <MyImage
               class="cursor-pointer"
               width="100%"
               :height="250"
-              :src="item.data.coverUrl"
+              :src="item.coverUrl"
               footer-position="outer"
-              :title="item.data.title"
-              :description="item.data.description"
+              :title="item.title"
+              :description="item.description"
             />
             <span class="playCount">
-              <icon-play-arrow />{{ item.data.playTime }}
+              <icon-play-arrow />{{ item.playTime }}
             </span>
           </router-link>
         </a-col>

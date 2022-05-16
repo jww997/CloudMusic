@@ -30,7 +30,7 @@ const send = async () => {
   await account.getCaptchaSend({ phone: form.value.phone });
 };
 
-const reset = () => {
+const handleReset = () => {
   type.value = 3;
   emit('reset');
 };
@@ -72,7 +72,7 @@ const handleSubmit = async ({ values }: { values: PARAMS_LOGIN_CELLPHONE }) => {
         allow-clear
       >
         <template #append v-if="type === 1 || type === 3">
-          <a-button type="primary" @click="reset" :disabled="!form.phone"
+          <a-button type="primary" @click="handleReset" :disabled="!form.phone"
             >重设密码</a-button
           >
         </template>

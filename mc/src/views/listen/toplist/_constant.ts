@@ -1,5 +1,8 @@
 import * as T from './_type';
 
+export const PARAMS: T.PARAMS = {}
+export const PARAMS2: T.PARAMS2 = {}
+
 export const RESULT: T.RESULT = {
   artistToplist: {
     coverUrl: '',

@@ -5,28 +5,30 @@ export default {
 </script>
 <script lang="ts" setup>
 import { reactive, watch } from 'vue';
+import _ from 'lodash';
 import listen from '@/apis/listen';
 import * as TYPE from './_type';
 import * as CONSTANT from './_constant';
 import Tags from './tags.vue';
 import List from './list.vue';
 
+const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
+const params2 = reactive<TYPE.PARAMS2>(CONSTANT.PARAMS2);
 const params3 = reactive<TYPE.PARAMS3>(CONSTANT.PARAMS3);
-
 const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
 const result2 = reactive<TYPE.RESULT2>(CONSTANT.RESULT2);
 const result3 = reactive<TYPE.RESULT3>(CONSTANT.RESULT3);
 
 const init = async () => {
-  const res = await listen.getPlaylistHot();
+  const res = await listen.getPlaylistHot(params);
   result.tags = res.tags;
 
-  const res2 = await listen.getPlaylistCatlist();
+  const res2 = await listen.getPlaylistCatlist(params2);
   result2.all = res2.all;
   result2.categories = res2.categories;
   result2.sub = res2.sub;
-  handleClick();
 
+  handleClick();
   // await listen.getPlaylistHighqualityTags();
   // await listen.getTopPlaylistHighquality();
   // await listen.getRelatedPlaylist({ id: 740666719 });
