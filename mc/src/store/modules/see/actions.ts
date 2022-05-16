@@ -33,7 +33,6 @@ export const actions: ActionTree<State, RootState> & Actions = {
       watchEffect(() => {
         videoRef.volume = video.volume
       })
-      watch(() => video.order, () => Notification.info({ content: 'This is an info message!', position: 'topLeft' }))
     });
     videoRef.addEventListener('play', () => {
       commit(MutationsTypes.VIDEO_STATE, true)

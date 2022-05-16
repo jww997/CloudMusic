@@ -16,15 +16,13 @@ init();
 <template>
   <!-- <Suspense>
     <template #default> -->
-  <div class="px-6 py-4 overflow-hidden">
-    <router-view v-slot="{ Component, route }">
-      <transition name="slide-fade" mode="out-in" appear>
-        <keep-alive :include="include">
-          <component :is="Component" :key="route.path" />
-        </keep-alive>
-      </transition>
-    </router-view>
-  </div>
+  <router-view v-slot="{ Component, route }">
+    <transition name="slide-fade" mode="out-in" appear>
+      <keep-alive :include="include">
+        <component :is="Component" :key="route.path" />
+      </keep-alive>
+    </transition>
+  </router-view>
   <!-- </template>
     <template #fallback> Loading... </template>
   </Suspense> -->

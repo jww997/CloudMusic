@@ -25,7 +25,7 @@ const handleVolume = (v: number) =>
       <icon-redo
         class="cursor-pointer txt-hover txt-noselect"
         size="20"
-        @click="handleOrder(order === 3 ? 1 : ++order)"
+        @click.stop="handleOrder(order === 3 ? 1 : ++order)"
       />
       <template #content>
         <p>{{ orderName[order - 1] }}</p>
@@ -34,26 +34,26 @@ const handleVolume = (v: number) =>
     <icon-skip-previous-fill
       class="cursor-pointer txt-hover txt-noselect"
       size="30"
-      @click="handleToggle(-1)"
+      @click.stop="handleToggle(-1)"
     />
     <icon-pause-circle-fill
       class="cursor-pointer txt-hover txt-noselect"
       size="40"
-      @click="handleState(false)"
+      @click.stop="handleState(false)"
       v-if="state"
     />
     <icon-play-circle-fill
       class="cursor-pointer txt-hover txt-noselect"
       size="40"
-      @click="handleState(true)"
+      @click.stop="handleState(true)"
       v-else
     />
     <icon-skip-next-fill
       class="cursor-pointer txt-hover txt-noselect"
       size="30"
-      @click="handleToggle(1)"
+      @click.stop="handleToggle(1)"
     />
-    <a-popover :trigger="'click'">
+    <a-popover :trigger="'hover'">
       <icon-mute
         size="20"
         class="cursor-pointer txt-hover txt-noselect"
@@ -66,7 +66,6 @@ const handleVolume = (v: number) =>
       />
       <template #content>
         <a-slider
-          class="flex justify-center items-center"
           :model-value="volume * 100"
           direction="vertical"
           @change="handleVolume"
@@ -76,4 +75,8 @@ const handleVolume = (v: number) =>
   </a-space>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+:deep(.arco-slider-track.arco-slider-track-vertical) {
+  margin: 0 auto;
+}
+</style>

@@ -2,6 +2,7 @@ import { ActionTree, ActionContext } from 'vuex';
 import { MutationsTypes } from './mutations-types';
 import { ActionTypes } from './action-types';
 import { RootState } from '@/store';
+import { Message } from "@arco-design/web-vue"
 import type { RESULT_LOGIN } from "@/apis/account/typeResult"
 import type { State } from './state';
 import { storage } from '@/utils/modules/storage';
@@ -31,6 +32,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
     commit(MutationsTypes.ACCOUNT_COOKIE, cookie)
     commit(MutationsTypes.ACCOUNT_TOKEN, token)
     commit(MutationsTypes.ACCOUNT_PROFILE, profile)
+    Message.success('登录成功')
   },
   // 登出
   [ActionTypes.SET_ACCOUNT_LOGOUT]: async ({ commit }) => {
@@ -42,6 +44,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
     storage.remove(MutationsTypes.ACCOUNT_TOKEN);
     storage.remove(MutationsTypes.ACCOUNT_PROFILE);
     storage.removeCookie(MutationsTypes.ACCOUNT_COOKIE);
+    Message.success('登出成功')
   },
   // 获取登录状态
   [ActionTypes.SET_ACCOUNT_STATUS]: async ({ dispatch }) => {
@@ -49,6 +52,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
     if (res.data.account === null && res.data.profile === null) {
       dispatch(ActionTypes.SET_ACCOUNT_LOGOUT)
       router.push({ name: 'AccountLogin' })
+      Message.success('请重新登录')
     }
   },
 

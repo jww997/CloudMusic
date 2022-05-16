@@ -14,10 +14,10 @@ const props = defineProps<Props>();
 <template>
   <a-space class="detail" size="large">
     <MyImage
-      class="rounded-lg shadow-lg"
       :src="detail.coverImgUrl"
       :width="250"
       :height="250"
+      rounded
     />
     <div>
       <a-typography-title>{{ detail.name }}</a-typography-title>

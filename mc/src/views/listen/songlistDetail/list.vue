@@ -8,7 +8,7 @@ import { TableColumn } from '@arco-design/web-vue/es/table/interface';
 
 const store = useStore();
 
-const props = defineProps<{ list: listen_R.SONG[]; columns: TableColumn[] }>();
+defineProps<{ list: listen_R.SONG[]; columns: TableColumn[] }>();
 
 const song = computed<listen_R.SONG | null>(
   () => store.state.listen.audio.song

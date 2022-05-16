@@ -24,6 +24,7 @@ defineProps<{
           :src="item.img1v1Url"
           :preview="false"
           v-if="item.img1v1Url"
+              rounded
         ></MyImage>
         <span>{{ item.name }}</span>
       </a-space>

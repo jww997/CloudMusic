@@ -54,16 +54,16 @@ init();
 
 <template>
   <div v-if="result">
-    <div class="top">
+    <div class="flex items-center mb-8">
       <MyImage
-        class="cover"
         :width="300"
         :height="300"
         :preview="false"
         :src="result.artist.picUrl"
         :alt="result.artist.name"
+        roundedFull
       />
-      <span>{{ result.artist.name }}</span>
+      <span class="ml-4">{{ result.artist.name }}</span>
     </div>
     <List
       :list="result.hotSongs"
@@ -73,12 +73,4 @@ init();
   </div>
 </template>
 
-<style lang="less" scoped>
-.top {
-  margin-bottom: 50px;
-}
-.cover {
-  margin-right: 50px;
-  border-radius: 50%;
-}
-</style>
+<style lang="less" scoped></style>

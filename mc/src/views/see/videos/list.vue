@@ -33,6 +33,7 @@ const handleChange = (v: string) => emits('update:current', v);
               footer-position="outer"
               :title="item.title"
               :description="item.description"
+              rounded
             />
             <span class="playCount">
               <icon-play-arrow />{{ item.playTime }}

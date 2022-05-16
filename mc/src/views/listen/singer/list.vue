@@ -12,19 +12,20 @@ const span = computed(() => 24 / col);
 
 <template>
   <div class="list">
-    <a-row :gutter="[24, 48]">
+    <a-row gutter="24">
       <template v-for="item in list">
         <a-col :span="span">
           <router-link
             :to="{ name: 'ListenSingerDetail', query: { id: item.id } }"
           >
             <MyImage
-              class="cursor-pointer shadow-xl hover:-translate-y-4 duration-100"
+              class="cursor-pointer hover:-translate-y-4 duration-100"
               :width="200"
               :height="200"
               :src="item.picUrl"
               :title="item.name"
               footer-position="outer"
+              roundedFull
             />
           </router-link>
         </a-col>

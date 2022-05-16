@@ -16,11 +16,15 @@ const fold = computed(() => store.state.listen.audio.fold);
     <a-layout-sider collapsible><Logo /><Menu /></a-layout-sider>
     <a-layout>
       <a-layout-header><Header /></a-layout-header>
-      <a-layout class="px-6 overflow-auto">
-        <Crumb class="body-crumb sticky top-0 z-10" />
-        <a-layout-content><router-view /></a-layout-content>
-        <a-layout-footer v-show="fold"><Footer /></a-layout-footer>
-      </a-layout>
+      <div class="h-full px-6 overflow-auto">
+        <a-layout class="h-full">
+          <Crumb class="body-crumb sticky top-0 z-10" />
+          <a-layout-content>
+            <div class="px-6 py-6 overflow-hidden"><router-view /></div>
+          </a-layout-content>
+          <a-layout-footer v-show="fold"><Footer /></a-layout-footer>
+        </a-layout>
+      </div>
     </a-layout>
   </a-layout>
 </template>

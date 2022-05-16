@@ -23,6 +23,7 @@ defineProps<{
           width="50"
           height="50"
           :src="data.creator.avatarUrl"
+              rounded
         />
         <span>{{ data.creator.nickname }}</span>
       </a-space>

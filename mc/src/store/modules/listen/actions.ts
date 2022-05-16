@@ -4,6 +4,7 @@ import { Notification } from '@arco-design/web-vue'
 import { MutationsTypes } from './mutations-types';
 import { ActionTypes } from './action-types';
 import { RootState } from '@/store';
+import _ from 'lodash'
 import type { SONG } from "@/apis/listen/typeResult";
 import type { State } from './state';
 import listen from '@/apis/listen';
@@ -11,26 +12,25 @@ import { LYRIC } from '@/store/modules/listen/state';
 
 
 export type Actions<S = State, R = RootState> = {
-  [ActionTypes.SET_AUDIO_URL](context: ActionContext<S, R>, val: number): void;
+  [ActionTypes.SET_AUDIO_URL](context: ActionContext<S, R>, val: string): void;
   [ActionTypes.SET_AUDIO_DETAIL](context: ActionContext<S, R>, val: string): void;
   [ActionTypes.SET_AUDIO_TOGGLE](context: ActionContext<S, R>, val: 1 | 0 | -1): void;
   [ActionTypes.SET_AUDIO_SCHEDULE](context: ActionContext<S, R>, val: number): void;
   [ActionTypes.SET_AUDIO_STATE](context: ActionContext<S, R>, val: boolean): void;
-  [ActionTypes.SET_AUDIO_LYRIC](context: ActionContext<S, R>, val: number): void;
+  [ActionTypes.SET_AUDIO_LYRIC](context: ActionContext<S, R>, val: string): void;
 };
 
 export const actions: ActionTree<State, RootState> & Actions = {
   [ActionTypes.SET_AUDIO_URL]({ state: { audioRef, audio }, commit, dispatch }, val) {
     const init = async () => {
+      await listen.getCheckMusic({ id: val }).catch(err => Notification.info('暂无版权'))
       const res = await listen.getSongUrl({ id: val });
       const { data: [{ url }] } = res;
-      // const { success } = await listen.getCheckMusic({ id: val })
-      // if (!success) return false
       if (!url) return false
       audioRef.src = url
       audioRef.autoplay = true
       dispatch(ActionTypes.SET_AUDIO_DETAIL, val)
-      const index = audio.list.findIndex((v: SONG) => v.id === val)
+      const index = audio.list.findIndex((v: SONG) => v.id === _.toNumber(val))
       commit(MutationsTypes.AUDIO_INDEX, index)
       commit(MutationsTypes.AUDIO_REF, audioRef);
       commit(MutationsTypes.AUDIO_FOLD, true);
@@ -38,7 +38,6 @@ export const actions: ActionTree<State, RootState> & Actions = {
         watchEffect(() => {
           audioRef.volume = audio.volume
         })
-        watch(() => audio.order, () => Notification.info({ content: 'This is an info message!', position: 'topLeft' }))
       });
       audioRef.addEventListener('play', () => {
         commit(MutationsTypes.AUDIO_STATE, true)

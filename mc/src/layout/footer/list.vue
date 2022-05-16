@@ -4,7 +4,7 @@ import { useStore } from 'vuex';
 import { ActionTypes } from '@/store/modules/listen/action-types';
 import { SONG } from '@/apis/listen/typeResult';
 import MyImage from '@/components/myImage/index.vue';
-
+import Left from './left.vue';
 const store = useStore();
 
 const list = computed<SONG[]>(() => store.state.listen.audio.list);
@@ -23,24 +23,9 @@ const handleClick = (v: number) => store.dispatch(ActionTypes.SET_AUDIO_URL, v);
       :key="item.id"
       @click="handleClick(item.id)"
     >
-      <a-space>
-        <MyImage
-          class="cursor-pointer rounded-lg"
-          :width="70"
-          :height="70"
-          :src="item.al.picUrl"
-          :alt="item.al.name"
-        />
-        <div class="cursor-pointer" :class="index === i && 'active'">{{
-          item.name
-        }}</div>
-      </a-space>
+      <Left :song="item" :class="index === i ? 'active' : ''"></Left>
     </a-list-item>
   </a-list>
 </template>
 
-<style lang="less" scoped>
-.active {
-  color: rgb(var(--primary-6));
-}
-</style>
+<style lang="less" scoped></style>

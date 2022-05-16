@@ -10,7 +10,7 @@ import MyImage from '@/components/myImage/index.vue';
 
 const store = useStore();
 
-const uid = 344460908;
+const uid = '344460908';
 const results1 = ref<account_R.RESULT_USER_DETAIL>();
 const results2 = ref<account_R.RESULT_USER_PLAYLIST>();
 
@@ -60,6 +60,7 @@ init();
         :src="results1.profile.avatarUrl"
         :width="200"
         :height="200"
+        rounded
         v-if="results1"
       />
     </div>

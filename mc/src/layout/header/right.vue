@@ -40,7 +40,8 @@ watch(
 <template>
   <div class="flex-1 flex justify-end items-center">
     <a-space class="mr-4">
-      <icon-sun size="30" @click="darkMode = !darkMode" />
+      <icon-moon-fill v-if="darkMode" size="30" @click="darkMode = !darkMode" />
+      <icon-moon v-else size="30" @click="darkMode = !darkMode" />
     </a-space>
     <a-popover>
       <a-space

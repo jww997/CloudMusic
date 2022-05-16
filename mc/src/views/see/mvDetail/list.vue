@@ -26,6 +26,7 @@ const span = computed(() => 24 / col);
               :preview="false"
               footer-position="outer"
               :title="item.title"
+              rounded
             />
             <span class="playTime">
               <icon-play-arrow />{{ item.playTime }}

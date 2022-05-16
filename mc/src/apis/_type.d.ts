@@ -10,4 +10,4 @@ export interface BEFORE extends LIMIT {
 export type TIMESTAMP = { timestamp?: number }
 
 export type CODE = { code?: number }
-export type MESSAGE = { message?: string | null }
+export type MESSAGE = { message: string }

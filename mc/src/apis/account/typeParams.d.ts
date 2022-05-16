@@ -43,7 +43,7 @@ export interface PARAMS_REGISTER_CELLPHONE {
 
 // #region about user
 export type UID = {
-  uid: number // 用户 id
+  uid: string // 用户 id
 }
 export interface PARAMS_USER_DETAIL extends UID { }
 export interface PARAMS_USER_ACCOUNT { }

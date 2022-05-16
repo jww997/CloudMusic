@@ -27,6 +27,7 @@ const span = computed(() => 24 / col);
               footer-position="outer"
               :title="item.name"
               :description="item.artistName"
+              rounded
             />
             <span class="playCount">
               <icon-play-arrow />{{ item.playCount }}
