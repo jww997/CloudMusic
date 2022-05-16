@@ -20,7 +20,10 @@ const handleChange = (v: string) => emits('update:current', v);
       <template v-for="item in list">
         <a-col class="col" :span="span">
           <router-link
-            :to="{ name: 'SeeVideoDetail', query: { id: item.vid } }"
+            :to="{
+              name: item.type === 0 ? 'SeeMvDetail' : 'SeeVideoDetail',
+              query: { id: item.vid },
+            }"
           >
             <MyImage
               class="cursor-pointer"

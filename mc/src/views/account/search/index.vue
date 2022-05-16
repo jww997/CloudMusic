@@ -5,14 +5,14 @@ export default {
 </script>
 <script lang="ts" setup>
 import { ref, reactive, computed, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute, onBeforeRouteUpdate } from 'vue-router';
+import { router } from '@/router';
 import _ from 'lodash';
 import listen from '@/apis/listen';
 import * as TYPE from './_type';
 import * as CONSTANT from './_constant';
 
 const route = useRoute();
-const router = useRouter();
 const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
 const params2 = reactive<TYPE.PARAMS2>(CONSTANT.PARAMS2);
 const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
@@ -23,10 +23,6 @@ const tab = computed<TYPE.TAB>(() => CONSTANT.TAB[activeIndex.value]);
 const len = ref<number>(0);
 
 const handleSearch = async () => {
-  console.log('tab = ', tab);
-  console.log('tab.value.type = ', tab.value.type);
-  // 1: 单曲, 10: 专辑, 100: 歌手, 1000: 歌单, 1002: 用户, 1004: MV, 1006: 歌词, 1009: 电台, 1014: 视频, 1018:综合, 2000:声音(搜索声音返回字段格式会不一样)
-  params.type = tab.value.type;
   const res = await listen.getCloudsearch(params);
   result.result = res.result;
   const key = _.keys(result.result).find((v) => /Count/.test(v)) ?? '';
@@ -40,27 +36,32 @@ const handleSearch = async () => {
 const init = async () => {
   const keywords = <string>route.query.keywords;
   const index = <string>route.query.index;
+  console.log(!keywords);
+  if (!keywords) router.back();
   params.keywords = keywords;
   activeIndex.value = _.toNumber(index);
+  params.type = tab.value.type;
   handleSearch();
 };
 init();
 
-watch(
-  () => activeIndex.value,
-  (v) => {
-    if (isNaN(v)) return false;
-    const keywords = <string>route.query.keywords;
-    router.push({ name: 'ListenSearch', query: { keywords, index: v } });
-  }
-);
-router.beforeEach((to) => {
+onBeforeRouteUpdate((to) => {
   const keywords = <string>to.query.keywords;
   const index = <string>to.query.index;
   params.keywords = keywords;
   activeIndex.value = _.toNumber(index);
+  params.type = tab.value.type;
   handleSearch();
 });
+
+watch(
+  () => activeIndex.value,
+  (v) => {
+    const keywords = <string>route.query.keywords;
+    if (!keywords && isNaN(v)) return false;
+    router.push({ name: 'ListenSearch', query: { keywords, index: v } });
+  }
+);
 </script>
 
 <template>
@@ -73,7 +74,7 @@ router.beforeEach((to) => {
     </a-space>
     <a-tabs v-model:active-key="activeIndex" lazy-load justify>
       <template #extra>
-        <div class="padding">{{ `找到约${len}${tab.unit}${tab.title}` }}</div>
+        <div class="padding">{{ `找到约${len}${tab?.unit}${tab?.title}` }}</div>
       </template>
       <a-tab-pane
         v-for="(item, index) in CONSTANT.TAB"

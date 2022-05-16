@@ -7,6 +7,7 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw = {
   path: '/see',
   name: 'See',
+  redirect: '/see/mv',
   component: () => import('@/components/transition/index.vue'),
   meta: {
     locale: '影像馆', // 一级菜单名（语言包键名）

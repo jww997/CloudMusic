@@ -3,7 +3,6 @@ import { ref, computed } from 'vue';
 import Phone from './phone.vue';
 import Email from './email.vue';
 import Qr from './qr.vue';
-import image_1 from '@/assets/images/bg/3.jpg';
 
 // 密码加密 jsencrypt / md5
 const loginType = ref<number>(1);
@@ -20,7 +19,6 @@ const handleReset = () => (loginType.value = 4);
 </script>
 
 <template>
-  <!-- <div class="login" :style="{ backgroundImage: `url(${image_1})` }"> -->
   <div class="login">
     <a-typography-title class="title" :heading="3">{{
       title
@@ -57,7 +55,6 @@ const handleReset = () => (loginType.value = 4);
 <style lang="less" scoped>
 .login {
   height: 100%;
-  // background: center no-repeat;
   background-size: auto 100%;
   display: flex;
   flex-direction: column;

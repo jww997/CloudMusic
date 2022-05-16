@@ -6,7 +6,7 @@ export default {
 <script lang="ts" setup>
 import { ref, computed, onMounted } from 'vue';
 import listen from '@/apis/listen';
-import List from '../songlist/list.vue';
+import List from '@/views/listen/songlist/list.vue';
 import listen_R from '@/apis/listen/typeResult';
 
 const result1 = ref<listen_R.RESULT_PERSONALIZED>();

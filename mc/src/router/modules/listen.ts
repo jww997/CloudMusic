@@ -4,7 +4,6 @@
  */
 import { RouteRecordRaw } from 'vue-router';
 import Listen from '@/components/transition/index.vue';
-import Recommend from '@/views/listen/recommend/index.vue';
 import Songlist from '@/views/listen/songlist/index.vue';
 import Toplist from "@/views/listen/toplist/index.vue";
 import Singer from "@/views/listen/singer/index.vue";
@@ -14,12 +13,12 @@ import Song from "@/views/listen/song/index.vue";
 import AlbumDetail from "@/views/listen/albumDetail/index.vue";
 import Dj from "@/views/listen/dj/index.vue";
 import DjDetail from "@/views/listen/djDetail/index.vue";
-import PersonalFm from "@/views/listen/personalFm/index.vue";
-import Search from "@/views/listen/search/index.vue";
+
 
 const routes: RouteRecordRaw = {
   path: '/listen',
   name: 'Listen',
+  redirect: '/listen/songlist',
   component: Listen,
   meta: {
     locale: '音乐馆', // 一级菜单名（语言包键名）
@@ -28,17 +27,6 @@ const routes: RouteRecordRaw = {
   },
   children: [
     {
-      path: '/recommend',
-      name: 'ListenRecommend',
-      component: Recommend,
-      meta: {
-        locale: '推荐', // 二级菜单名（语言包键名）
-        requiresAuth: true, // 是否需要鉴权
-        roles: ['admin'], // 权限角色
-        keepAlive: true
-      },
-    },
-    {
       path: '/toplist',
       name: 'ListenToplist',
       component: Toplist,
@@ -46,7 +34,7 @@ const routes: RouteRecordRaw = {
         locale: '排行', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
-        keepAlive: true
+        keepAlive: true,
       },
     },
     {
@@ -93,29 +81,6 @@ const routes: RouteRecordRaw = {
         hideInMenu: true
       },
     },
-
-    {
-      path: '/song',
-      name: 'ListenSong',
-      component: Song,
-      meta: {
-        locale: '歌曲', // 二级菜单名（语言包键名）
-        requiresAuth: true, // 是否需要鉴权
-        roles: ['admin'], // 权限角色
-        hideInMenu: true
-      },
-    },
-    {
-      path: '/album/detail',
-      name: 'ListenAlbumDetail',
-      component: AlbumDetail,
-      meta: {
-        locale: '专辑详情', // 二级菜单名（语言包键名）
-        requiresAuth: true, // 是否需要鉴权
-        roles: ['admin'], // 权限角色
-        hideInMenu: true
-      },
-    },
     {
       path: '/dj',
       name: 'ListenDj',
@@ -138,29 +103,31 @@ const routes: RouteRecordRaw = {
         hideInMenu: true
       },
     },
+
+
     {
-      path: '/personal/fm',
-      name: 'ListenPersonalFm',
-      component: PersonalFm,
+      path: '/album/detail',
+      name: 'ListenAlbumDetail',
+      component: AlbumDetail,
       meta: {
-        locale: '私人FM', // 二级菜单名（语言包键名）
+        locale: '专辑详情', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
         hideInMenu: true
       },
     },
     {
-      path: '/search',
-      name: 'ListenSearch',
-      component: Search,
+      path: '/song',
+      name: 'ListenSong',
+      component: Song,
       meta: {
-        locale: '搜索', // 二级菜单名（语言包键名）
+        locale: '歌曲', // 二级菜单名（语言包键名）
         requiresAuth: true, // 是否需要鉴权
         roles: ['admin'], // 权限角色
-        hideInMenu: true,
-        keepAlive: true
+        hideInMenu: true
       },
     },
+
 
   ],
 };

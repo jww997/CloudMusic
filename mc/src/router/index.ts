@@ -24,11 +24,12 @@ declare module 'vue-router' {
   }
 }
 
+export const defaultSelectedKey = '/listen'
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'home',
-    redirect: '/listen/recommend',
+    redirect: defaultSelectedKey,
     component: Layout,
     meta: {
       locale: '首页'
@@ -37,7 +38,7 @@ export const routes: RouteRecordRaw[] = [
   },
   {
     path: '/:pathMatch(.*)',
-    redirect: '/listen/recommend',
+    redirect: defaultSelectedKey,
   }
 ];
 

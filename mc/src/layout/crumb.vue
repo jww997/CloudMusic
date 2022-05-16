@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { RouteLocationMatched } from 'vue-router';
+import { RouteLocationMatched, onBeforeRouteUpdate } from 'vue-router';
 import { router } from '@/router';
 
 type CRUMB = { name: string; title: string };
@@ -17,7 +17,7 @@ const setCrumb: SETCRUMB = (arr) => {
 
 const init = () => {
   setCrumb(router.currentRoute.value.matched);
-  router.beforeEach((to, _) => setCrumb(to.matched));
+  onBeforeRouteUpdate((to, _) => setCrumb(to.matched));
 };
 init();
 </script>
