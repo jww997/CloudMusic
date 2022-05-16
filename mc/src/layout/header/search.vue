@@ -45,7 +45,7 @@ init();
 </script>
 
 <template>
-  <a-space class="search">
+  <a-space class="flex-1">
     <a-dropdown>
       <a-input-search
         :style="{ width: '320px' }"
@@ -68,8 +68,4 @@ init();
   </a-space>
 </template>
 
-<style lang="less" scoped>
-.search {
-  flex: 1;
-}
-</style>
+<style lang="less" scoped></style>

@@ -16,7 +16,7 @@ init();
 <template>
   <!-- <Suspense>
     <template #default> -->
-  <div class="transition">
+  <div class="px-6 py-4 overflow-hidden">
     <router-view v-slot="{ Component, route }">
       <transition name="slide-fade" mode="out-in" appear>
         <keep-alive :include="include">
@@ -30,9 +30,4 @@ init();
   </Suspense> -->
 </template>
 
-<style lang="less" scoped>
-.transition {
-  padding: 30px;
-  overflow: hidden;
-}
-</style>
+<style lang="less" scoped></style>

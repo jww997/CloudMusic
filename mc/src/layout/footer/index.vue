@@ -16,8 +16,9 @@ const changePercentage = (v: number) =>
 </script>
 
 <template>
-  <div class="footer">
+  <div class="h-24 px-6 flex items-center relative">
     <a-slider
+      class="absolute -top-1.5 left-0"
       v-model="percent"
       :format-tooltip="() => currentTime"
       @change="changePercentage"
@@ -29,19 +30,7 @@ const changePercentage = (v: number) =>
 </template>
 
 <style lang="less" scoped>
-.footer {
-  height: 100px;
-  padding: 0 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  :deep(.arco-slider) {
-    position: absolute;
-    top: -6px;
-    left: 0;
-  }
-  :deep(.arco-slider-btn::after) {
-    display: none;
-  }
+:deep(.arco-slider-btn::after) {
+  display: none;
 }
 </style>

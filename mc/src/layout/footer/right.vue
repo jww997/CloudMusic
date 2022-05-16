@@ -11,7 +11,7 @@ const duration = computed<number>(() => store.getters.duration);
 </script>
 
 <template>
-  <a-space class="right" size="medium">
+  <a-space class="flex-1 flex justify-end items-center" size="medium">
     <div> {{ currentTime }} / {{ duration }} </div>
     <a-popover :trigger="'click'">
       <span class="cursor-pointer txt-hover txt-noselect">词</span>
@@ -29,12 +29,6 @@ const duration = computed<number>(() => store.getters.duration);
 </template>
 
 <style lang="less" scoped>
-.right {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
 :deep(.arco-list) {
   width: 800px;
 }

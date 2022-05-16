@@ -5,16 +5,11 @@ import Right from './right.vue';
 </script>
 
 <template>
-  <div class="header">
+  <div class="flex px-6 py-4">
     <Left />
     <Search />
     <Right />
   </div>
 </template>
 
-<style lang="less" scoped>
-.header {
-  display: flex;
-  padding: 12px 20px;
-}
-</style>
+<style lang="less" scoped></style>

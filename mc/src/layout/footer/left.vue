@@ -11,39 +11,22 @@ const song = computed<SONG>(() => store.state.listen.audio.song);
 
 <template>
   <div
-    class="left"
+    class="flex-1 flex items-center"
     @click="$router.push({ name: 'ListenSong', query: { id: song?.id } })"
   >
     <MyImage
-      class="cover cursor-pointer"
+      class="flex-shrink-0 rounded-lg shadow-lg cursor-pointer"
       :width="70"
       :height="70"
-      :preview="false"
       :src="song?.al.picUrl"
       :alt="song?.al.name"
     />
     <a-tooltip :content="song?.name" position="tl">
-      <div class="name cursor-pointer">{{ song?.name }}</div>
+      <div class="flex-grow cursor-pointer mx-4 w-4 truncate">
+        {{ song?.name }}
+      </div>
     </a-tooltip>
   </div>
 </template>
 
-<style lang="less" scoped>
-.left {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  .cover {
-    flex-shrink: 0;
-    border-radius: 5px;
-    margin-right: 20px;
-    box-shadow: 0 0 5px #aaa;
-  }
-  .name {
-    flex-grow: 1;
-    width: 1px;
-    text-align: left;
-    .text-row(1);
-  }
-}
-</style>
+<style lang="less" scoped></style>

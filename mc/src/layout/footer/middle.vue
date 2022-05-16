@@ -20,7 +20,7 @@ const handleVolume = (v: number) =>
 </script>
 
 <template>
-  <a-space class="middle" :align="'center'">
+  <a-space class="flex-1 flex justify-center">
     <a-popover>
       <icon-redo
         class="cursor-pointer txt-hover txt-noselect"
@@ -59,10 +59,14 @@ const handleVolume = (v: number) =>
         class="cursor-pointer txt-hover txt-noselect"
         v-if="volume === 0"
       />
-      <icon-sound class="cursor-pointer txt-hover txt-noselect" size="20" v-else />
+      <icon-sound
+        class="cursor-pointer txt-hover txt-noselect"
+        size="20"
+        v-else
+      />
       <template #content>
         <a-slider
-          class="center"
+          class="flex justify-center items-center"
           :model-value="volume * 100"
           direction="vertical"
           @change="handleVolume"
@@ -72,19 +76,4 @@ const handleVolume = (v: number) =>
   </a-space>
 </template>
 
-<style lang="less" scoped>
-.middle {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  :deep(.arco-space-item) {
-    display: flex;
-    align-items: center;
-  }
-}
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>
+<style lang="less" scoped></style>

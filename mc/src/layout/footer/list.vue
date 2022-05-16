@@ -23,15 +23,17 @@ const handleClick = (v: number) => store.dispatch(ActionTypes.SET_AUDIO_URL, v);
       :key="item.id"
       @click="handleClick(item.id)"
     >
-      <a-space :class="index === i && 'active'">
+      <a-space>
         <MyImage
-          class="cover"
+          class="cursor-pointer rounded-lg"
           :width="70"
           :height="70"
           :src="item.al.picUrl"
           :alt="item.al.name"
         />
-        <div>{{ item.name }}</div>
+        <div class="cursor-pointer" :class="index === i && 'active'">{{
+          item.name
+        }}</div>
       </a-space>
     </a-list-item>
   </a-list>
@@ -40,12 +42,5 @@ const handleClick = (v: number) => store.dispatch(ActionTypes.SET_AUDIO_URL, v);
 <style lang="less" scoped>
 .active {
   color: rgb(var(--primary-6));
-}
-.cover {
-  border-radius: 5px;
-}
-
-:deep(.arco-list-item) {
-  cursor: pointer;
 }
 </style>

@@ -38,8 +38,8 @@ watch(
 </script>
 
 <template>
-  <div class="right">
-    <a-space class="other">
+  <div class="flex-1 flex justify-end items-center">
+    <a-space class="mr-4">
       <icon-sun size="30" @click="darkMode = !darkMode" />
     </a-space>
     <a-popover>
@@ -62,17 +62,4 @@ watch(
   </div>
 </template>
 
-<style lang="less" scoped>
-.right {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  .other {
-    margin-right: 15px;
-  }
-  :deep(.arco-avatar) {
-    overflow: hidden;
-  }
-}
-</style>
+<style lang="less" scoped></style>
