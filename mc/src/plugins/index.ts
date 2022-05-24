@@ -3,7 +3,8 @@
  * @author Gavin
  */
 import _ from 'lodash';
-import { filesGlobEager } from '@/utils/modules/format';
+import {filesGlobEager} from '@/utils/format';
+
 const files = import.meta.globEager('./modules/*/index.ts');
 const modules = filesGlobEager(files, /(\.\/modules\/|\/index.ts)/g);
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import List from '@/views/listen/dj/list.vue';
-import * as CONSTANT from './_constant';
 import R from '@/apis/listen/typeResult';
+import List from '@/views/listen/songlist/list.vue';
+import Box from '@/views/listen/dj/box.vue';
 
 defineProps<{
   searchQcReminder: null;
@@ -12,7 +12,11 @@ defineProps<{
 
 <template>
   <div>
-    <List :list="djRadios" />
+    <List :list="djRadios">
+      <template v-slot="{item}">
+        <Box :name="item.name" :id="item.id" pic-url="item.cover"/>
+      </template>
+    </List>
   </div>
 </template>
 

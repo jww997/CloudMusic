@@ -1,15 +1,14 @@
 <script lang="ts">
-export default {
-  name: 'SeeMv',
-};
+export default {name: 'SeeVideos',};
 </script>
 <script lang="ts" setup>
-import { ref, reactive, watch } from 'vue';
+import {ref, reactive, watch} from 'vue';
+import {IconUp} from "@arco-design/web-vue/es/icon";
 import _ from 'lodash';
-import see from '@/apis/see';
 import * as TYPE from './_type';
 import * as CONSTANT from './_constant';
-import Tags from './tags.vue';
+import see from '@/apis/see';
+import MyTags from '@/components/myTags/index.vue';
 import List from './list.vue';
 
 const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
@@ -21,54 +20,60 @@ const result3 = reactive<TYPE.RESULT3>(CONSTANT.RESULT3);
 
 const isTagsExpanded = ref<boolean>(false);
 
-const init = async () => {
+// 遍历字段
+const mapTags = (arr: any) => arr.map((v: any) => _.assign(v, {title: v.name, value: v.name}))
+
+const getVideoCategoryList = async () => {
   const res = await see.getVideoCategoryList(params);
-  result.data = res.data;
-  params2.id = res.data[0].id;
+  const {data} = res
+  _.assign(result, {data: mapTags(data)})
+  _.assign(params2, {id: data[0].id})
+}
+
+const getVideoGroup = async () => {
+  const res = await see.getVideoGroup(params2);
+  console.log(res)
+  const {datas, hasmore, msg, rcmdLimit} = res
+  _.assign(result2, {datas, hasmore, msg, rcmdLimit})
+}
+
+const getVideoGroupList = async () => {
+  isTagsExpanded.value = !isTagsExpanded.value;
+  if (result3.data.length) return false;
+  const res = await see.getVideoGroupList(params3);
+  const {data} = res
+  _.assign(result3, {data: mapTags(data)})
+};
+
+const init = async () => {
+  await getVideoCategoryList()
+  await getVideoGroup()
 };
 init();
 
-const handleClick = async () => {
-  const res = await see.getVideoGroup(params2);
-  result2.datas = res.datas;
-  result2.hasmore = res.hasmore;
-  result2.msg = res.msg;
-  result2.rcmdLimit = res.rcmdLimit;
-};
-const handleClick2 = async () => {
-  isTagsExpanded.value = !isTagsExpanded.value;
-  if (result3.data.length) return false;
-  const res2 = await see.getVideoGroupList(params3);
-  result3.data = res2.data;
-};
-
-watch(() => params2.id, handleClick);
+watch(() => params2.id, getVideoGroup);
 </script>
 
 <template>
   <div class="videos">
-    <Tags :list="result.data" v-model:active="params2.id" />
-    <a-button class="btn cursor-pointer" @click="handleClick2">
-      <icon-up :class="`up ${isTagsExpanded && 'active'}`" />
+    <MyTags :list="result.data" v-model:active="params2.id"/>
+    <a-button class="btn cursor-pointer" @click="getVideoGroupList">
+      <icon-up :class="`up ${isTagsExpanded && 'active'}`"/>
     </a-button>
-    <Tags
-      class="more"
-      :list="result3.data"
-      v-model:active="params2.id"
-      v-show="isTagsExpanded"
-    />
-
-    <List :list="result2.datas.map(({ data: v }) => v)" />
+    <MyTags class="more" :list="result3.data" v-model:active="params2.id" v-show="isTagsExpanded"/>
+    <List :list="result2.datas"/>
   </div>
 </template>
 
 <style lang="less" scoped>
 .videos {
   position: relative;
+
   .btn {
     position: absolute;
     right: 30px;
     top: 30px;
+
     .up {
       transition: 0.3s;
 
@@ -77,6 +82,7 @@ watch(() => params2.id, handleClick);
       }
     }
   }
+
   .more {
     background-color: var(--color-secondary);
   }

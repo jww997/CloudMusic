@@ -1,37 +1,43 @@
 <script lang="ts">
-export default {
-  name: 'ListenSingerDetail',
-};
+export default {name: 'ListenSingerDetail',};
 </script>
 <script lang="ts" setup>
-import { reactive } from 'vue';
-import { useRoute } from 'vue-router';
+import {reactive} from 'vue';
+import {useRoute} from 'vue-router';
 import _ from 'lodash';
-import listen from '@/apis/listen/index';
 import * as TYPE from './_type';
 import * as CONSTANT from './_constant';
+import listen from '@/apis/listen/index';
 import List from '../songlistDetail/list.vue';
-import MyImage from '@/components/myImage/index.vue';
+import Info from './info.vue'
 
 const route = useRoute();
+
 const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
 const params2 = reactive<TYPE.PARAMS2>(CONSTANT.PARAMS2);
 const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
 const result2 = reactive<TYPE.RESULT2>(CONSTANT.RESULT2);
 
+const getArtistDetail = async () => {
+  const res = await listen.getArtistDetail(params);
+  const {artist, hotSongs, more} = res
+  console.log(artist)
+  _.assign(result, {artist, hotSongs, more})
+}
+
+const getArtistSongs = async () => {
+  const res = await listen.getArtistSongs(params2);
+  const {more, songs, total} = res
+  _.assign(result2, {more, songs, total})
+}
+
 const init = async () => {
   const id = <string>route.query.id;
-  params.id = id;
-  params2.id = id;
-  const res = await listen.getArtistDetail(params);
-  result.artist = res.artist;
-  result.hotSongs = res.hotSongs;
-  result.more = res.more;
+  _.assign(params, {id})
+  _.assign(params2, {id})
+  await getArtistDetail()
+  await getArtistSongs()
 
-  const res2 = await listen.getArtistSongs(params2);
-  result2.more = res2.more;
-  result2.songs = res2.songs;
-  result2.total = res2.total;
 
   // await listen.getArtist({ id });
   // await listen.getArtistTopSongs({ id });
@@ -53,23 +59,9 @@ init();
 </script>
 
 <template>
-  <div v-if="result">
-    <div class="flex items-center mb-8">
-      <MyImage
-        :width="300"
-        :height="300"
-        :preview="false"
-        :src="result.artist.picUrl"
-        :alt="result.artist.name"
-        roundedFull
-      />
-      <span class="ml-4">{{ result.artist.name }}</span>
-    </div>
-    <List
-      :list="result.hotSongs"
-      :columns="CONSTANT.COLUMNS"
-      v-if="result.hotSongs"
-    />
+  <div>
+    <Info :detail="result.artist"/>
+    <List :list="result.hotSongs" :columns="CONSTANT.COLUMNS"/>
   </div>
 </template>
 

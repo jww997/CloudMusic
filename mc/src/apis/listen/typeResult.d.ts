@@ -1521,3 +1521,6 @@ export interface RESULT_HOMEPAGE_DRAGON_BALL extends CODE {
 }
 
 
+export interface RESULT_LISTEN_TOGETHER_STATUS extends CODE {
+
+}

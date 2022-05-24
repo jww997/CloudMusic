@@ -1,8 +1,8 @@
-import { TableColumn } from '@arco-design/web-vue/es/table/interface';
 import * as T from './_type';
+import {TableColumn} from '@arco-design/web-vue/es/table/interface';
 
-export const PARAMS: T.PARAMS = { id: '' }
-export const PARAMS2: T.PARAMS2 = { id: '', limit: 50, offset: 0 }
+export const PARAMS: T.PARAMS = {id: ''}
+export const PARAMS2: T.PARAMS2 = {id: '', limit: 50, offset: 0}
 export const RESULT: T.RESULT = {
   artist: {
     alias: [],
@@ -23,7 +23,7 @@ export const RESULT2: T.RESULT2 = {
 }
 
 export const COLUMNS: TableColumn[] = [
-  { title: '歌曲', dataIndex: 'name' },
-  { title: '专辑', dataIndex: 'al' },
-  { title: '时长', dataIndex: 'dt' },
+  {title: '歌曲', dataIndex: 'name'},
+  {title: '专辑', dataIndex: 'al'},
+  {title: '时长', dataIndex: 'dt'},
 ];

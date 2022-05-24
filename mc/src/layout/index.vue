@@ -20,7 +20,7 @@ const fold = computed(() => store.state.listen.audio.fold);
         <a-layout class="h-full">
           <Crumb class="body-crumb sticky top-0 z-10" />
           <a-layout-content>
-            <div class="px-6 py-6 overflow-hidden"><router-view /></div>
+            <div class="w-full h-full px-6 py-6 overflow-hidden"><router-view /></div>
           </a-layout-content>
           <a-layout-footer v-show="fold"><Footer /></a-layout-footer>
         </a-layout>

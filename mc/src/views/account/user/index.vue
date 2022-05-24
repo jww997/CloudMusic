@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
 import account from '@/apis/account/index';
 import account_R from '@/apis/account/typeResult';
-import { useStore } from 'vuex';
-import { ActionTypes } from '@/store/modules/account/action-types';
+import {useStore} from 'vuex';
 
 import List from '@/views/listen/songlist/list.vue';
 import MyImage from '@/components/myImage/index.vue';
@@ -15,10 +14,9 @@ const results1 = ref<account_R.RESULT_USER_DETAIL>();
 const results2 = ref<account_R.RESULT_USER_PLAYLIST>();
 
 const init = async () => {
-  store.dispatch(ActionTypes.SET_ACCOUNT_STATUS);
 
-  results1.value = await account.getUserDetail({ uid });
-  results2.value = await account.getUserPlaylist({ uid });
+  results1.value = await account.getUserDetail({uid});
+  results2.value = await account.getUserPlaylist({uid});
   // await account.getUserAccount();
   // await account.getUserSubcount();
   // await account.getUserLevel();
@@ -57,14 +55,14 @@ init();
   <div>
     <div class="user">
       <MyImage
-        :src="results1.profile.avatarUrl"
-        :width="200"
-        :height="200"
-        rounded
-        v-if="results1"
+          :src="results1.profile.avatarUrl"
+          :width="200"
+          :height="200"
+          rounded
+          v-if="results1"
       />
     </div>
-    <List :list="results2?.playlist" v-if="results2" />
+    <List :list="results2?.playlist" v-if="results2"/>
   </div>
 </template>
 

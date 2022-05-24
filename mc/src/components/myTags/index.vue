@@ -1,12 +1,10 @@
 <script lang="ts" setup>
-import type { TAG } from '@/types';
-defineProps<{
-  active: string | number;
-  title?: string;
-  list: TAG[];
-}>();
+defineProps({
+  title: {type: String, default: ''},
+  active: {type: [String, Number], required: true, default: -1},
+  list: {type: Array, required: true, default: () => []},
+});
 const emits = defineEmits(['update:active']);
-
 const handleClick = (v: string | number) => emits('update:active', v);
 </script>
 
@@ -14,13 +12,12 @@ const handleClick = (v: string | number) => emits('update:active', v);
   <div class="tags">
     <span class="left" v-if="title">{{ title }}：</span>
     <a-space wrap>
-      <a-tag
-        v-for="item in list"
-        :key="item.value"
-        :checkable="true"
-        :checked="item.value === active"
-        :color="item.value === active ? 'arcoblue' : ''"
-        @click="handleClick(item.value)"
+      <a-tag v-for="item in list"
+             :key="item.value"
+             :checkable="true"
+             :checked="item.value === active"
+             :color="item.value === active ? 'arcoblue' : ''"
+             @click="handleClick(item.value)"
       >
         {{ item.title }}
       </a-tag>
@@ -34,6 +31,7 @@ const handleClick = (v: string | number) => emits('update:active', v);
   margin-bottom: 15px;
   font-size: 12px;
   display: flex;
+
   .left {
     margin-right: 15px;
     margin-top: 5px;

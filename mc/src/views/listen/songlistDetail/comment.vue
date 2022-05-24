@@ -1,18 +1,40 @@
 <script lang="ts" setup>
-import dayjs from 'dayjs';
-import listen_R from '@/apis/listen/typeResult';
+import MyImage from '@/components/myImage/index.vue';
 
-const props = defineProps<{ list: listen_R.COMMENT[] }>();
+defineProps({
+  list: {type: Array, default: () => []},
+  title: {type: String, default: ''}
+});
 </script>
 
 <template>
-  <a-list>
-    <template #header>精彩评论</template>
-    <a-list-item v-for="item in list">
-      <div>{{ dayjs(item.time).format('YYYY年MM月DD日 HH:mm') }}</div>
-      <div>{{ item.content }}</div>
-    </a-list-item>
-  </a-list>
+  <div>
+    <a-typography-title heading="5">{{ title }}</a-typography-title>
+    <a-list class="ml-14" style="overflow: visible" :bordered="false">
+      <a-list-item class="relative overflow-visible" v-for="item in list">
+        <MyImage class="absolute -left-14" :width="50" :src="item.user.avatarUrl" roundedFull v-if="item.user"/>
+        <div><span class="text-red-600" v-if="item.user">{{ item.user.nickname }}:</span>{{ item.content }}</div>
+        <div class="mt-2">
+          <span class="leading-8">{{ item.timeStr }}</span>
+          <a-space class="float-right">
+            <a-button class="px-2" rounded>点赞<span v-if="item.likedCount">({{ item.likedCount }})</span></a-button>
+            <a-button class="px-2" rounded>分享</a-button>
+            <a-button class="px-2" rounded>评论</a-button>
+          </a-space>
+        </div>
+      </a-list-item>
+    </a-list>
+  </div>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+:deep(.arco-list-split .arco-list-header) {
+  border: none;
+}
+
+:deep(.arco-list-wrapper),
+:deep(.arco-list-spin),
+:deep(.arco-list) {
+  overflow: visible !important;
+}
+</style>

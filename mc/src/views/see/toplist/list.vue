@@ -1,37 +1,20 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
-import type R from '@/apis/see/typeResult';
 import MyImage from '@/components/myImage/index.vue';
-defineProps<{
-  list: R.MV[];
-}>();
 
-const col = 2; // 行个数
-const span = computed(() => 24 / col);
+defineProps({
+  list: {type: Array, default: () => []}
+});
 </script>
 
 <template>
   <div class="list">
     <a-row :gutter="[24, 48]">
       <template v-for="(item, index) in list">
-        <a-col class="col" :span="span">
-          <span class="key txt-noselect">
-            {{ index + 1 }}
-          </span>
+        <a-col class="col" :span="24/2">
+          <span class="key txt-noselect">{{ index + 1 }}</span>
           <router-link :to="{ name: 'SeeMvDetail', query: { id: item.id } }">
-            <MyImage
-              class="cursor-pointer"
-              width="100%"
-              :height="400"
-              :src="item.cover"
-              footer-position="outer"
-              :title="item.name"
-              :description="item.artistName"
-              rounded
-            />
-            <span class="playCount">
-              <icon-play-arrow />{{ item.playCount }}
-            </span>
+            <MyImage class="cursor-pointer" width="100%" :height="400" :src="item.cover" footer-position="outer" :title="item.name" :description="item.artistName" rounded/>
+            <span class="playCount"><icon-play-arrow/>{{ item.playCount }}</span>
           </router-link>
         </a-col>
       </template>
@@ -42,12 +25,15 @@ const span = computed(() => 24 / col);
 <style lang="less" scoped>
 .list {
   margin-top: 30px;
+
   .col {
     position: relative;
+
     :deep(.arco-image-footer-caption-title),
     :deep(.arco-image-footer-caption-description) {
       margin-top: 5px;
     }
+
     .key {
       font-size: 200px;
       font-weight: bold;
@@ -59,6 +45,7 @@ const span = computed(() => 24 / col);
       opacity: 0.8;
       pointer-events: none;
     }
+
     .playCount {
       color: #fff;
       font-size: 16px;
@@ -68,6 +55,7 @@ const span = computed(() => 24 / col);
       top: 30px;
     }
   }
+
   .pagination {
     justify-content: center;
     margin-top: 30px;

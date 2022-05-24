@@ -1,15 +1,13 @@
 <script lang="ts">
-export default {
-  name: 'ListenSonglist',
-};
+export default {name: 'ListenSonglist',};
 </script>
 <script lang="ts" setup>
-import { reactive, watch } from 'vue';
+import {reactive, watch} from 'vue';
 import _ from 'lodash';
-import listen from '@/apis/listen';
 import * as TYPE from './_type';
 import * as CONSTANT from './_constant';
-import Tags from './tags.vue';
+import listen from '@/apis/listen';
+import MyTags from '@/components/myTags/index.vue';
 import List from './list.vue';
 
 const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
@@ -19,16 +17,34 @@ const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
 const result2 = reactive<TYPE.RESULT2>(CONSTANT.RESULT2);
 const result3 = reactive<TYPE.RESULT3>(CONSTANT.RESULT3);
 
-const init = async () => {
+
+// 遍历字段
+const mapTags = (arr: any) => arr.map((v: any) => _.assign(v, {title: v.name, value: v.name}))
+
+const getPlaylistHot = async () => {
   const res = await listen.getPlaylistHot(params);
-  result.tags = res.tags;
+  const {tags} = res
+  _.assign(result, {tags: mapTags(tags)})
+}
 
-  const res2 = await listen.getPlaylistCatlist(params2);
-  result2.all = res2.all;
-  result2.categories = res2.categories;
-  result2.sub = res2.sub;
+const getPlaylistCatlist = async () => {
+  const res = await listen.getPlaylistCatlist(params2);
+  const {all, categories, sub} = res
+  _.assign(result2, {all, categories, sub: mapTags(sub)})
+}
 
-  handleClick();
+const getTopPlaylist = async () => {
+  const res = await listen.getTopPlaylist(params3);
+  const {playlists} = res
+  _.assign(result3, {playlists})
+};
+
+const init = async () => {
+
+  await getPlaylistHot()
+  await getPlaylistCatlist()
+  await getTopPlaylist();
+
   // await listen.getPlaylistHighqualityTags();
   // await listen.getTopPlaylistHighquality();
   // await listen.getRelatedPlaylist({ id: 740666719 });
@@ -46,19 +62,14 @@ const init = async () => {
 };
 init();
 
-const handleClick = async () => {
-  const res3 = await listen.getTopPlaylist(params3);
-  result3.playlists = res3.playlists;
-};
-
-watch(params3, handleClick, { deep: true });
+watch(params3, getTopPlaylist, {deep: true});
 </script>
 
 <template>
-  <div class="songlist">
-    <Tags :list="result.tags" v-model:active="params3.cat" />
-    <Tags :list="result2.sub" v-model:active="params3.cat" />
-    <List :list="result3.playlists" />
+  <div>
+    <MyTags v-model:active="params3.cat" :list="result.tags"/>
+    <MyTags v-model:active="params3.cat" :list="result2.sub"/>
+    <List :list="result3.playlists"/>
   </div>
 </template>
 

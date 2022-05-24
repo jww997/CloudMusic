@@ -1,23 +1,26 @@
 <script lang="ts">
-export default {
-  name: 'ListenDj',
-};
+export default {name: 'ListenDj',};
 </script>
 <script lang="ts" setup>
-import { reactive } from 'vue';
-import listen from '@/apis/listen';
+import {reactive} from 'vue';
+import _ from 'lodash';
 import * as TYPE from './_type';
 import * as CONSTANT from './_constant';
-import List from './list.vue';
+import listen from '@/apis/listen';
+import List from '../songlist/list.vue';
+import Box from './box.vue';
 
 const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
-
 const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
 
-const init = async () => {
+const getDjPersonalizeRecommend = async () => {
   const res = await listen.getDjPersonalizeRecommend(params);
-  console.log(res);
-  result.data = res.data;
+  const {data} = res
+  _.assign(result, {data})
+}
+
+const init = async () => {
+  await getDjPersonalizeRecommend()
 
   // const r = await listen.getPersonalizedDjprogram();
   // const r = await listen.getDjBanner();
@@ -48,7 +51,11 @@ init();
 </script>
 
 <template>
-  <List :list="result.data" />
+  <List :list="result.data">
+    <template v-slot="{item}">
+      <Box :name="item.name" :id="item.id" picUrl="item.cover"/>
+    </template>
+  </List>
 </template>
 
 <style lang="less" scoped></style>
