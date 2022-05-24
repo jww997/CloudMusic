@@ -4,6 +4,7 @@ import { useStore } from 'vuex';
 import dayjs from 'dayjs';
 import { ActionTypes } from '@/store/modules/account/action-types';
 import { router } from '@/router';
+import { toggleTheme } from '@zougt/vite-plugin-theme-preprocessor/dist/browser-utils.js';
 
 const store = useStore();
 
@@ -35,13 +36,28 @@ watch(
       ? document.body.setAttribute('arco-theme', 'dark')
       : document.body.removeAttribute('arco-theme')
 );
+
+// 暗黑模式
+const handleDark = () => {
+  darkMode = !darkMode;
+};
+// 切换主题
+const themeIndex = ref<number>(0);
+const handleTheme = () => {
+  const theme = ['theme-default', 'theme-green'];
+  const len = theme.length - 1;
+  const index = len > themeIndex.value ? themeIndex.value + 1 : 0;
+  toggleTheme({ scopeName: theme[index] });
+  themeIndex.value = index;
+};
 </script>
 
 <template>
   <div class="flex-1 flex justify-end items-center">
     <a-space class="mr-4">
-      <icon-moon-fill v-if="darkMode" size="30" @click="darkMode = !darkMode" />
-      <icon-moon v-else size="30" @click="darkMode = !darkMode" />
+      <icon-bg-colors size="30" @click="handleTheme" />
+      <icon-moon-fill v-if="darkMode" size="30" @click="handleDark" />
+      <icon-moon v-else size="30" @click="handleDark" />
     </a-space>
     <a-popover>
       <a-space

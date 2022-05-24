@@ -24,7 +24,8 @@ defineProps<{
     />
     <div
       style="width: 200px; height: 200px"
-      class="absolute top-0 left-0 rounded-lg overflow-hidden"
+      class="absolute top-0 left-0 flex items-center"
+      rounded
     >
       <div
         class="mask w-full h-full opacity-0 duration-100 flex justify-center items-center"
@@ -32,15 +33,20 @@ defineProps<{
         <icon-play-circle-fill size="60" />
       </div>
       <div
-        class="playCount absolute top-4 right-4 duration-100"
+        class="mask playCount absolute top-3 right-3 duration-100 rounded-full px-2 py-1 flex items-center"
         v-if="playCount"
-        >{{ playCount }}</div
       >
+        <icon-play-arrow />{{ playCount }}
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="less" scoped>
+.mask,
+.playCount {
+  color: #fff;
+}
 .mask {
   background-color: rgba(0, 0, 0, 0.7);
 }

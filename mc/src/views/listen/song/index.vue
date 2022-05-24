@@ -28,9 +28,9 @@ if (song !== null) {
 </script>
 
 <template>
-  <div class="song">
+  <div class="w-full h-full flex justify-center items-center">
     <Disc />
-    <Lyric class="right" v-if="song" />
+    <Lyric class="w-1/2 h-100 ml-20" v-if="song" />
   </div>
 </template>
 

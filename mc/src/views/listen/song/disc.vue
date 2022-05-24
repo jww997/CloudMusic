@@ -9,86 +9,62 @@ import image_4 from '@/assets/images/disc/4.png';
 
 const store = useStore();
 
-const state = computed(() => store.state.listen.audio.state);
+const active = computed(() => store.state.listen.audio.state);
 const song = computed(() => store.state.listen.audio.song);
 </script>
 
 <template>
-  <div class="disc" :class="{ active: state }" v-if="song">
-    <MyImage class="cover" :width="300" :src="image_1" />
+  <div class="flex-shrink-0 w-96 h-96 relative" v-if="song">
     <MyImage
-      class="cover"
-      :width="220"
-      :height="220"
-      :src="song.al.picUrl"
-      :alt="song.al.name"
-      show-loader
+      class="w-96 h-96 absolute bottom-0 top-0 right-0 left-0 m-auto z-0"
+      :class="active ? 'running' : 'paused'"
+      :src="image_1"
+      roundedFull
     />
-    <MyImage class="cover" :width="300" :src="image_2" />
-    <MyImage class="cover" :width="300" :src="image_3" />
-    <MyImage class="handle" :width="100" :src="image_4" />
+    <MyImage
+      class="w-80 h-80 absolute bottom-0 top-0 right-0 left-0 m-auto z-10"
+      :class="active ? 'running' : 'paused'"
+      :src="song.al.picUrl"
+      roundedFull
+      :alt="song.al.name"
+    />
+    <MyImage
+      class="w-96 h-96 absolute bottom-0 top-0 right-0 left-0 m-auto z-20"
+      :class="active ? 'running' : 'paused'"
+      :src="image_2"
+      roundedFull
+    />
+    <MyImage
+      class="w-96 h-96 absolute bottom-0 top-0 right-0 left-0 m-auto z-30"
+      :class="active ? 'running' : 'paused'"
+      :src="image_3"
+      roundedFull
+    />
+    <MyImage
+      class="handle w-28 absolute right-0 left-14 -top-24 mx-auto z-40 -rotate-45 duration-700"
+      :class="{ 'rotate-0': active }"
+      :src="image_4"
+      loadType="0"
+    />
   </div>
 </template>
 
 <style lang="less" scoped>
-@width: 300px;
-@keyframes rotate {
-  0% {
-    transform: rotate(0);
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
-  100% {
+  to {
     transform: rotate(360deg);
   }
 }
-.disc {
-  width: @width;
-  height: @width;
-  margin-top: 80px;
-  position: relative;
-  transform: scale(1.2);
-  :deep(.cover) {
-    margin: auto;
-    position: absolute;
-    box-shadow: 0 0 30px 0 #eee;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    top: 0;
-    border-radius: 50%;
-    overflow: hidden;
-    animation: rotate 20s linear infinite paused;
-    -webkit-animation: rotate 20s linear infinite paused;
-    &:first-child {
-      z-index: 1;
-    }
-    &:nth-child(2) {
-      z-index: 2;
-    }
-    &:nth-child(3) {
-      z-index: 3;
-    }
-    &:nth-child(4) {
-      z-index: 4;
-    }
-  }
-  :deep(.handle) {
-    display: block;
-    margin: 0 auto;
-    top: -80px;
-    left: 30px;
-    right: 0;
-    z-index: 4;
-    transform-origin: 18px 18px;
-    transform: rotate(-45deg);
-    transition: 1s;
-  }
-  &.active {
-    :deep(.cover) {
-      animation-play-state: running;
-    }
-    :deep(.handle) {
-      transform: rotate(0deg);
-    }
-  }
+:deep(.running) {
+  animation: spin 20s linear infinite running;
+}
+:deep(.paused) {
+  animation: spin 20s linear infinite paused;
+}
+:deep(.handle) {
+  transform-origin: 18px 18px;
 }
 </style>

@@ -119,5 +119,7 @@ export interface API {
   getPersonalFm: (params?: P.PARAMS_PERSONAL_FM) => Promise<ResType<R.RESULT_PERSONAL_FM>>;
   getHomepageDragonBall: (params?: P.PARAMS_HOMEPAGE_DRAGON_BALL) => Promise<ResType<R.RESULT_HOMEPAGE_DRAGON_BALL>>;
 
+  getListenTogetherStatus: (params?: P.PARAMS_LISTEN_TOGETHER_STATUS) => Promise<R.RESULT_LISTEN_TOGETHER_STATUS>;
+
 
 }

@@ -189,4 +189,6 @@ export interface PARAMS_PERSONALIZED extends LIMIT { }
 export interface PARAMS_PERSONAL_FM { }
 export interface PARAMS_HOMEPAGE_DRAGON_BALL { }
 
+export interface PARAMS_LISTEN_TOGETHER_STATUS { }
+
 

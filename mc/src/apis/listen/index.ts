@@ -130,6 +130,7 @@ const api: T.API = {
   getPersonalFm: (params) => https.get(L.API_PERSONALFM, params),
   getHomepageDragonBall: (params) => https.get(L.API_HOMEPAGE_DRAGON_BALL, params),
   
+  getListenTogetherStatus: (params) => https.get(L.API_LISTEN_TOGETHER_STATUS, params),
   
 
   // #region about comment

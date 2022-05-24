@@ -136,7 +136,7 @@ export enum LISTEN {
   // API_CALENDAR = '/calendar', // 音乐日历
   API_ARTIST_NEW_SONG = '/artist/new/song', // 关注歌手新歌
   API_ARTIST_NEW_MV = '/artist/new/mv', // 关注歌手新 MV
-  // API_LISTEN_TOGETHER_STATUS = '/listen/together/status', // 一起听状态
+  API_LISTEN_TOGETHER_STATUS = '/listen/together/status', // 一起听状态
   // API_BATCH = '/batch', // batch 批量请求接口
   // API_SONG_PURCHASED = '/song/purchased', // 已购单曲
   // API_MLOG_URL = '/mlog/url', // 获取 mlog 播放地址
