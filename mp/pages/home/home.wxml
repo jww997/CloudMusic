@@ -1,0 +1,93 @@
+<import src="/template/box/box-template.wxml" />
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<!-- 底部播放栏 -->
+<template is="playbarTemplate"
+	data="{{isShowPlayBar, isShowPlaylist, isPlayState, playing, playlist, modeIndex, modeList}}" />
+
+<!-- 首页 -->
+<view class="home">
+	<!-- <mp-dialog title="test" show="{{true}}" bindbuttontap="tapDialogButton" buttons="{{[{text: '取消'}, {text: '确认'}]}}">
+		<view>test content</view>
+	</mp-dialog> -->
+
+	<!-- 登录侧边栏 -->
+	<view class="sidebar-wrap">
+		<view class="sidebar">
+			<view class="sidebar-items">
+
+			</view>
+
+
+			<view class="sidebar-bar">
+
+			</view>
+		</view>
+	</view>
+	<!-- 顶部工具栏 -->
+	<view class="toolbar">
+		<text class="{{homeSwiperIndex==0?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex"
+			data-id="0">我的</text>
+		<text class="{{homeSwiperIndex==1?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex"
+			data-id="1">发现</text>
+		<text class="{{homeSwiperIndex==2?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex"
+			data-id="2">云村</text>
+		<text class="{{homeSwiperIndex==3?'toolbar-item-active':''}}" catch:tap="toggleHomeSwiperIndex"
+			data-id="3">视频</text>
+
+		<view class="iconfont icon-sidebar"></view>
+		<view class="iconfont icon-search" catch:tap="toPages" data-to="search"></view>
+	</view>
+	<!-- 主体内容 -->
+	<swiper class="container" current="{{homeSwiperIndex}}" catch:change="toggleHomeSwiperIndex">
+		<!-- 我的 -->
+		<swiper-item class="mine">
+			<scroll-view style="background-image: url('{{mine.profile.backgroundUrl}}');">
+
+				<view class="person">
+					<image src="{{mine.profile.avatarUrl}}" lazy-load="true" catch:tap="toPages" data-to="login"></image>
+					<view class="identity">
+						<view>{{mine.profile.nickname}}</view>
+						<view></view>
+					</view>
+					<view class="member">进入会员中心 ></view>
+				</view>
+
+
+				<view class="menu-items">
+					<block wx:for="{{mine.menus}}" wx:key="index">
+						<view class="menu-item">
+							<view class="iconfont {{item.iconClass}}"></view>
+							<text>{{item.name}}</text>
+						</view>
+					</block>
+				</view>
+
+				<view class="box">
+
+				</view>
+			</scroll-view>
+		</swiper-item>
+		<!-- 发现 -->
+		<swiper-item class="discover">
+			<discover discover="{{discover}}"></discover>
+		</swiper-item>
+		<!-- 云村 -->
+		<swiper-item>云村(待开发)</swiper-item>
+		<!-- 视频 -->
+		<swiper-item class="video">
+			视频（需登录开发）
+			<!-- <scroll-view class="video-group" scroll-x="true" enable-flex="true">
+        <block wx:for="{{video.group}}" wx:key="index">
+          <text class="video-group-item" wx:if="{{index<14}}" catch:tap="toggleVideoGroupIndex" data-id="{{item.id}}" data-index="{{index}}">{{item.name}}</text>
+        </block>
+      </scroll-view> -->
+
+
+
+
+		</swiper-item>
+	</swiper>
+
+</view>

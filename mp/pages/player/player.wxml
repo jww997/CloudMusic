@@ -1,0 +1,50 @@
+<import src="/template/box/box-template.wxml" />
+<import src="/template/loading/loading-template.wxml" />
+<import src="/template/playbar/playbar-template.wxml" />
+
+<!-- 播放器 -->
+<view class="player-wrap" style="background-image: url({{playing.image||''}});">
+
+  <view class="player">
+    <view class="player-phonograph" hidden="{{isShowLyric}}">
+      <image class="player-stick {{isPlayState?'player-stick-turn':'player-disc-new'}}" src="../../images/stick.png" catch:tap="toggleLyricShow" />
+      <view class="player-disc {{isPlayState?'player-disc-running':''}}" catch:tap="toggleLyricShow" catch:longpress="fullImage" data-imgurl="{{playing.image||''}}">
+        <image class="player-img" mode="aspectFill" src="{{playing.image||'/images/chassis.png'}}" />
+        <image class="player-light" src="../../images/light.png" />
+        <image class="player-cover" src="../../images/cover.png" />
+      </view>
+      <view class="player-operation">
+        <view class="iconfont icon-love"></view>
+        <view class="iconfont icon-download-2"></view>
+        <!-- <view class="iconfont icon-polyphonic"></view> -->
+        <view class="iconfont icon-comment" catch:tap="toPages" data-to="comment" data-type="1" data-id="{{playing.id}}"></view>
+        <view class="iconfont icon-playerMore"></view>
+      </view>
+    </view>
+    <view class="player-lyric" hidden="{{!isShowLyric}}" catch:tap="toggleLyricShow">
+      <view class="player-lyric-list" style="transform: translateY(-{{lyric.index*100 + (isScrollLyric? curLrcScrolledHeight*2: 0)}}rpx);{{!isScrollLyric?'transition: transform 1s;':''}}" bind:touchstart="onStartLyric" bind:touchmove="onMoveLyric" bind:touchend="onEndLyric">
+        <view wx:if="{{lyric.nolyric}}">暂无歌词</view>
+        <template is="loadingTemplate" wx:elif="{{!lyric.content.length}}"></template>
+        <block wx:else>
+          <view class="{{index == lyric.index?'current': ''}}" wx:for="{{lyric.content}}" wx:key="index">{{item.lrc}}</view>
+        </block>
+      </view>
+    </view>
+    <view class="player-toolbar">
+      <view class="player-progress">
+        <text>{{currentTime}}</text>
+        <slider backgroundColor="#ccc" activeColor="#f00" block-size="12" value="{{sliderValue}}" max="{{sliderMax}}" bind:change="dragProgressBar"></slider>
+        <text>{{duration}}</text>
+      </view>
+      <view class="player-bar">
+        <view class="iconfont {{modeList[modeIndex-1].iconClass? modeList[modeIndex-1].iconClass : 'icon-orderPlay'}}" catch:tap="toggleModeIndex"></view>
+        <view class="iconfont icon-last" catch:tap="togglePlaying" data-id="-1"></view>
+        <view class="iconfont {{isPlayState?'icon-play':'icon-pause'}}" catch:tap="togglePlayingState"></view>
+        <view class="iconfont icon-next" catch:tap="togglePlaying" data-id="1"></view>
+        <view class="iconfont icon-playlist" catch:tap="togglePlayingListShow" data-type="show"></view>
+      </view>
+    </view>
+  </view>
+  <drawer playlist="{{playlist}}" playing="{{playing}}" isShowPlaylist="{{isShowPlaylist}}" bind:PlayingCut="togglePlayingCut"></drawer>
+
+</view>
