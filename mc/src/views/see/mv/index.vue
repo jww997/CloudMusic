@@ -1,29 +1,29 @@
 <script lang="ts">
-export default {name: 'SeeMv',};
+export default {name: "SeeMv"}
 </script>
 <script lang="ts" setup>
-import {reactive, watch} from 'vue';
-import _ from 'lodash';
-import * as TYPE from './_type';
-import * as CONSTANT from './_constant';
-import see from '@/apis/see';
-import MyTags from '@/components/myTags/index.vue';
-import List from './list.vue';
+import {reactive, watch} from "vue"
+import _ from "lodash"
+import * as TYPE from "./_type"
+import * as CONSTANT from "./_constant"
+import see from "@/apis/see"
+import MyTags from "@/components/myTags/index.vue"
+import List from "./list.vue"
 
-const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
-const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
+const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS)
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT)
 
 const getMvAll = async () => {
-  const res = await see.getMvAll(params);
-  const {count, data, hasMore} = res;
+  const res = await see.getMvAll(params)
+  const {count, data, hasMore} = res
   if (count) _.assign(result, {count})
   _.assign(result, {data, hasMore})
 }
 
 const reset = () => {
   _.assign(params, {offset: 0})
-  _.assign(result, {data: [], hasMore: false});
-};
+  _.assign(result, {data: [], hasMore: false})
+}
 
 const init = async () => {
   await getMvAll()
@@ -33,20 +33,20 @@ const init = async () => {
   // const r = await see.getPersonalizedMv();
   // const r = await see.getVideoTimelineAll();
   // const r = await see.getVideoTimelineRecommend();
-};
-init();
+}
+init()
 
-watch(params, init, {deep: true});
-watch(() => params.area, reset);
-watch(() => params.type, reset);
-watch(() => params.order, reset);
+watch(params, init, {deep: true})
+watch(() => params.area, reset)
+watch(() => params.type, reset)
+watch(() => params.order, reset)
 watch(
     () => result.current,
     (v: number) => {
-      reset();
-      params.offset = (v - 1) * params.limit;
-    }
-);
+      reset()
+      params.offset = (v - 1) * params.limit
+    },
+)
 </script>
 
 <template>

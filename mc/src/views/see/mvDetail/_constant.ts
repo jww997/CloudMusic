@@ -1,25 +1,25 @@
-import * as T from './_type';
+import * as T from "./_type"
 
-export const PARAMS: T.PARAMS = {mvid: ''}
-export const PARAMS2: T.PARAMS2 = {mvid: ''}
-export const PARAMS3: T.PARAMS3 = {id: ''}
-export const PARAMS4: T.PARAMS4 = {id: ''}
+export const PARAMS: T.PARAMS = {mvid: ""}
+export const PARAMS2: T.PARAMS2 = {mvid: ""}
+export const PARAMS3: T.PARAMS3 = {id: ""}
+export const PARAMS4: T.PARAMS4 = {id: ""}
 
 export const RESULT: T.RESULT = {
-    bufferPic: '',
-    bufferPicFS: '',
+    bufferPic: "",
+    bufferPicFS: "",
     data: {
         artistId: 0,
-        artistName: '',
+        artistName: "",
         artists: [],
         duration: 0,
         id: 0,
-        name: '',
+        name: "",
         playCount: 0,
-        cover: ''
+        cover: "",
     },
-    loadingPic: '',
-    loadingPicFS: '',
+    loadingPic: "",
+    loadingPicFS: "",
     mp: {
         cp: 0,
         dl: 0,
@@ -51,13 +51,13 @@ export const RESULT4: T.RESULT4 = {
         expi: 0,
         fee: 0,
         id: 0,
-        md5: '',
-        msg: '',
+        md5: "",
+        msg: "",
         mvFee: 0,
         promotionVo: null,
         r: 0,
         size: 0,
         st: 0,
-        url: '',
-    }
+        url: "",
+    },
 }

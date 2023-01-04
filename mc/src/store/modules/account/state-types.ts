@@ -1,6 +1,6 @@
 export enum StateTypes {
-  VERSION = 'version',
-  TOKEN = 'token',
-  COOKIE = 'cookie',
-  PROFILE = 'profile',
+    VERSION = "version",
+    TOKEN = "token",
+    COOKIE = "cookie",
+    PROFILE = "profile",
 }

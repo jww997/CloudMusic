@@ -1,21 +1,21 @@
 <script lang="ts" setup>
-import {computed} from 'vue';
-import {useStore} from 'vuex';
-import {IconHeart, IconVideoCamera} from "@arco-design/web-vue/es/icon";
-import dayjs from 'dayjs';
-import * as R from '@/apis/listen/typeResult';
-import {ActionTypes} from '@/store/modules/listen/action-types';
+import {computed} from "vue"
+import {useStore} from "vuex"
+import {IconHeart, IconVideoCamera} from "@arco-design/web-vue/es/icon"
+import dayjs from "dayjs"
+import * as R from "@/apis/listen/typeResult"
+import {ActionTypes} from "@/store/modules/listen/action-types"
 
-const store = useStore();
+const store = useStore()
 
 defineProps({
   list: {type: Array, default: () => []},
   columns: {type: Array, default: () => []},
-});
+})
 
-const song = computed(() => store.state.listen.audio.song);
-const activeIndex = computed(() => store.state.listen.audio.list.findIndex((v: R.SONG) => v.id === song.value?.id));
-const handleRowClick = (song: R.SONG) => store.dispatch(ActionTypes.SET_AUDIO_URL, song.id);
+const song = computed(() => store.state.listen.audio.song)
+const activeIndex = computed(() => store.state.listen.audio.list.findIndex((v: R.SONG) => v.id === song.value?.id))
+const handleRowClick = (song: R.SONG) => store.dispatch(ActionTypes.SET_AUDIO_URL, song.id)
 </script>
 
 <template>
@@ -44,7 +44,7 @@ const handleRowClick = (song: R.SONG) => store.dispatch(ActionTypes.SET_AUDIO_UR
               </div>
               <div v-if="dataIndex === 'ar'" class="ar">
                 <template v-for="(item, index) in record.ar">
-                  <span>{{ index !== 0 ? ' / ' : '' }}</span>
+                  <span>{{ index !== 0 ? " / " : "" }}</span>
                   <span class="cursor-pointer txt-hover" @click.stop=" $router.push({ name: 'ListenSingerDetail', query: { id: item.id }, })">{{ item.name }}</span>
                 </template>
               </div>
@@ -52,7 +52,7 @@ const handleRowClick = (song: R.SONG) => store.dispatch(ActionTypes.SET_AUDIO_UR
                 <span class="cursor-pointer txt-hover" @click.stop=" $router.push({ name: 'ListenAlbumDetail', query: { id: record.al.id }, })">{{ record.al.name }}</span>
               </div>
               <div v-if="dataIndex === 'dt'">
-                <span>{{ dayjs(record.dt).format('mm:ss') }}</span>
+                <span>{{ dayjs(record.dt).format("mm:ss") }}</span>
               </div>
             </div>
           </template>

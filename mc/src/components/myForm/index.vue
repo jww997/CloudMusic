@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { FieldRule } from '@arco-design/web-vue/es/form/interface'
+import {FieldRule} from "@arco-design/web-vue/es/form/interface"
 
 const props = defineProps<{
   model: any; // 表单数据对象
-  layout: 'horizontal' | 'vertical' | 'inline'; // 表单的布局方式，包括水平、垂直、多列
-  size: 'mini' | 'small' | 'medium' | 'large'; // 表单控件的尺寸
-  labelColProps: { span: number; offset: number }; // 标签元素布局选项。参数同 <col> 组件一致	
-  wrapperColProps: { span: number; offset: number }; // 标签元素布局选项。参数同 <col> 组件一致	
-  labelAlign: 'left' | 'right'; // 标签的对齐方向
+  layout: "horizontal" | "vertical" | "inline"; // 表单的布局方式，包括水平、垂直、多列
+  size: "mini" | "small" | "medium" | "large"; // 表单控件的尺寸
+  labelColProps: { span: number; offset: number }; // 标签元素布局选项。参数同 <col> 组件一致
+  wrapperColProps: { span: number; offset: number }; // 标签元素布局选项。参数同 <col> 组件一致
+  labelAlign: "left" | "right"; // 标签的对齐方向
   disabled: boolean; // 是否禁用表单
   rules: Record<string, FieldRule | FieldRule[]>; // 表单项校验规则
   autoLabelWidth: boolean; // 是否开启自动标签宽度，仅在 layout="horizontal" 下生效。
@@ -18,23 +18,23 @@ const props = defineProps<{
     showColon?: boolean; // 是否显示冒号
     noStyle?: boolean; // 是否去除样式
     disabled?: boolean; // 是否禁用
-    help?: ''; // 帮助文案
-    extra?: ''; // 额外显示的文案
+    help?: ""; // 帮助文案
+    extra?: ""; // 额外显示的文案
     required?: boolean; // 是否必须填写
     rules?: FieldRule | FieldRule[]; // 表单项校验规则（优先级高于 form 的 rules）
-    validateStatus?: 'success' | 'warning' | 'error' | 'validating'; // 校验状态
+    validateStatus?: "success" | "warning" | "error" | "validating"; // 校验状态
     validateTrigger?: string[]; // 触发校验的事件
 
-    optionType: 'input'; // input输入框
+    optionType: "input"; // input输入框
   }[]; // 配置对象
-}>();
+}>()
 
 defineEmits([
-  ...['submit', 'submitSuccess', 'submitFailed'],
-  ...['validate', 'validateField', 'resetFields', 'clearValidate', 'setFields']
+  ...["submit", "submitSuccess", "submitFailed"],
+  ...["validate", "validateField", "resetFields", "clearValidate", "setFields"],
 ])
 
-console.log('options = ', props.options)
+console.log("options = ", props.options)
 
 </script>
 
@@ -43,17 +43,13 @@ console.log('options = ', props.options)
 
 
     <a-form ref="formRef" v-bind="$props" @submit="$emit('submit')" @submit-success="$emit('submitSuccess')"
-      @submit-failed="$emit('submitFailed')" @validate="$emit('validate')" @validateField="$emit('validateField')"
-      @resetFields="$emit('resetFields')" @clearValidate="$emit('clearValidate')" @setFields="$emit('setFields')">
+            @submit-failed="$emit('submitFailed')" @validate="$emit('validate')" @validateField="$emit('validateField')"
+            @resetFields="$emit('resetFields')" @clearValidate="$emit('clearValidate')" @setFields="$emit('setFields')">
       <template v-for="item in options">
         <a-form-item v-bind="item">
           <template v-if="item.optionType === 'input'">
-            <a-input v-model="model[item.field]" />
+            <a-input v-model="model[item.field]"/>
           </template>
-
-
-
-
 
 
         </a-form-item>

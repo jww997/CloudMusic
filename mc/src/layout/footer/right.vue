@@ -1,28 +1,28 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { useStore } from 'vuex';
-import Lyric from './lyric.vue';
-import List from './list.vue';
+import {computed} from "vue"
+import {useStore} from "vuex"
+import Lyric from "./lyric.vue"
+import List from "./list.vue"
 
-const store = useStore();
+const store = useStore()
 
-const currentTime = computed<number>(() => store.getters.currentTime);
-const duration = computed<number>(() => store.getters.duration);
+const currentTime = computed<number>(() => store.getters.currentTime)
+const duration = computed<number>(() => store.getters.duration)
 </script>
 
 <template>
   <a-space class="flex-1 flex justify-end items-center" size="medium">
-    <div> {{ currentTime }} / {{ duration }} </div>
+    <div> {{ currentTime }} / {{ duration }}</div>
     <a-popover :trigger="'hover'">
       <span class="cursor-pointer txt-hover txt-noselect">词</span>
       <template #content>
-        <Lyric />
+        <Lyric/>
       </template>
     </a-popover>
     <a-popover :trigger="'hover'">
-      <icon-menu class="cursor-pointer txt-hover txt-noselect" />
+      <icon-menu class="cursor-pointer txt-hover txt-noselect"/>
       <template #content>
-        <List />
+        <List/>
       </template>
     </a-popover>
   </a-space>

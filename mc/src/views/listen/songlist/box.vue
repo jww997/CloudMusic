@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import MyImage from '@/components/myImage/index.vue';
+import MyImage from "@/components/myImage/index.vue"
 
 defineProps({
   coverImgUrl: {type: String, required: true, default: ""},
   id: {type: Number, required: true, default: 0},
   name: {type: String, required: true, default: ""},
   playCount: {type: Number, default: 0},
-});
+})
 </script>
 
 <template>

@@ -1,51 +1,52 @@
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
-import Phone from './phone.vue';
-import Email from './email.vue';
-import Qr from './qr.vue';
+import {ref, computed} from "vue"
+import Phone from "./phone.vue"
+import Email from "./email.vue"
+import Qr from "./qr.vue"
 
 // 密码加密 jsencrypt / md5
-const loginType = ref<number>(1);
+const loginType = ref<number>(1)
 const title = computed(() =>
-  loginType.value === 1
-    ? '手机号登录'
-    : loginType.value === 2
-    ? '邮箱登录'
-    : loginType.value === 3
-    ? '扫码登录'
-    : '重置密码'
-);
-const handleReset = () => (loginType.value = 4);
+    loginType.value === 1
+        ? "手机号登录"
+        : loginType.value === 2
+            ? "邮箱登录"
+            : loginType.value === 3
+                ? "扫码登录"
+                : "重置密码",
+)
+const handleReset = () => (loginType.value = 4)
 </script>
 
 <template>
   <div class="login">
     <a-typography-title class="title" :heading="3">{{
-      title
-    }}</a-typography-title>
-    <Phone v-if="loginType === 1 || loginType === 4" @reset="handleReset" />
-    <Email v-else-if="loginType === 2" />
-    <Qr v-else-if="loginType === 3" />
+        title
+      }}
+    </a-typography-title>
+    <Phone v-if="loginType === 1 || loginType === 4" @reset="handleReset"/>
+    <Email v-else-if="loginType === 2"/>
+    <Qr v-else-if="loginType === 3"/>
     <a-space class="other" direction="vertical">
       <p>选择其他登录方式</p>
       <a-space>
         <icon-phone
-          size="40"
-          class="cursor-pointer txt-hover"
-          @click="loginType = 1"
-          v-if="loginType !== 1"
+            size="40"
+            class="cursor-pointer txt-hover"
+            @click="loginType = 1"
+            v-if="loginType !== 1"
         />
         <icon-email
-          size="40"
-          class="cursor-pointer txt-hover"
-          @click="loginType = 2"
-          v-if="loginType !== 2"
+            size="40"
+            class="cursor-pointer txt-hover"
+            @click="loginType = 2"
+            v-if="loginType !== 2"
         />
         <icon-qrcode
-          size="40"
-          class="cursor-pointer txt-hover"
-          @click="loginType = 3"
-          v-if="loginType !== 3"
+            size="40"
+            class="cursor-pointer txt-hover"
+            @click="loginType = 3"
+            v-if="loginType !== 3"
         />
       </a-space>
     </a-space>
@@ -60,9 +61,11 @@ const handleReset = () => (loginType.value = 4);
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   .title {
     margin-bottom: 30px;
   }
+
   .other {
     margin-top: 30px;
   }

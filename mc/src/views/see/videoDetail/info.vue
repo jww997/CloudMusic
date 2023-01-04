@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import dayjs from 'dayjs';
-import type R from '@/apis/see/typeResult';
-import MyImage from '@/components/myImage/index.vue';
+import dayjs from "dayjs"
+import type R from "@/apis/see/typeResult"
+import MyImage from "@/components/myImage/index.vue"
+
 defineProps<{
   data: R.VIDEO2;
 
@@ -9,7 +10,7 @@ defineProps<{
   liked: boolean;
   likedCount: number;
   shareCount: number;
-}>();
+}>()
 </script>
 
 <template>
@@ -32,27 +33,27 @@ defineProps<{
       <a-button-group>
         <a-button>
           <a-space>
-            <icon-thumb-up-fill v-if="liked" />
-            <icon-thumb-up v-else />
+            <icon-thumb-up-fill v-if="liked"/>
+            <icon-thumb-up v-else/>
             <span>{{ likedCount }}</span>
           </a-space>
         </a-button>
         <a-button>
           <a-space>
-            <icon-star />
+            <icon-star/>
             <span>{{ commentCount }}</span>
           </a-space>
         </a-button>
         <a-button>
           <a-space>
-            <icon-share-internal />
+            <icon-share-internal/>
             <span>{{ shareCount }}</span>
           </a-space>
         </a-button>
       </a-button-group>
       <a-space>
         <span
-          >发布时间：{{ dayjs(data.publishTime).format('YYYY-MM-DD') }}</span
+        >发布时间：{{ dayjs(data.publishTime).format("YYYY-MM-DD") }}</span
         >
         <span>播放：{{ data.playTime }}</span>
       </a-space>
@@ -63,11 +64,13 @@ defineProps<{
 <style lang="less" scoped>
 .info {
   max-width: 90%;
+
   #videoRef {
     height: 450px;
     border-radius: 10px;
     box-shadow: 0 0 30px #aaa;
   }
+
   .artists .cover {
     border-radius: 50%;
   }

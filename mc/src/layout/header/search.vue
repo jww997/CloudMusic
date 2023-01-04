@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { reactive } from 'vue';
-import _ from 'lodash';
-import listen from '@/apis/listen/index';
-import { router } from '@/router';
+import {reactive} from "vue"
+import _ from "lodash"
+import listen from "@/apis/listen/index"
+import {router} from "@/router"
 
 const config = reactive<{
   realkeyword: string;
@@ -14,53 +14,54 @@ const config = reactive<{
     third: null;
   }[];
 }>({
-  realkeyword: '',
-  showKeyword: '',
+  realkeyword: "",
+  showKeyword: "",
   hots: [],
-});
+})
 const handleInput = async (keywords: string = config.realkeyword) => {
-  config.realkeyword = keywords;
-};
+  config.realkeyword = keywords
+}
 const handleSearch = async () => {
-  const keywords: string = config.realkeyword;
-  router.push({ name: 'ListenSearch', query: { keywords, index: 0 } });
-};
+  const keywords: string = config.realkeyword
+  router.push({name: "ListenSearch", query: {keywords, index: 0}})
+}
 const handleClick = (v: string) => {
-  config.realkeyword = v;
-  handleSearch();
-};
+  config.realkeyword = v
+  handleSearch()
+}
 const init = async () => {
   const {
-    data: { realkeyword, showKeyword },
-  } = await listen.getSearchDefault();
-  _.assign(config, { realkeyword, showKeyword });
+    data: {realkeyword, showKeyword},
+  } = await listen.getSearchDefault()
+  _.assign(config, {realkeyword, showKeyword})
 
   const {
-    result: { hots },
-  } = await listen.getSearchHot();
+    result: {hots},
+  } = await listen.getSearchHot()
   // const res = await listen.getSearchHotDetail();
-  config.hots = hots;
-};
-init();
+  config.hots = hots
+}
+init()
 </script>
 
 <template>
   <a-space class="flex-1">
     <a-dropdown>
       <a-input-search
-        :style="{ width: '320px' }"
-        :placeholder="config.showKeyword"
-        search-button
-        @input="handleInput"
-        @search="handleSearch"
-        @press-enter="handleSearch"
+          :style="{ width: '320px' }"
+          :placeholder="config.showKeyword"
+          search-button
+          @input="handleInput"
+          @search="handleSearch"
+          @press-enter="handleSearch"
       />
       <template #content>
         <a-space>
           <a-button
-            v-for="item in config.hots"
-            @click="() => handleClick(item.first)"
-            >{{ item.first }}</a-button
+              v-for="item in config.hots"
+              @click="() => handleClick(item.first)"
+          >{{ item.first }}
+          </a-button
           >
         </a-space>
       </template>

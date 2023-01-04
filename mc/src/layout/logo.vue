@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { Icon } from '@arco-design/web-vue';
+import {Icon} from "@arco-design/web-vue"
 // import image_1 from '@/assets/images/logo/1.png';
-import MyImage from '@/components/myImage/index.vue';
+import MyImage from "@/components/myImage/index.vue"
 
-const src: string = 'https://at.alicdn.com/t/font_180975_ue66sq60vyd.js';
-const IconFont = Icon.addFromIconFontCn({ src });
+const src: string = "https://at.alicdn.com/t/font_180975_ue66sq60vyd.js"
+const IconFont = Icon.addFromIconFontCn({src})
 </script>
 
 <template>

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import MyImage from '@/components/myImage/index.vue';
-import dayjs from 'dayjs'
+import MyImage from "@/components/myImage/index.vue"
+import dayjs from "dayjs"
 
 defineProps({
-  detail: {type: Object, default: () => ({})}
-});
+  detail: {type: Object, default: () => ({})},
+})
 </script>
 
 <template>
@@ -15,7 +15,7 @@ defineProps({
       <a-space class="my-2" v-if="detail.creator">
         <MyImage :width="30" :src="detail.creator.avatarUrl" roundedFull/>
         <span>{{ detail.creator.nickname }}</span>
-        <span>{{ dayjs(detail.creator.createTime).format('YYYY-MM-DD') }}创建</span>
+        <span>{{ dayjs(detail.creator.createTime).format("YYYY-MM-DD") }}创建</span>
       </a-space>
       <a-space class="my-2">
         <a-button class="px-2" rounded>播放全部</a-button>

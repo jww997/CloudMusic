@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-import {ref} from 'vue';
-import account from '@/apis/account/index';
-import account_R from '@/apis/account/typeResult';
-import {useStore} from 'vuex';
+import {ref} from "vue"
+import account from "@/apis/account/index"
+import account_R from "@/apis/account/typeResult"
+import {useStore} from "vuex"
 
-import List from '@/views/listen/songlist/list.vue';
-import MyImage from '@/components/myImage/index.vue';
+import List from "@/views/listen/songlist/list.vue"
+import MyImage from "@/components/myImage/index.vue"
 
-const store = useStore();
+const store = useStore()
 
-const uid = '344460908';
-const results1 = ref<account_R.RESULT_USER_DETAIL>();
-const results2 = ref<account_R.RESULT_USER_PLAYLIST>();
+const uid = "344460908"
+const results1 = ref<account_R.RESULT_USER_DETAIL>()
+const results2 = ref<account_R.RESULT_USER_PLAYLIST>()
 
 const init = async () => {
 
-  results1.value = await account.getUserDetail({uid});
-  results2.value = await account.getUserPlaylist({uid});
+  results1.value = await account.getUserDetail({uid})
+  results2.value = await account.getUserPlaylist({uid})
   // await account.getUserAccount();
   // await account.getUserSubcount();
   // await account.getUserLevel();
@@ -47,8 +47,8 @@ const init = async () => {
   // await account.getEventDel({ evId: 21447285184 });
   // await account.getFollow({ id: 21447485184, t: 1 });
   // await account.getUserRecord({ uid, type: 1 });
-};
-init();
+}
+init()
 </script>
 
 <template>

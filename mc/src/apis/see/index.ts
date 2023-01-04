@@ -2,9 +2,9 @@
  * @description 视频
  * @author Gavin
  */
-import {https} from '@/utils/https';
-import {SEE as S} from '@/constant/api/see';
-import * as T from './type';
+import {https} from "@/utils/https"
+import {SEE as S} from "@/constant/api/see"
+import * as T from "./type"
 
 const api: T.API = {
     // #region about video
@@ -26,6 +26,6 @@ const api: T.API = {
     getVideoDetailInfo: (params) => https.get(S.API_VIDEO_DETAIL_INFO, params),
     getVideoUrl: (params) => https.get(S.API_VIDEO_URL, params),
     // #endregion
-};
+}
 
-export default api;
+export default api

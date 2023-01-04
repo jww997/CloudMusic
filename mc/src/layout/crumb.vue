@@ -1,25 +1,25 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { RouteLocationMatched, onBeforeRouteUpdate } from 'vue-router';
-import { router } from '@/router';
+import {ref} from "vue"
+import {RouteLocationMatched, onBeforeRouteUpdate} from "vue-router"
+import {router} from "@/router"
 
 type CRUMB = { name: string; title: string };
-const crumb = ref<CRUMB[]>();
+const crumb = ref<CRUMB[]>()
 type SETCRUMB = (arr: RouteLocationMatched[]) => void;
 const setCrumb: SETCRUMB = (arr) => {
   crumb.value = arr.map((item) => {
     return {
       name: <string>item.name,
       title: <string>item.meta.locale,
-    };
-  });
-};
+    }
+  })
+}
 
 const init = () => {
-  setCrumb(router.currentRoute.value.matched);
-  onBeforeRouteUpdate((to, _) => setCrumb(to.matched));
-};
-init();
+  setCrumb(router.currentRoute.value.matched)
+  onBeforeRouteUpdate((to, _) => setCrumb(to.matched))
+}
+init()
 </script>
 
 <template>

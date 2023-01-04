@@ -1,8 +1,8 @@
-import type {TableColumn} from '@arco-design/web-vue/es/table/interface';
-import * as T from './_type';
+import type {TableColumn} from "@arco-design/web-vue/es/table/interface"
+import * as T from "./_type"
 
-export const PARAMS: T.PARAMS = {id: ''}
-export const PARAMS2: T.PARAMS2 = {id: '', limit: 20, offset: 0, before: ''}
+export const PARAMS: T.PARAMS = {id: ""}
+export const PARAMS2: T.PARAMS2 = {id: "", limit: 20, offset: 0, before: ""}
 
 export const RESULT: T.RESULT = {
     privileges: {
@@ -34,17 +34,17 @@ export const RESULT: T.RESULT = {
         adType: 0,
         anonimous: false,
         cloudTrackCount: 0,
-        commentThreadId: '',
+        commentThreadId: "",
         coverImgId: 0,
-        coverImgId_str: '',
-        coverImgUrl: '',
+        coverImgId_str: "",
+        coverImgUrl: "",
         coverStatus: 0,
         createTime: 0,
         creator: null,
-        description: '',
+        description: "",
         highQuality: false,
         id: 0,
-        name: '',
+        name: "",
         newImported: false,
         ordered: false,
         playCount: 0,
@@ -79,12 +79,12 @@ export const RESULT2: T.RESULT2 = {
     topComments: [],
     userId: 0,
     more: false,
-    total: 0
+    total: 0,
 }
 
 export const COLUMNS: TableColumn[] = [
-    {title: '歌曲', dataIndex: 'name'},
-    {title: '歌手', dataIndex: 'ar'},
-    {title: '专辑', dataIndex: 'al'},
-    {title: '时长', dataIndex: 'dt'},
-];
+    {title: "歌曲", dataIndex: "name"},
+    {title: "歌手", dataIndex: "ar"},
+    {title: "专辑", dataIndex: "al"},
+    {title: "时长", dataIndex: "dt"},
+]

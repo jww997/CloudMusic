@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import MyImage from '@/components/myImage/index.vue';
+import MyImage from "@/components/myImage/index.vue"
 
 defineProps({
   list: {type: Array, default: () => []},
   total: {type: Number, default: 0},
   current: {type: Number, default: 0},
-});
+})
 
-const emits = defineEmits(['update:current']);
+const emits = defineEmits(["update:current"])
 
-const handleChange = (v: string) => emits('update:current', v);
+const handleChange = (v: string) => emits("update:current", v)
 </script>
 
 <template>

@@ -1,56 +1,56 @@
 <script lang="ts" setup>
-import {ref, computed, watch} from 'vue';
-import {useStore} from 'vuex';
-import {IconBgColors, IconMoonFill, IconMoon} from "@arco-design/web-vue/es/icon";
-import dayjs from 'dayjs';
-import {ActionTypes} from '@/store/modules/account/action-types';
-import {router} from '@/router';
-import {toggleTheme} from '@zougt/vite-plugin-theme-preprocessor/dist/browser-utils.js';
+import {ref, computed, watch} from "vue"
+import {useStore} from "vuex"
+import {IconBgColors, IconMoonFill, IconMoon} from "@arco-design/web-vue/es/icon"
+import dayjs from "dayjs"
+import {ActionTypes} from "@/store/modules/account/action-types"
+import {router} from "@/router"
+import {toggleTheme} from "@zougt/vite-plugin-theme-preprocessor/dist/browser-utils.js"
 
-const store = useStore();
+const store = useStore()
 
-const hour = computed<number>(() => dayjs().get('hour'));
-const darkMode = ref<boolean>(false);
+const hour = computed<number>(() => dayjs().get("hour"))
+const darkMode = ref<boolean>(false)
 
 const logout = () => {
-  store.dispatch(ActionTypes.SET_ACCOUNT_LOGOUT);
-  router.push({name: 'AccountLogin'});
-};
+  store.dispatch(ActionTypes.SET_ACCOUNT_LOGOUT)
+  router.push({name: "AccountLogin"})
+}
 
-const profile = computed(() => store.state.account.profile);
-const cookie = computed(() => store.state.account.cookie);
+const profile = computed(() => store.state.account.profile)
+const cookie = computed(() => store.state.account.cookie)
 
 const init = () => {
-  darkMode.value = hour.value < 6 || 18 < hour.value;
-};
-setTimeout(() => init());
+  darkMode.value = hour.value < 6 || 18 < hour.value
+}
+setTimeout(() => init())
 
 watch(
     () => hour.value,
-    (v) => (darkMode.value = v < 6 || 18 < v)
-);
+    (v) => (darkMode.value = v < 6 || 18 < v),
+)
 
 watch(
     () => darkMode.value,
     () =>
         darkMode.value
-            ? document.body.setAttribute('arco-theme', 'dark')
-            : document.body.removeAttribute('arco-theme')
-);
+            ? document.body.setAttribute("arco-theme", "dark")
+            : document.body.removeAttribute("arco-theme"),
+)
 
 // 暗黑模式
 const handleDark = () => {
-  darkMode.value = !darkMode.value;
-};
+  darkMode.value = !darkMode.value
+}
 // 切换主题
-const themeIndex = ref<number>(0);
+const themeIndex = ref<number>(0)
 const handleTheme = () => {
-  const theme = ['theme-default', 'theme-green'];
-  const len = theme.length - 1;
-  const index = len > themeIndex.value ? themeIndex.value + 1 : 0;
-  toggleTheme({scopeName: theme[index]});
-  themeIndex.value = index;
-};
+  const theme = ["theme-default", "theme-green"]
+  const len = theme.length - 1
+  const index = len > themeIndex.value ? themeIndex.value + 1 : 0
+  toggleTheme({scopeName: theme[index]})
+  themeIndex.value = index
+}
 </script>
 
 <template>

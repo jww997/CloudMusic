@@ -1,29 +1,29 @@
 <script lang="ts">
-export default {name: 'ListenAlbumDetail',};
+export default {name: "ListenAlbumDetail"}
 </script>
 <script lang="ts" setup>
-import {reactive} from 'vue';
-import {useRoute} from 'vue-router';
-import _ from 'lodash';
-import * as TYPE from './_type';
-import * as CONSTANT from './_constant';
-import listen from '@/apis/listen';
-import List from '../songlistDetail/list.vue';
+import {reactive} from "vue"
+import {useRoute} from "vue-router"
+import _ from "lodash"
+import * as TYPE from "./_type"
+import * as CONSTANT from "./_constant"
+import listen from "@/apis/listen"
+import List from "../songlistDetail/list.vue"
 
-const route = useRoute();
+const route = useRoute()
 
-const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
-const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
+const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS)
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT)
 
 
 const getAlubum = async () => {
-  const res = await listen.getAlubum(params);
+  const res = await listen.getAlubum(params)
   _.assign(result, {...res})
 
 }
 
 const init = async () => {
-  const id = <string>route.query.id;
+  const id = <string>route.query.id
   _.assign(params, {id})
   await getAlubum()
 
@@ -33,8 +33,8 @@ const init = async () => {
   // const r = await listen.getAlubumNewest({ id });
   // const r = await listen.getCommentAlubum({id});
   // console.log(r);
-};
-init();
+}
+init()
 </script>
 
 <template>

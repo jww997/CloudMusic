@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import R from '@/apis/listen/typeResult';
-import List from '@/views/listen/songlist/list.vue';
-import Box from '@/views/listen/dj/box.vue';
+import R from "@/apis/listen/typeResult"
+import List from "@/views/listen/songlist/list.vue"
+import Box from "@/views/listen/dj/box.vue"
 
 defineProps<{
   searchQcReminder: null;
   djRadiosCount: number;
   djRadios: R.RADIO[];
-}>();
+}>()
 </script>
 
 <template>

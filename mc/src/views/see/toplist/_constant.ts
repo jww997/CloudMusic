@@ -1,8 +1,8 @@
-import * as T from './_type';
-import {TAG} from '@/types';
+import * as T from "./_type"
+import {TAG} from "@/types"
 
 export const PARAMS: T.PARAMS = {
-    area: '内地',
+    area: "内地",
     limit: 30, // 取出数量
     offset: 0, // 偏移数量
 }
@@ -16,9 +16,9 @@ export const RESULT: T.RESULT = {
 
 export const AREA: TAG[] = [
     // { title: '全部', value: '全部' },
-    {title: '内地', value: '内地'},
-    {title: '港台', value: '港台'},
-    {title: '欧美', value: '欧美'},
-    {title: '韩国', value: '韩国'},
-    {title: '日本', value: '日本'},
+    {title: "内地", value: "内地"},
+    {title: "港台", value: "港台"},
+    {title: "欧美", value: "欧美"},
+    {title: "韩国", value: "韩国"},
+    {title: "日本", value: "日本"},
 ]

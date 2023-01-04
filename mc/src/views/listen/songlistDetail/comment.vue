@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import MyImage from '@/components/myImage/index.vue';
+import MyImage from "@/components/myImage/index.vue"
 
 defineProps({
   list: {type: Array, default: () => []},
-  title: {type: String, default: ''}
-});
+  title: {type: String, default: ""},
+})
 </script>
 
 <template>

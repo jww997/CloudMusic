@@ -1,5 +1,5 @@
-import * as P from './typeParams';
-import * as R from './typeResult';
+import * as P from "./typeParams"
+import * as R from "./typeResult"
 
 export interface API {
     getMvAll: (params?: Partial<P.PARAMS_MV_ALL>) => Promise<R.RESULT_MV_ALL>

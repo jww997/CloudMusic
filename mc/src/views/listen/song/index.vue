@@ -1,17 +1,17 @@
 <script lang="ts">
-export default {name: 'ListenSong',};
+export default {name: "ListenSong"}
 </script>
 <script lang="ts" setup>
-import {computed} from 'vue';
-import {useStore} from 'vuex';
-import {useRoute} from 'vue-router';
-import Disc from './disc.vue';
-import Lyric from '@/layout/footer/lyric.vue';
+import {computed} from "vue"
+import {useStore} from "vuex"
+import {useRoute} from "vue-router"
+import Disc from "./disc.vue"
+import Lyric from "@/layout/footer/lyric.vue"
 
-const store = useStore();
-const route = useRoute();
+const store = useStore()
+const route = useRoute()
 
-const song = computed(() => store.state.listen.audio.song);
+const song = computed(() => store.state.listen.audio.song)
 // if (song !== null) {
 //   const id = <string>route.query.id;
 //   store.dispatch(ActionTypes.SET_AUDIO_DETAIL, id);

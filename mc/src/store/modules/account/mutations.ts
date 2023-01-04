@@ -1,7 +1,7 @@
-import {MutationTree} from 'vuex';
-import {MutationsTypes} from './mutations-types';
+import {MutationTree} from "vuex"
+import {MutationsTypes} from "./mutations-types"
 import {StateTypes} from "./state-types"
-import type {State} from './state';
+import type {State} from "./state"
 import {storage} from "@/utils/storage"
 
 export type Mutations<S = State> = {
@@ -28,4 +28,4 @@ export const mutations: MutationTree<State> & Mutations = {
         storage.set(MutationsTypes.ACCOUNT_PROFILE, val)
         state[StateTypes.PROFILE] = val
     },
-};
+}

@@ -1,11 +1,11 @@
 <script lang="ts">
-export default {name: 'ListenAlbum',};
+export default {name: "ListenAlbum"}
 </script>
 <script lang="ts" setup>
 
 const init = async () => {
-};
-init();
+}
+init()
 </script>
 
 <template>

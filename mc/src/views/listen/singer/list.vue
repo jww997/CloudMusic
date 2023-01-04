@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import MyImage from '@/components/myImage/index.vue';
+import MyImage from "@/components/myImage/index.vue"
 
 defineProps({
-  list: {type: Array, default: () => []}
-});
-const span = 24 / 6;
+  list: {type: Array, default: () => []},
+})
+const span = 24 / 6
 </script>
 
 <template>

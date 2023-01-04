@@ -1,20 +1,20 @@
 <script lang="ts">
-export default {name: 'ListenDj',};
+export default {name: "ListenDj"}
 </script>
 <script lang="ts" setup>
-import {reactive} from 'vue';
-import _ from 'lodash';
-import * as TYPE from './_type';
-import * as CONSTANT from './_constant';
-import listen from '@/apis/listen';
-import List from '../songlist/list.vue';
-import Box from './box.vue';
+import {reactive} from "vue"
+import _ from "lodash"
+import * as TYPE from "./_type"
+import * as CONSTANT from "./_constant"
+import listen from "@/apis/listen"
+import List from "../songlist/list.vue"
+import Box from "./box.vue"
 
-const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS);
-const result = reactive<TYPE.RESULT>(CONSTANT.RESULT);
+const params = reactive<TYPE.PARAMS>(CONSTANT.PARAMS)
+const result = reactive<TYPE.RESULT>(CONSTANT.RESULT)
 
 const getDjPersonalizeRecommend = async () => {
-  const res = await listen.getDjPersonalizeRecommend(params);
+  const res = await listen.getDjPersonalizeRecommend(params)
   const {data} = res
   _.assign(result, {data})
 }
@@ -46,8 +46,8 @@ const init = async () => {
   // const r = await listen.getDjTodayPerfered();
   // const r = await listen.getDjProgram({ rid: 336355127 });
   // const r = await listen.getDjProgramDetail({ id: 1367665101 });
-};
-init();
+}
+init()
 </script>
 
 <template>

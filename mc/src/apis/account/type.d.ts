@@ -1,6 +1,6 @@
-import {ResType} from '@/utils/https';
-import * as P from './typeParams';
-import * as R from './typeResult';
+import {ResType} from "@/utils/https"
+import * as P from "./typeParams"
+import * as R from "./typeResult"
 
 export interface API {
     // #region about login

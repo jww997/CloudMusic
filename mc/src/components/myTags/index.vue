@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 defineProps({
-  title: {type: String, default: ''},
+  title: {type: String, default: ""},
   active: {type: [String, Number], required: true, default: -1},
   list: {type: Array, required: true, default: () => []},
-});
-const emits = defineEmits(['update:active']);
-const handleClick = (v: string | number) => emits('update:active', v);
+})
+const emits = defineEmits(["update:active"])
+const handleClick = (v: string | number) => emits("update:active", v)
 </script>
 
 <template>

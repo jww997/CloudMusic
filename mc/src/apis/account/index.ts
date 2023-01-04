@@ -2,9 +2,9 @@
  * @description 账户
  * @author Gavin
  */
-import {https} from '@/utils/https';
-import {ACCOUNT as A} from '@/constant/api/account';
-import * as T from './type';
+import {https} from "@/utils/https"
+import {ACCOUNT as A} from "@/constant/api/account"
+import * as T from "./type"
 
 const api: T.API = {
     // #region about login
@@ -43,6 +43,6 @@ const api: T.API = {
 
     getInnerVersion: (params) => https.get(A.API_INNER_VERSION, params),
 
-};
+}
 
-export default api;
+export default api

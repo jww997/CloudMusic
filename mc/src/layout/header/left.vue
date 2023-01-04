@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {IconLeft, IconRight} from "@arco-design/web-vue/es/icon";
+import {IconLeft, IconRight} from "@arco-design/web-vue/es/icon"
 
 
 </script>

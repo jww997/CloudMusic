@@ -1,25 +1,25 @@
 <script lang="ts">
 export default {
-  name: 'ListenRecommend',
-};
+  name: "ListenRecommend",
+}
 </script>
 <script lang="ts" setup>
-import { ref, computed, onMounted } from 'vue';
-import listen from '@/apis/listen';
-import List from '@/views/listen/songlist/list.vue';
-import listen_R from '@/apis/listen/typeResult';
+import {ref, computed, onMounted} from "vue"
+import listen from "@/apis/listen"
+import List from "@/views/listen/songlist/list.vue"
+import listen_R from "@/apis/listen/typeResult"
 
-const result1 = ref<listen_R.RESULT_PERSONALIZED>();
-const result2 = ref<listen_R.RESULT_HOMEPAGE_DRAGON_BALL>();
+const result1 = ref<listen_R.RESULT_PERSONALIZED>()
+const result2 = ref<listen_R.RESULT_HOMEPAGE_DRAGON_BALL>()
 const list = computed(() =>
-  result1.value?.result.map((v) => ({ ...v, coverImgUrl: v.picUrl }))
-);
+    result1.value?.result.map((v) => ({...v, coverImgUrl: v.picUrl})),
+)
 
 const init = async () => {
-  result1.value = await listen.getPersonalized();
-  result2.value = await listen.getHomepageDragonBall();
-};
-init();
+  result1.value = await listen.getPersonalized()
+  result2.value = await listen.getHomepageDragonBall()
+}
+init()
 </script>
 
 <template>
@@ -27,11 +27,11 @@ init();
     <div v-if="result2">
       <a-space v-for="item in result2.data">
         <div class="frame">
-          <img :width="50" :src="item.iconUrl" />
+          <img :width="50" :src="item.iconUrl"/>
         </div>
       </a-space>
     </div>
-    <List :list="list" v-if="list" />
+    <List :list="list" v-if="list"/>
   </div>
 </template>
 
@@ -44,6 +44,7 @@ init();
   background-color: #fdf4f6;
   margin: 0 auto;
   overflow: hidden;
+
   img {
     position: absolute;
     left: -80px;

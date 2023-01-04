@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import MyImage from '@/components/myImage/index.vue';
+import MyImage from "@/components/myImage/index.vue"
 
 defineProps({
-  detail: {type: Object, default: () => ({})}
-});
+  detail: {type: Object, default: () => ({})},
+})
 </script>
 
 <template>

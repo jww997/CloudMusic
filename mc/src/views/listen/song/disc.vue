@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import {computed} from 'vue';
-import {useStore} from 'vuex';
-import MyImage from '@/components/myImage/index.vue';
-import image_1 from '@/assets/images/disc/1.png';
-import image_2 from '@/assets/images/disc/2.png';
-import image_3 from '@/assets/images/disc/3.png';
-import image_4 from '@/assets/images/disc/4.png';
+import {computed} from "vue"
+import {useStore} from "vuex"
+import MyImage from "@/components/myImage/index.vue"
+import image_1 from "@/assets/images/disc/1.png"
+import image_2 from "@/assets/images/disc/2.png"
+import image_3 from "@/assets/images/disc/3.png"
+import image_4 from "@/assets/images/disc/4.png"
 
-const store = useStore();
+const store = useStore()
 
-const active = computed(() => store.state.listen.audio.state);
-const song = computed(() => store.state.listen.audio.song);
+const active = computed(() => store.state.listen.audio.state)
+const song = computed(() => store.state.listen.audio.song)
 </script>
 
 <template>

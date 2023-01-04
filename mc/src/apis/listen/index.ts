@@ -2,9 +2,9 @@
  * @description 音乐
  * @author Gavin
  */
-import {https} from '@/utils/https';
-import {LISTEN as L} from '@/constant/api/listen';
-import * as T from './type';
+import {https} from "@/utils/https"
+import {LISTEN as L} from "@/constant/api/listen"
+import * as T from "./type"
 
 const api: T.API = {
     // #region about playlist
@@ -135,6 +135,6 @@ const api: T.API = {
     // #endregion
 
 
-};
+}
 
-export default api;
+export default api
