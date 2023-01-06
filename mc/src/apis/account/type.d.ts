@@ -23,7 +23,8 @@ export interface API {
     getUserLevel: (params?: P.PARAMS_USER_LEVEL) => Promise<R.RESULT_USER_LEVEL>;
     getUserBinding: (params: P.PARAMS_USER_BINDING) => Promise<R.RESULT_USER_BINDING>;
     getUserPeplacephone: (params: P.PARAMS_USER_REPLACEPHONE) => Promise<R.RESULT_USER_REPLACEPHONE>;
-    getUserUpdate: (params: P.PARAMS_USER_UPDATE) => Promise<R.RESULT_USER_UPDATE>;
+    getNicknameCheck: (params: P.PARAMS_NICKNAME_CHECK) => Promise<R.RESULT_NICKNAME_CHECK>;
+    postUserUpdate: (params: P.PARAMS_USER_UPDATE) => Promise<R.RESULT_USER_UPDATE>;
     getUserPlaylist: (params: P.PARAMS_USER_PLAYLIST) => Promise<R.RESULT_USER_PLAYLIST>;
     getUserCommentHistory: (params: P.PARAMS_USERCOMMENT_HISTORY) => Promise<R.RESULT_USERCOMMENT_HISTORY>;
     getUserDj: (params: P.PARAMS_USERCOMMENT_DJ) => Promise<R.RESULT_USERCOMMENT_DJ>;
@@ -34,6 +35,7 @@ export interface API {
     getEventDel: (params: P.PARAMS_EVENT_DEL) => Promise<R.RESULT_EVENT_DEL>;
     getFollow: (params: P.PARAMS_FOLLOW) => Promise<R.RESULT_FOLLOW>;
     getUserRecord: (params: P.PARAMS_USER_RECORD) => Promise<R.RESULT_USER_RECORD>;
+    uploadAvatarUpload: (params: P.PARAMS_AVATAR_UPLOAD) => Promise<R.RESULT_AVATAR_UPLOAD>;
 
 
     // #endregion

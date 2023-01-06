@@ -7,6 +7,8 @@ import {ActionTypes as ActionTypes_A} from "@/store/modules/account/action-types
 const store = useStore()
 // 接口版本
 store.dispatch(ActionTypes_A.SET_ACCOUNT_VERSION)
+// 用户信息
+store.dispatch(ActionTypes_A.SET_ACCOUNT_STATUS)
 // 按键监听
 document.addEventListener("keydown", ({key}) => {
   const step = 0.05

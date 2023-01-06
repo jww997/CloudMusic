@@ -20,7 +20,6 @@ const changePercentage = (v: number) =>
 
 const init = async () => {
   const res = await listen.getListenTogetherStatus()
-  console.log("res = ", res)
 }
 init()
 </script>

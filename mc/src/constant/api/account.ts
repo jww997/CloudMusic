@@ -14,7 +14,7 @@ export enum ACCOUNT {
     API_REGISTER_CELLPHONE = "/register/cellphone", // 注册 && 修改密码
     // API_CELLPHONE_EXISTENCE_CHECK = '/cellphone/existence/check', // 检测手机号码是否已注册
     // API_ACTIVATE_INIT_PROFILE = '/activate/init/profile', // 初始化昵称
-    // API_NICKNAME_CHECK = '/nickname/check', // 重复昵称检测
+    API_NICKNAME_CHECK = '/nickname/check', // 重复昵称检测
     // API_REBIND = '/rebind', // 更换绑定手机
     API_LOGOUT = "/logout", // 退出登录
     API_LOGIN_STATUS = "/login/status", // 登录状态
@@ -25,7 +25,7 @@ export enum ACCOUNT {
     API_USER_BINDING = "/user/binding", // 获取用户绑定信息
     API_USER_REPLACEPHONE = "/user/replacephone", // 获取用户绑定手机
     API_USER_UPDATE = "/user/update", // 更新用户信息
-    // API_AVATAR_UPLOAD = '/avatar/upload', // 更新头像
+    API_AVATAR_UPLOAD = '/avatar/upload', // 更新头像
     // API_COUNTRIES_CODE_LIST = '/countries/code/list', // 国家编码列表
     API_USER_PLAYLIST = "/user/playlist", // 获取用户歌单
     // API_PLAYLIST_UPDATE = '/playlist/update', // 更新歌单

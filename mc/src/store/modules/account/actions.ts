@@ -7,7 +7,6 @@ import type {RESULT_LOGIN} from "@/apis/account/typeResult"
 import type {State} from "./state"
 import {storage} from "@/utils/storage"
 import account from "@/apis/account/index"
-import {router} from "@/router"
 import {settings} from "@/config/default/settings.config"
 
 
@@ -36,34 +35,34 @@ export const actions: ActionTree<State, RootState> & Actions = {
     },
     // 登出
     [ActionTypes.SET_ACCOUNT_LOGOUT]: async ({commit}) => {
-        await account.getLogout()
-        commit(MutationsTypes.ACCOUNT_COOKIE, "")
-        commit(MutationsTypes.ACCOUNT_TOKEN, "")
-        commit(MutationsTypes.ACCOUNT_PROFILE, null)
-        storage.remove(MutationsTypes.ACCOUNT_COOKIE)
-        storage.remove(MutationsTypes.ACCOUNT_TOKEN)
-        storage.remove(MutationsTypes.ACCOUNT_PROFILE)
-        storage.removeCookie(MutationsTypes.ACCOUNT_COOKIE)
-        Message.success("登出成功")
+        try {
+            await account.getLogout()
+            commit(MutationsTypes.ACCOUNT_COOKIE, "")
+            commit(MutationsTypes.ACCOUNT_TOKEN, "")
+            commit(MutationsTypes.ACCOUNT_PROFILE, null)
+            storage.remove(MutationsTypes.ACCOUNT_COOKIE)
+            storage.remove(MutationsTypes.ACCOUNT_TOKEN)
+            storage.remove(MutationsTypes.ACCOUNT_PROFILE)
+            storage.removeCookie(MutationsTypes.ACCOUNT_COOKIE)
+            Message.success("登出成功")
+        } catch (err) {
+        }
     },
     // 登录状态
     [ActionTypes.SET_ACCOUNT_STATUS]: ({dispatch}) => {
         return new Promise(async (resolve, reject) => {
             try {
                 const res = await account.getLoginStatus()
+                const uid = res.data.account?.id + ""
+                // console.log(uid)
+                // const res2 = await account.getUserDetail({uid})
+                // console.log(123, res)
+                // console.log(123, res2)
                 resolve(res)
             } catch (err) {
-                console.log(444, err)
                 reject(err)
             }
         })
-
-
-        // if (res.data.profile === null) {
-        //     await dispatch(ActionTypes.SET_ACCOUNT_LOGOUT)
-        //     await router.push({name: 'AccountLogin'})
-        //     Message.success('请重新登录')
-        // }
     },
 
 }

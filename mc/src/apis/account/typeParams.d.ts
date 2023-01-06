@@ -79,27 +79,27 @@ export interface PARAMS_USER_REPLACEPHONE {
     phone: string // 手机号码
     oldcaptcha: string// 原手机号码的验证码
     captcha: string // 新手机号码的验证码
-    countrycode?: number
-    =
-    86 // 国家地区代码
+    countrycode?: number // 国家地区代码
+}
+
+export interface PARAMS_NICKNAME_CHECK {
+    nickname: string // 昵称
 }
 
 export interface PARAMS_USER_UPDATE {
-    gender: 0 | 1 | 2 // 0保密 1男性 2女性
-    birthday: number // 出生日期,时间戳
-    nickname: string// 用户昵称
-    province: number // 省份id
-    city: number // 城市id
-    signature: string // 用户签名
+    gender?: 0 | 1 | 2 // 0保密 1男性 2女性
+    birthday?: number // 出生日期,时间戳
+    nickname?: string// 用户昵称
+    province?: number // 省份id
+    city?: number // 城市id
+    signature?: string // 用户签名
 }
 
 export interface PARAMS_USER_PLAYLIST extends OFFSET, UID {
 }
 
 export interface PARAMS_USERCOMMENT_HISTORY extends LIMIT, UID {
-    tme?: number
-    =
-    0 // 上一条数据的 time,第一页不需要传,默认为 0
+    tme?: number // 上一条数据的 time,第一页不需要传,默认为 0
 }
 
 export interface PARAMS_USERCOMMENT_DJ extends UID {
@@ -131,6 +131,10 @@ export interface PARAMS_FOLLOW {
 
 export interface PARAMS_USER_RECORD extends UID {
     type: 1 | 0 // 1返回weekData 0返回allData
+}
+
+export interface PARAMS_AVATAR_UPLOAD {
+
 }
 
 // #endregion

@@ -34,23 +34,13 @@ const handleSubmit = async ({values}: { values: PARAMS_LOGIN }) => {
 <template>
   <a-form :model="form" :style="{ width: '600px' }" @submit="handleSubmit">
     <a-form-item field="email" label="邮箱">
-      <a-input v-model="form.email" placeholder="请输入邮箱" allow-clear/>
+      <a-input v-model="form.email" allow-clear placeholder="请输入邮箱"/>
     </a-form-item>
     <a-form-item field="password" label="密码">
-      <a-input-password
-          v-model="form.password"
-          placeholder="请输入密码"
-          allow-clear
-      />
+      <a-input-password v-model="form.password" allow-clear placeholder="请输入密码"/>
     </a-form-item>
     <a-form-item>
-      <a-button
-          type="primary"
-          html-type="submit"
-          :disabled="!(form.email && form.password)"
-      >提交
-      </a-button
-      >
+      <a-button :disabled="!(form.email && form.password)" html-type="submit" type="primary">提交</a-button>
     </a-form-item>
   </a-form>
 </template>

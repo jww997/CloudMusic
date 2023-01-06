@@ -7,9 +7,9 @@ import {AxiosRequestConfig} from "axios"
 export const networkConfig: AxiosRequestConfig = {
     baseURL: "http://localhost:3000", // 为 axios 实例的方法传递相对 URL
     timeout: 5 * 1000, // 指定请求超时的毫秒数
-    method: "get", // 是创建请求时使用的方法
-    responseType: "json", // 表示浏览器将要响应的数据类型
     withCredentials: true, // 表示跨域请求时是否需要使用凭证
+    responseType: "json", // 表示浏览器将要响应的数据类型
+    method: "get", // 是创建请求时使用的方法
 }
 
 interface ResponseErrorText {
@@ -17,6 +17,8 @@ interface ResponseErrorText {
 }
 
 export const responseErrorText: ResponseErrorText = {
+    // 302: "Moved Temporarily",
+
     403: "没有权限",
     404: "访问出错",
     500: "服务器出错",

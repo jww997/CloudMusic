@@ -227,12 +227,24 @@ export interface RESULT_USER_BINDING extends CODE {
     bindings: BINDING[]
 }
 
+export interface RESULT_USER_REPLACEPHONE extends CODE {
+
+}
+
+export interface RESULT_NICKNAME_CHECK extends CODE {
+    candidateNicknames?: []
+    duplicated: boolean
+    nickname: string
+    message?: string
+}
+
 export interface RESULT_CAPTCHA_VERIFY extends CODE {
     message: string
     msg: string
 }
 
 export interface RESULT_USER_UPDATE extends CODE {
+    message?: string
 }
 
 export interface RESULT_USER_PLAYLIST extends CODE {
@@ -458,6 +470,9 @@ export interface RESULT_USER_RECORD extends CODE {
     }[]
 }
 
+export interface RESULT_AVATAR_UPLOAD extends CODE {
+
+}
 
 // #endregion
 

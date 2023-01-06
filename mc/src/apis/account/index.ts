@@ -28,7 +28,8 @@ const api: T.API = {
     getUserLevel: (params) => https.get(A.API_USER_LEVEL, params),
     getUserBinding: (params) => https.get(A.API_USER_BINDING, params),
     getUserPeplacephone: (params) => https.get(A.API_USER_REPLACEPHONE, params),
-    getUserUpdate: (params) => https.get(A.API_USER_UPDATE, params),
+    getNicknameCheck: (params) => https.get(A.API_NICKNAME_CHECK, params),
+    postUserUpdate: (params) => https.post(A.API_USER_UPDATE, params),
     getUserPlaylist: (params) => https.get(A.API_USER_PLAYLIST, params),
     getUserCommentHistory: (params) => https.get(A.API_USER_COMMENT_HISTORY, params),
     getUserDj: (params) => https.get(A.API_USER_DJ, params),
@@ -39,6 +40,7 @@ const api: T.API = {
     getEventDel: (params) => https.get(A.API_EVENT_DEL, params),
     getFollow: (params) => https.get(A.API_FOLLOW, params),
     getUserRecord: (params) => https.get(A.API_USER_RECORD, params),
+    uploadAvatarUpload: (params) => https.get(A.API_AVATAR_UPLOAD, params),
     // #endregion
 
     getInnerVersion: (params) => https.get(A.API_INNER_VERSION, params),

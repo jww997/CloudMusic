@@ -12,6 +12,14 @@ const store = useStore()
 const hour = computed<number>(() => dayjs().get("hour"))
 const darkMode = ref<boolean>(false)
 
+
+
+
+
+
+
+
+
 const logout = () => {
   store.dispatch(ActionTypes.SET_ACCOUNT_LOGOUT)
   router.push({name: "AccountLogin"})
@@ -25,23 +33,12 @@ const init = () => {
 }
 setTimeout(() => init())
 
-watch(
-    () => hour.value,
-    (v) => (darkMode.value = v < 6 || 18 < v),
-)
+watch(() => hour.value, (v) => (darkMode.value = v < 6 || 18 < v),)
 
-watch(
-    () => darkMode.value,
-    () =>
-        darkMode.value
-            ? document.body.setAttribute("arco-theme", "dark")
-            : document.body.removeAttribute("arco-theme"),
-)
+watch(() => darkMode.value, () => darkMode.value ? document.body.setAttribute("arco-theme", "dark") : document.body.removeAttribute("arco-theme"),)
 
 // 暗黑模式
-const handleDark = () => {
-  darkMode.value = !darkMode.value
-}
+const handleDark = () => {darkMode.value = !darkMode.value}
 // 切换主题
 const themeIndex = ref<number>(0)
 const handleTheme = () => {
@@ -56,9 +53,9 @@ const handleTheme = () => {
 <template>
   <div class="flex-1 flex justify-end items-center">
     <a-space class="mr-4">
-      <icon-bg-colors size="30" @click="handleTheme"/>
-      <icon-moon-fill v-if="darkMode" size="30" @click="handleDark"/>
-      <icon-moon v-else size="30" @click="handleDark"/>
+      <IconBgColors size="30" @click="handleTheme"/>
+      <IconMoonFill v-if="darkMode" size="30" @click="handleDark"/>
+      <IconMoon v-else size="30" @click="handleDark"/>
     </a-space>
     <a-popover>
       <a-space

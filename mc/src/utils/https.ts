@@ -3,17 +3,37 @@
  * @author Gavin
  */
 import {Message} from "@arco-design/web-vue"
-import axios, {AxiosInstance} from "axios"
+import axios, {AxiosInstance, AxiosRequestConfig} from "axios"
 import NProgress from "nprogress"
+import dayjs from "dayjs"
+import qs from "qs"
+import _ from "lodash"
 
 import {router} from "@/router"
 import {networkConfig, responseErrorText} from "@/config/default/net.config"
 import {ContentTypeEnum} from "@/constant/common/https"
 import "nprogress/nprogress.css"
 
+import { storage } from './storage';
+import { MutationsTypes } from "@/store/modules/account/mutations-types"
+
 
 // 设置请求头和请求路径`
 const instance: AxiosInstance = axios.create(networkConfig)
+
+// instance.interceptors.request.use(
+//     (config): AxiosRequestConfig<any> => {
+//         const token = window.sessionStorage.getItem('token');
+//         if (token) {
+//             //@ts-ignore
+//             config.headers.token = token;
+//         }
+//         return config;
+//     },
+//     (error) => {
+//         return error;
+//     }
+// );
 
 // 响应拦截
 instance.interceptors.response.use(response => response, async error => {
@@ -61,10 +81,11 @@ export const https: Https = {
         })
     },
     post(url, params = {}) {
+        const timestamp: number = dayjs().valueOf()
         return new Promise(async (resolve, reject) => {
             NProgress.start()
             try {
-                const res = await instance.post(url, JSON.stringify(params))
+                const res = await instance.post(`${url}?timestamp=${timestamp}`, qs.stringify(params))
                 NProgress.done()
                 resolve(res.data)
             } catch (err) {
@@ -77,7 +98,8 @@ export const https: Https = {
         return new Promise(async (resolve, reject) => {
             NProgress.start()
             try {
-                const res = await instance.post(url, file, {headers: {"Content-Type": ContentTypeEnum.FORM_DATA}})
+                const config = {headers: {"Content-Type": ContentTypeEnum.FORM_DATA}}
+                const res = await instance.post(url, file, config)
                 NProgress.done()
                 resolve(res.data)
             } catch (err) {

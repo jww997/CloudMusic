@@ -1,22 +1,28 @@
 <script lang="ts" setup>
-import {ref} from "vue"
-import account from "@/apis/account/index"
-import account_R from "@/apis/account/typeResult"
+import {ref, onMounted} from "vue"
 import {useStore} from "vuex"
+import account from "@/apis/account/index"
+import * as TYPE from "./_type"
+import * as CONSTANT from "./_constant"
 
+import Info from "./info.vue"
 import List from "@/views/listen/songlist/list.vue"
-import MyImage from "@/components/myImage/index.vue"
 
 const store = useStore()
 
 const uid = "344460908"
-const results1 = ref<account_R.RESULT_USER_DETAIL>()
-const results2 = ref<account_R.RESULT_USER_PLAYLIST>()
+const results1 = ref<TYPE.RESULT>(CONSTANT.RESULT)
+const results2 = ref<TYPE.RESULT2>(CONSTANT.RESULT2)
 
-const init = async () => {
+onMounted(async () => {
+  try {
+    results1.value = await account.getUserDetail({uid})
+    results2.value = await account.getUserPlaylist({uid})
 
-  results1.value = await account.getUserDetail({uid})
-  results2.value = await account.getUserPlaylist({uid})
+    console.log(123, results1.value.profile)
+  } catch (err) {
+  }
+
   // await account.getUserAccount();
   // await account.getUserSubcount();
   // await account.getUserLevel();
@@ -25,14 +31,6 @@ const init = async () => {
   //   phone: '15812811722',
   //   oldcaptcha: 1234,
   //   captcha: 1234,
-  // });
-  // await account.getUserUpdate({
-  //   gender: 0,
-  //   birthday: 878745600000,
-  //   nickname: '丶Gavinn',
-  //   province: 440000,
-  //   city: 441900,
-  //   signature: '\n以前的你，哭着哭着就笑了\n现在的你，笑着笑着就哭了',
   // });
   // await account.getUserCommentHistory({ uid });
   // await account.getUserDj({ uid });
@@ -47,29 +45,18 @@ const init = async () => {
   // await account.getEventDel({ evId: 21447285184 });
   // await account.getFollow({ id: 21447485184, t: 1 });
   // await account.getUserRecord({ uid, type: 1 });
-}
-init()
+})
 </script>
 
 <template>
   <div>
-    <div class="user">
-      <MyImage
-          :src="results1.profile.avatarUrl"
-          :width="200"
-          :height="200"
-          rounded
-          v-if="results1"
-      />
-    </div>
-    <List :list="results2?.playlist" v-if="results2"/>
+    <Info v-bind="results1.profile"/>
+    <List v-if="results2" :list="results2?.playlist"/>
   </div>
 </template>
 
 <style lang="less" scoped>
-.user {
-  :deep(.arco-avatar) {
-    overflow: hidden;
-  }
+:deep(.arco-avatar) {
+  overflow: hidden;
 }
 </style>

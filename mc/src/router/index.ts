@@ -4,7 +4,6 @@
  */
 import {createRouter, createWebHashHistory, RouteRecordRaw} from "vue-router"
 import _ from "lodash"
-import Layout from "@/layout/index.vue"
 import {filesGlobEager} from "@/utils/format"
 import {ActionTypes} from "@/store/modules/account/action-types"
 import {store} from "@/store"
@@ -32,7 +31,7 @@ export const routes: RouteRecordRaw[] = [
         path: "/",
         name: "home",
         redirect: defaultSelectedKey,
-        component: Layout,
+        component: import("@/layout/index.vue"),
         meta: {
             locale: "首页",
         },
