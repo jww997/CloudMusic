@@ -13,13 +13,6 @@ const hour = computed<number>(() => dayjs().get("hour"))
 const darkMode = ref<boolean>(false)
 
 
-
-
-
-
-
-
-
 const logout = () => {
   store.dispatch(ActionTypes.SET_ACCOUNT_LOGOUT)
   router.push({name: "AccountLogin"})
@@ -38,7 +31,9 @@ watch(() => hour.value, (v) => (darkMode.value = v < 6 || 18 < v),)
 watch(() => darkMode.value, () => darkMode.value ? document.body.setAttribute("arco-theme", "dark") : document.body.removeAttribute("arco-theme"),)
 
 // 暗黑模式
-const handleDark = () => {darkMode.value = !darkMode.value}
+const handleDark = () => {
+  darkMode.value = !darkMode.value
+}
 // 切换主题
 const themeIndex = ref<number>(0)
 const handleTheme = () => {
@@ -60,16 +55,16 @@ const handleTheme = () => {
     <a-popover>
       <a-space
           class="cursor-pointer"
-          @click="$router.push({ name: 'AccountUser' })"
+          @click="$router.push({ name: 'AccountUser', query: {id:'344460908'} })"
       >
         <a-avatar>
-          <img :src="profile?.avatarUrl" :alt="profile?.nickname" v-if="profile"/>
+          <img v-if="profile" :alt="profile?.nickname" :src="profile?.avatarUrl"/>
         </a-avatar>
         <div>{{ profile?.nickname }}</div>
       </a-space>
       <template #content>
-        <a-button @click="logout" v-if="cookie">退出登录</a-button>
-        <a-button @click="$router.push({ name: 'AccountUser' })" v-else
+        <a-button v-if="cookie" @click="logout">退出登录</a-button>
+        <a-button v-else @click="$router.push({ name: 'AccountUser', query: {id:'344460908'} })"
         >立即登录
         </a-button
         >

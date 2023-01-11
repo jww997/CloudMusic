@@ -8,6 +8,7 @@ defineProps<{
   follows: number
   followeds: number
   signature: string
+  userId: string
 }>()
 
 </script>
@@ -18,7 +19,7 @@ defineProps<{
     <div class="ml-8 flex-grow">
       <div class="text-2xl flex justify-between items-center">
         <div>{{ nickname }}</div>
-        <a-button class="ml-6" @click="$router.push({ name: 'AccountEdit' })">编辑个人信息</a-button>
+        <a-button class="ml-6" @click="$router.push({ name: 'AccountEdit', query: {id: userId} })">编辑个人信息</a-button>
       </div>
       <div class="pt-6 flex text-center">
         <div class="pr-10">

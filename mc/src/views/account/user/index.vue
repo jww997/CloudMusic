@@ -7,19 +7,20 @@ import * as CONSTANT from "./_constant"
 
 import Info from "./info.vue"
 import List from "@/views/listen/songlist/list.vue"
+import {useRoute} from "vue-router";
 
 const store = useStore()
+const route = useRoute()
 
-const uid = "344460908"
+const id = <string>route.query.id
+
 const results1 = ref<TYPE.RESULT>(CONSTANT.RESULT)
 const results2 = ref<TYPE.RESULT2>(CONSTANT.RESULT2)
 
 onMounted(async () => {
   try {
-    results1.value = await account.getUserDetail({uid})
-    results2.value = await account.getUserPlaylist({uid})
-
-    console.log(123, results1.value.profile)
+    results1.value = await account.getUserDetail({uid: id})
+    results2.value = await account.getUserPlaylist({uid: id})
   } catch (err) {
   }
 
@@ -34,8 +35,6 @@ onMounted(async () => {
   // });
   // await account.getUserCommentHistory({ uid });
   // await account.getUserDj({ uid });
-  // await account.getUserFollows({ uid });
-  // await account.getUserFolloweds({ uid });
   // await account.getUserEvent({ uid });
   // await account.getEventForward({
   //   uid,
@@ -56,7 +55,4 @@ onMounted(async () => {
 </template>
 
 <style lang="less" scoped>
-:deep(.arco-avatar) {
-  overflow: hidden;
-}
 </style>

@@ -9,10 +9,13 @@ import account from "@/apis/account/index"
 import * as TYPE from "./_type"
 import * as CONSTANT from "./_constant"
 import MyImage from "@/components/myImage/index.vue"
+import {useRoute} from "vue-router";
 
 const store = useStore()
+const route = useRoute()
 
-const uid = "344460908"
+const id = <string>route.query.id
+
 const results1 = ref<TYPE.RESULT>(CONSTANT.RESULT)
 
 interface Form {
@@ -86,7 +89,7 @@ const handleSubmit = async ({values}: { values: Form }) => {
 
 onMounted(async () => {
   try {
-    const res = await account.getUserDetail({uid})
+    const res = await account.getUserDetail({uid: id})
     results1.value = res
     const {birthday} = results1.value.profile
     // const timestamp = dayjs().valueOf()
